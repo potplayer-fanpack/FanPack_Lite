@@ -616,8 +616,9 @@ Filename: "https://addons.mozilla.org/pl/firefox/addon/potplayer-youtube-shortcu
 Filename: "https://chrome.google.com/webstore/search/potplayer";                                             Description: "Przekieruj do Chrome Potplayer Youtube Shortcut";   Tasks: addon\2; Flags: postinstall ShellExec
 
 [UninstallRun]
-Filename: "{app}\delete madVR.bat";                                        WorkingDir: "{app}"; StatusMsg: "Deinstalacja madVR.";               Components: "madvr"; RunOnceId: "DelService"; Flags: shellexec runhidden
-Filename: "{localappdata}\TorrServer\unins000.exe"; Parameters: "/SILENT"; WorkingDir: "{app}"; StatusMsg: "Deinstalacja TorrServer.";          Components: "tor";   RunOnceId: "DelService"; Flags: shellexec
+Filename: "delete madVR.bat";                    WorkingDir: "{app}";                     StatusMsg: "Deinstalacja madVR.";      RunOnceId: "DelService"; Flags: shellexec runhidden
+Filename: "unins000.exe"; Parameters: "/SILENT"; WorkingDir: "{userappdata}\TorrServer\"; StatusMsg: "Deinstalacja TorrServer."; RunOnceId: "Uninstall"; Flags: shellexec
+Filename: "unins000.exe"; Parameters: "/SILENT"; WorkingDir: "{userappdata}\ACEStream\";  StatusMsg: "Deinstalacja ACEStream.";  RunOnceId: "DelAce"; Flags: shellexec
 
 [Tasks]      
 Name: "minfo";                      Description: "Dodaj MediaInfo do menu kontekstowego plików";                           GroupDescription: "Integracja:";        Components: minfo

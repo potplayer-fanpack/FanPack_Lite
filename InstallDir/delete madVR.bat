@@ -1,6 +1,6 @@
 @echo off
-if exist "%localappdata%\madVR" goto deinstalacja
-if not exist "%localappdata%\madVR" goto nie istnieje
+if exist "%APPDATA%\madVR" goto deinstalacja
+if not exist "%APPDATA%\madVR" goto nie istnieje
 
 :deinstalacja
 @regsvr32.exe madVR.ax /u /s
@@ -14,7 +14,7 @@ if not exist "%localappdata%\madVR" goto nie istnieje
 @goto usun folder
 
 :usun folder
-RD /S /Q %localappdata%\madVR
+RD /S /Q %APPDATA%\madVR
 
 exit
 

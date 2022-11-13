@@ -60,7 +60,7 @@ Source: "InstallDir\License.txt";                                              D
 Source: "InstallDir\CzytajTo.txt";                                             DestDir: "{app}";                                                  Components: program; Flags: isreadme;
 Source: "InstallDir\LGPL.TXT";                                                 DestDir: "{app}";                                                  Components: program; Flags: ignoreversion
 Source: "InstallDir\MyProg-x64.exe";                                           DestDir: "{app}";                                                  Components: program; Flags: ignoreversion
-Source: "InstallDir\AviSynth\*";                                               DestDir: "{app}";                                                  Components: program; Flags: touch
+;Source: "InstallDir\AviSynth\*";                                               DestDir: "{app}";                                                  Components: program; Flags: touch
 ;Source: "src\CmdLine64.txt";                                                   DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: program; Flags: uninsneveruninstall ignoreversion
 ;Source: "src\Language\Polish.ini";                                             DestDir: "{commonpf}\DAUM\PotPlayer\Language";                     Components: program; Flags: uninsneveruninstall ignoreversion
 ;Source: "src\History\Polish.txt";                                              DestDir: "{commonpf}\DAUM\PotPlayer\History";                      Components: program; Flags: uninsneveruninstall ignoreversion
@@ -604,22 +604,23 @@ Name: "{group}\{cm:UninstallProgram,{#MyAppName}}";   Filename: "{uninstallexe}"
 Name: "{group}\FanPack64 w sieci";                    Filename: "{#MyAppURL}"
 
 [Run]
-Filename: "{tmp}\madVR_v0.9.17.exe";                                                      WorkingDir: {tmp}; Description: "Trwa instalacja madVR. Proszę czekać...";            StatusMsg: "Trwa instalacja madVR. Proszę czekać...";            Components: "madvr";  Check: IsmadVRInstalled;
-Filename: "{tmp}\Icaros.exe";            Parameters: "/VERYSILENT";                       WorkingDir: {tmp}; Description: "Trwa instalacja Icaros. Proszę czekać...";           StatusMsg: "Trwa instalacja Icaros. Proszę czekać...";           Components: "icaros"; Check: IsIcarosInstalled; 
-Filename: "{tmp}\TS.MatriX.Setup.exe";   Parameters: "/VERYSILENT";                       WorkingDir: {tmp}; Description: "Trwa instalacja TorrServer. Proszę czekać...";       StatusMsg: "Trwa instalacja TorrServer. Proszę czekać...";       Components: "tor";    Check: IsTORInstalled;
-Filename: "{tmp}\\ace_engine_setup.exe"; Parameters: "/VERYSILENT";                       WorkingDir: {tmp}; Description: "Trwa instalacja Ace Sream Engine. Proszę czekać..."; StatusMsg: "Trwa instalacja Ace Sream Engine. Proszę czekać..."; Components: "ace";    Check: IsAceInstalled;
-Filename: "reg";                         Parameters: "IMPORT Icaros_HKCU.reg /reg:64";    WorkingDir: {tmp}; Description: "Konfiguracja Icaros."; StatusMsg: "Konfiguracja Icaros."; Components: icaros; Check: IsIcarosInstalled; Flags: shellexec runhidden
-Filename: "reg";                         Parameters: "IMPORT icaros_HKLM_64.reg /reg:64"; WorkingDir: {tmp}; Description: "Konfiguracja Icaros."; StatusMsg: "Konfiguracja Icaros."; Components: icaros; Check: IsIcarosInstalled; Flags: shellexec runhidden
-Filename: "reg";                         Parameters: "IMPORT icaros_HKLM_32.reg /reg:32"; WorkingDir: {tmp}; Description: "Konfiguracja Icaros."; StatusMsg: "Konfiguracja Icaros."; Components: icaros; Check: IsIcarosInstalled; Flags: shellexec runhidden
-Filename: "{tmp}\7za.exe";               Parameters: "x ""{tmp}\Module64.7z"" -o""{commonpf}\DAUM\PotPlayer\Module"" * -r -aoa";   Components: program; Flags: runhidden runascurrentuser;
-Filename: "{tmp}\7za.exe";               Parameters: "x ""{tmp}\PxShader.7z"" -o""{commonpf}\DAUM\PotPlayer\PxShader"" * -r -aoa"; Components: program; Flags: runhidden runascurrentuser;
+Filename: "{tmp}\madVR_v0.9.17.exe";                                                     WorkingDir: {tmp}; Description: "Trwa instalacja madVR. Proszę czekać...";            StatusMsg: "Trwa instalacja madVR. Proszę czekać...";            Components: "madvr";  Check: IsmadVRInstalled;
+Filename: "{tmp}\Icaros.exe";           Parameters: "/VERYSILENT";                       WorkingDir: {tmp}; Description: "Trwa instalacja Icaros. Proszę czekać...";           StatusMsg: "Trwa instalacja Icaros. Proszę czekać...";           Components: "icaros"; Check: IsIcarosInstalled; 
+Filename: "{tmp}\TS.MatriX.Setup.exe";  Parameters: "/VERYSILENT";                       WorkingDir: {tmp}; Description: "Trwa instalacja TorrServer. Proszę czekać...";       StatusMsg: "Trwa instalacja TorrServer. Proszę czekać...";       Components: "tor";    Check: IsTORInstalled;
+Filename: "{tmp}\ace_engine_setup.exe"; Parameters: "/VERYSILENT";                       WorkingDir: {tmp}; Description: "Trwa instalacja Ace Sream Engine. Proszę czekać..."; StatusMsg: "Trwa instalacja Ace Sream Engine. Proszę czekać..."; Components: "ace";    Check: IsAceInstalled;
+Filename: "reg";                        Parameters: "IMPORT Icaros_HKCU.reg /reg:64";    WorkingDir: {tmp}; Description: "Konfiguracja Icaros."; StatusMsg: "Konfiguracja Icaros."; Components: icaros; Check: IsIcarosInstalled; Flags: shellexec runhidden
+Filename: "reg";                        Parameters: "IMPORT icaros_HKLM_64.reg /reg:64"; WorkingDir: {tmp}; Description: "Konfiguracja Icaros."; StatusMsg: "Konfiguracja Icaros."; Components: icaros; Check: IsIcarosInstalled; Flags: shellexec runhidden
+Filename: "reg";                        Parameters: "IMPORT icaros_HKLM_32.reg /reg:32"; WorkingDir: {tmp}; Description: "Konfiguracja Icaros."; StatusMsg: "Konfiguracja Icaros."; Components: icaros; Check: IsIcarosInstalled; Flags: shellexec runhidden
+Filename: "{tmp}\7za.exe";              Parameters: "x ""{tmp}\Module64.7z"" -o""{commonpf}\DAUM\PotPlayer\Module"" * -r -aoa";   Components: program; Flags: runhidden runascurrentuser;
+Filename: "{tmp}\7za.exe";              Parameters: "x ""{tmp}\PxShader.7z"" -o""{commonpf}\DAUM\PotPlayer\PxShader"" * -r -aoa"; Components: program; Flags: runhidden runascurrentuser;
 Filename: "{commonpf}\DAUM\PotPlayer\PotPlayerMini64.exe";                            Description: "Uruchom odtwarzacz PotPlayer"; Flags: postinstall skipifsilent nowait 
 Filename: "https://addons.mozilla.org/pl/firefox/addon/potplayer-youtube-shortcut/";  Description: "Przekieruj do Firefox Potplayer Youtube Shortcut";  Tasks: addon\1; Flags: postinstall ShellExec
 Filename: "https://chrome.google.com/webstore/search/potplayer";                      Description: "Przekieruj do Chrome Potplayer Youtube Shortcut";   Tasks: addon\2; Flags: postinstall ShellExec
 
 [UninstallRun]
-Filename: "{app}\delete madVR.bat";                                        WorkingDir: "{app}"; StatusMsg: "Deinstalacja madVR.";      Components: "madvr"; RunOnceId: "DelService"; Flags: shellexec runhidden
-Filename: "{localappdata}\TorrServer\unins000.exe"; Parameters: "/SILENT"; WorkingDir: "{app}"; StatusMsg: "Deinstalacja TorrServer."; Components: "tor";   RunOnceId: "DelService"; Flags: shellexec
+Filename: "delete madVR.bat";                    WorkingDir: "{app}";                     StatusMsg: "Deinstalacja madVR.";      RunOnceId: "DelService"; Flags: shellexec runhidden
+Filename: "unins000.exe"; Parameters: "/SILENT"; WorkingDir: "{userappdata}\TorrServer\"; StatusMsg: "Deinstalacja TorrServer."; RunOnceId: "Uninstall"; Flags: shellexec
+Filename: "unins000.exe"; Parameters: "/SILENT"; WorkingDir: "{userappdata}\ACEStream\";  StatusMsg: "Deinstalacja ACEStream.";  RunOnceId: "DelAce"; Flags: shellexec
 
 [Tasks]       
 Name: "minfo";                      Description: "Dodaj MediaInfo do menu kontekstowego plików";                           GroupDescription: "Integracja:";        Components: minfo
@@ -786,9 +787,9 @@ Type: files; Name: "{app}\FanPack.url"
 Type: files; Name: "{app}\Addons Mozilla PotPlayer YouTube.url"
 Type: files; Name: "{app}\Addons Chrome PotPlayer YouTube.url"
 Type: filesandordirs; Name: "{app}";
-Type: files; Name: "{localappdata}\madVR\settings.bin";                       Components: madvr; 
-Type: files; Name: "{localappdata}\madVR\settings.bak";                       Components: madvr; 
-Type: filesandordirs; Name: "{localappdata}\madVR";                           Components: madvr;
+Type: files; Name: "{userappdata}\madVR\settings.bin";                       Components: madvr; 
+Type: files; Name: "{userappdata}\madVR\settings.bak";                       Components: madvr; 
+Type: filesandordirs; Name: "{userappdata}\madVR";                           Components: madvr;
 Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\Module\MI";
 Type: filesandordirs; Name: "{userdocs}\PotPlayerMini64";
 Type: files; Name: "{userdocs}\PotPlayerMini64\Playlist\PotPlayerMini64.dpl"; Tasks: savedocs;  
