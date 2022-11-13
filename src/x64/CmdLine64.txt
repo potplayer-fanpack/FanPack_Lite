@@ -1,0 +1,800 @@
+﻿{$CP949=
+
+명령행 옵션 : PotPlayer[Mini].exe "파일경로" [옵션]
+
+"특수한 파일명"
+-	  	  : 표준 입력(pipe)으로 스트리밍 재생
+
+[옵션]
+/filedlg	  : 파일 열기 대화 상자
+/urldlg		  : 주소 열기 대화 상자
+/folderdlg	  : 폴더 열기 대화 상자
+/simple		  : 간편 열기 대화 상자
+/cap		  : 화면 캡쳐
+/cam		  : 캠이나 기타 장치
+/atv[:ch] 	  : 아날로그 TV
+/dtv[:ch[-순서]]  : 디지탈 TV
+/dvd		  : DVD 기본 장치
+/cd[:drive]	  : CD 열기
+/add		  : 재생 목록 마지막 위치에 추가
+/insert		  : 재생 목록 재생중인 파일 뒤에 추가
+/autoplay	  : 자동으로 재생
+/same		  : 항목을 모두 같이 재생
+/sort		  : 항목을 이름순 정렬
+/randomize	  : 항목을 랜덤 정렬
+/new              : 새로운 플레이어로 실행(다중 실행 금지 옵션 무시)
+/current	  : 현재 실행된 플레이어로 재생(다중 실행 금지 옵션 무시)
+/clipboard        : 클립보드의 항목으로 재생
+/seek=hh:mm:ss.ms : 지정된 시간으로 재생 시작
+/sub=["]자막 파일["] : 같이 열 자막 파일 지정
+/user_agent=["]문자열["] : http(s) 열기 시 사용할 user agent
+/referer=["]문자열["] : http(s) 열기 시 사용할 reference
+/headers=["]문자열["] : http(s) 열기 시 사용할 추가적인 정보
+/title=["]문자열["] : 지정된 제목 사용
+config="환경이름" : 지정된 환경 선택
+$}
+{$CP932=
+
+コマンドライン : PotPlayerMini64.exe "メディア名" [オプション]
+
+"メディア名"
+ファイルやフォルダへのパスまたはURLを指定
+複数指定では区切りの空白文字やファイルマッチ（ *, ? ）の使用が可能
+メディア名として - を指定すると標準入力（pipe）によるストリーミング再生
+
+[オプション]
+/filedlg		  : ファイルを開くダイアログを表示
+/urldlg		  : URLを開くダイアログを表示
+/folderdlg	  : フォルダを開くダイアログを表示
+/simple		  : オープンナビを表示
+/cap		  : 画面キャプチャを実行
+/cam		  : Webカメラ／その他のデバイスからキャプチャ
+/atv[:ch]	 	  : アナログTVを受信
+/dtv[:ch[-index]]	  : デジタルTVを受信
+/dvd		  : 既定のDVDドライブを再生
+/cd[:drive]	  : CDドライブを再生
+/add		  : プレイリストの末尾に追加
+/insert		  : プレイリストで再生中項目の次に追加
+/autoplay	  : 前回再生していたメディアを再生
+/same		  : 一緒に開く（外部音声など）
+/sort		  : 項目を名前順で並べ替え
+/randomize	  : 項目をランダムに並べ替え
+/new		  : 新しくウィンドウを開く
+/current		  : 現在のウィンドウで開く
+/clipboard	  : クリップボードのURL／パスを開く
+/seek=hh:mm:ss.ms  : 指定の時間位置から再生を開始
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="preset"	  : 環境構成名を指定
+$}
+{$CP936=
+
+命令行用法 : PotPlayerMini64.exe "文件路径" [参数]
+
+"特殊文件名"
+-	  	  : 播放标准输入(管道)的流媒体
+
+[选项]
+/filedlg		  : 打开文件对话框
+/urldlg		  : 打开链接对话框
+/folderdlg		  : 打开文件夹对话框
+/simple		  : 简捷打开文件对话框
+/cap		  : 视频录制
+/cam		  : 摄像头其他设备
+/atv[:ch] 		  : 模拟 TV
+/dtv[:ch[-索引]]	  : 数字 TV
+/dvd		  : 默认 DVD 设备
+/cd[:drive]		  : CD 驱动器
+/add		  : 添加到播放列表的最底位置
+/insert		  : 添加到播放列表中正在播放的文件的下一个位置
+/autoplay		  : 自动播放
+/same		  : 播放所有项目
+/sort		  : 按名称排序
+/randomize	  : 随机排序
+/new		  : 运行新的播放器(忽略禁止多重执行选项)
+/current	  : 运行当前播放器(忽略禁止多重执行选项)
+/clipboard		  : 将剪贴板中的项目粘贴到播放列表中并立即开始播放
+/seek=hh:mm:ss.ms : 指定时间开始播放
+/sub=["]字幕文件["] : 指定要一起打开的字幕文件
+/user_agent=["]字符串["] : 打开 http(s) 时使用的代理
+/referer=["]字符串["] : 打开 http(s) 时使用的参考
+/headers=["]字符串["] : 打开 http(s) 时使用的标头
+/title=["]字符串["] : 使用指定的标题
+config="配置名"	  : 选择指定配置
+$}
+{$CP950=
+
+命令列用法 : PotPlayerMini64.exe "檔案路徑" [選項]
+
+"特殊檔名"
+-	  	  : 播放標準輸入 (pipe) 的串流媒體
+
+[選項]
+/filedlg		  : 開啟檔案對話方塊
+/urldlg		  : 開啟網址對話方塊
+/folderdlg	  : 開啟資料夾對話方塊
+/simple		  : 快速開啟檔案對話方塊
+/cap		  : 視訊錄製
+/cam		  : 網路攝影機或其他裝置
+/atv[:ch] 		  : 類比電視
+/dtv[:ch[-index]]	  : 數位電視
+/dvd		  : 預設 DVD 裝置
+/cd[:drive]	  : CD 光碟機
+/add		  : 新增到播放清單的最底位置
+/insert		  : 新增到播放清單中正在播放檔案的下一個位置
+/autoplay	  : 自動播放
+/same		  : 播放所有項目
+/sort		  : 依名稱排序
+/randomize	  : 隨機排序
+/new		  : 執行新的 PotPlayer (無視禁止多重執行選項)
+/current		  : 執行目前 PotPlayer (無視禁止多重執行選項)
+/clipboard	  : 將剪貼簿中的項目貼上到播放清單中並立即開始播放
+/seek=hh:mm:ss.ms	  : 指定時間開始播放
+/sub=["]字幕檔案["] : 指定要一起開啟的字幕檔案
+/user_agent=["]字串["] : 開啟 http(s) 時使用的代理
+/referer=["]字串["] : 開啟 http(s) 時使用的參考
+/headers=["]字串["] : 開啟 http(s) 時使用的標頭
+/title=["]字串["] : 使用指定的標題
+config="配置名稱"  : 選擇指定配置
+
+使用方法舉例 : 
+PotPlayerMini64.exe "D:\刺激1995.mkv"	: 直接播放指定的檔案
+PotPlayerMini64.exe "D:\刺激1995.mkv" /add	: 將指定的檔案新增到清單中
+PotPlayerMini64.exe /dvd			: 開啟預設 DVD 裝置的檔案
+PotPlayerMini64.exe config="設定檔 1"	: 啟動指定的配置
+$}
+{$CATALAN=
+
+Ús : PotPlayerMini64.exe ["contingut"] [/switch]
+
+"contingut"	:Podeu especificar un arxiu, carpeta o URL com a contingut.
+                -Podeu especificar múltiples continguts separant-los amb un espai.
+		-Podeu especificar títols per a les URL separant-les amb una barra diagonal inversa (\) al final de les URL. ("http://...\title d'aquesta URL")
+            	-Comodins (*,?) permesos.
+              	-La configuració "Varis > En obrir arxius" afecta quan s'especifica un arxiu.
+
+- 		:Reprodueix mitjans de stream des stdin
+                -Exemple d'ús: youtube-dl.exe -o - -f best[ext=webm] https://www.youtube.com/watch?v=l22sS8DEiVU | PotPlayerMini.exe -
+
+/filedlg        :Diàleg obrir arxiu
+/urldlg         :Diàleg obrir URL
+/folderdlg      :Diàleg obrir carpeta
+/simple         :Obrir arxiu navegador
+/cap            :Obrir captura pantalla
+/cam            :Obrir càmera web/dispositius
+/atv[:ch]       :Obrir TV análogica
+/dtv[:ch[-idx]] :Obrir TV digital
+/dvd            :Obrir DVD
+/cd[:drive]     :Obrir unitat especificada
+/add            :Afegeix a llista de reproducció
+/insert		:Insereix els continguts especificats a sota de l'arxiu de reproducció (o afegeix al final de la llista de reproducció si no hi ha res reproduint-se en aquest moment)
+/autoplay       :Reproduir automàticament
+/same	   	:Càrrega i reprodueix els continguts especificats com múltiples streams.
+            	-Podeu seleccionar independentment streams de vídeo i àudio carregats en els menús contextuals de Video/Audio/Filtres.
+/sort		:Ordena els continguts especificats per nom abans de afegir a la llista de reproducció.
+/randomize	:Ordena els continguts especificats aleatòriament abans de afegir a la llista de reproducció.
+/new 		:Reprodueix els continguts especificats dins d'una nova instància del programa
+                -L'ajust "F5 > General > Múltiples instàncies" no afecta això.
+/current 	:Reprodueix els continguts especificats dins d'una instància existent del programa
+                -L'ajust "F5 > General > Múltiples instàncies" no afecta això.
+/clipboard      :Agrega contingut(s) del porta-papers a la llista de reproducció i inicia la reproducció immediatament.
+/seek=time      :Inicia la reproducció del contingut especificat/últim reproduït des del punt de temps especificat.
+                -El format de temps és: hh: mm: ss.ms (O especifiqui només segons, ejem. /seek=1800 per començar en el minut 30)
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="preset name" -- Utilitza els paràmetres predefinits
+$}
+{$POLISH=
+
+Użycie: PotPlayerMini.exe ["zawartość"] [/przełącznik]
+
+"zawartość"	 : Jako "zawartość" można określić plik, folder lub adres URL
+                    - Można określić wiele docelowych zawartości oddzielając je spacjami
+		    - Można określić tytuły adresów URL oddzielając je ukośnikiem odwrotnym (\) na końcu adresu URL. ("http://...\tytuł tego adresu URL")
+            	    - Symbole wieloznaczne (*,?) są dozwolone
+              	    - Ustawienie "Profile/Język interfejsu/Inne ustawienia > Metoda otwierania plików" ma na to wpływ, gdy jako "zawartość" określony jest plik
+
+- 		 : Odtwarzanie multimediów "strumieniowych" ze standardowego strumienia wejściowego (stdin)
+                    - Przykład użycia: youtube-dl.exe -o - -f best[ext=webm] https://www.youtube.com/watch?v=l22sS8DEiVU | PotPlayerMini.exe -
+ 
+/filedlg	 : Otwiera okno dialogowe otwierania pliku
+/urldlg        	 : Otwiera okno dialogowe otwierania URL
+/folderdlg	 : Otwiera okno dialogowe otwierania folderu
+/simple	   	 : Otwiera Menedżer plików
+/cap	   	 : Uruchamia przechwytywanie ekranu
+/cam	   	 : Uruchamia kamerę/inne urządzenia
+/atv[:ch]	 : Uruchamia urządzenie analogowej TV z określonym kanałem
+/dtv[:ch[-idx]]	 : Uruchamia urządzenie cyfrowej TV z określonym kanałem
+/dvd       	 : Uruchamia urządzenie DVD
+/cd[:drive]	 : Uruchamia określony dysk
+/add		 : Dołącza określone zawartość (pliki/foldery/URL) do listy odtwarzania
+/insert		 : Wstawia określoną zawartość (pliki/foldery/URL) tuż pod odtwarzanym elementem na liście odtwarzania (lub dodaje na końcu listy odtwarzania, jeśli w danym momencie nic nie jest odtwarzane)
+/autoplay 	 : Odtwarza ostatnio odtwarzany element
+/same	   	 : Wczytuje i odtwarza określoną zawartość jako wiele strumieni
+            	   - Można niezależnie wybierać wczytane strumienie wideo i audio w menu kontekstowym Wideo/Audio/Filtry
+/sort		 : Sortuje określoną zawartość (pliki/foldery/URL) według nazwy przed dodaniem jej do listy odtwarzania
+/randomize	 : Sortuje określoną zawartość (pliki/foldery/URL) losowo przed dodaniem ich do listy odtwarzania
+/new 		 : Odtwarza określoną zawartość (pliki/foldery/URL) w nowej kopii odtwarzacza
+                   - Ustawienie "F5 > Ogólne > Uruchamianie wielu kopii" jest ignorowane
+/current 	 : Odtwarza określoną zawartość (pliki/foldery/URL) w aktualnie uruchomionej kopii odtwarzacza
+                   - Ustawienie "F5 > Ogólne > Uruchamianie wielu kopii" jest ignorowane
+/clipboard       : Dołącza zawartość (pliki/foldery/URL) ze schowka do listy odtwarzania i natychmiast rozpoczyna odtwarzanie
+/seek=time       : Rozpoczyna odtwarzanie określonej / ostatnio odtwarzanej zawartości od określonego momentu
+                   - format czasu to: hh:mm:ss.ms (LUB można określić tylko sekundy, np. /seek=1800, aby rozpocząć od 30 minuty)
+/sub="subfile"   : Wczytuje określone napisy z podanych ścieżek lub adresów URL
+/user_agent="ua" : Ustawia nagłówek user agent dla zapytań http(s)
+/referer="ref"   : Ustawia nagłówek odwołania dla zapytań http(s)
+/headers="hdrs"  : Dołącza określone nagłówki do zapytań http(s)
+/title="title"   : Używaj tytułu
+config="name"	 : Aktywuje określone ustawienie wstępne (profil)
+
+Jak uruchomić PotPlayer z wiersza polecenia?
+1) Kliknij prawym przyciskiem myszki PotPlayerMini[64].exe w katalogu instalacyjnym i z menu kontekstowego wybierz "Utwórz skrót"
+2) Kliknij prawym przyciskiem myszy nowo utworzony plik "PotPlayerMini[64].exe — skrót" i z menu kontekstowego wybierz "Właściwości"
+3) Dodaj określone polecenie na końcu linii wiersza polecenia (na przykład "C:\Program Files\Daum\PotPlayer\PotPlayerMini.exe" /autoplay), a następnie kliknij przycisk OK.
+4) Kliknij dwukrotnie "PotPlayerMini[64].exe — skrót", program wykona żądane działanie po uruchomieniu.
+
+Przykłady:
+PotPlayerMini.exe "D:\Data\Video\SD Film\no retreat no surrender.avi" - odtwarza określony plik bezpośrednio
+PotPlayerMini.exe "D:\Data\Video\SD Film\no retreat no surrender.avi" /add - dodaje określony plik do listy odtwarzania
+PotPlayerMini.exe /autoplay - odtwarza ostatnio otwarty plik
+PotPlayerMini.exe /filedlg - otwiera okno dialogowe i dodaje plik(i) do listy odtwarzania
+PotPlayerMini.exe /dvd - otwiera standardowy napęd DVD
+PotPlayerMini.exe config="HD Pack" - aktywuje wskazane ustawienia (profil)
+PotPlayerMini.exe /cd:e - otwiera określony dysk
+$}
+{$RUSSIAN=
+
+Пример : PotPlayerMini64.exe "имя файла" [команда запуска]
+
+«Специальное имя файла»
+-			Стандартный вход (pipe) потоковой передачи
+
+«Опции»
+/filedlg		Диалог открытия файла
+/urldlg			Диалог открытия URL-адреса
+/folderdlg		Диалог открытия папки
+/simple			Навигатор по файлам
+/cap			Захват экрана
+/cam			Камера или другое устройство
+/atv[:ch]		Аналоговое ТВ
+/dtv[:ch[-индекс]]	Цифровое ТВ
+/dvd			Открыть DVD-диск
+/cd[:drive]		Открыть дисковод
+/add			Добавить в плей-лист
+/insert			Добавить в плей-лист за текущим файлом
+/autoplay		Воспроизвести
+/same			Воспроизвести все
+/sort			Сортировка по имени
+/randomize		Сортировка в случайном порядке
+/new			Выполнить в копии плеера (только для одной опции)
+/current		Выполнить в запущенном плеере (нет многооконности)
+/clipboard		Воспроизвести из буфера обмена
+/seek=hh:mm:ss.ms	Воспроизвести с обозначенного времени
+/sub=["]субтитры["]	Можно указать определённый файл или ссылку на субтитры
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="Имя шаблона"	Выбор шаблона
+$}
+{$SPANISH=
+
+Uso : PotPlayerMini64.exe ["contenido"] [/switch]
+
+"contenido"	:Puede especificar un archivo, carpeta o URL como contenido.
+                -Puede especificar múltiples contenidos separándolos con un espacio.
+		-Puede especificar títulos para las URL separándolas con una barra diagonal inversa (\) al final de las URL. ("http://...\title de esta url")
+            	-Comodines (*,?) permitidos.
+              	-La configuración "Varios > Al abrir archivos" afecta cuando se especifica un archivo.
+
+- 		:Reproduce medios de stream desde stdin
+                -Ejemplo de uso: youtube-dl.exe -o - -f best[ext=webm] https://www.youtube.com/watch?v=l22sS8DEiVU | PotPlayerMini.exe -
+
+/filedlg        :Diálogo abrir archivo
+/urldlg         :Diálogo abrir URL
+/folderdlg      :Diálogo abrir carpeta
+/simple         :Abrir archivo navegador
+/cap            :Abrir captura pantalla
+/cam            :Abrir cámara web/dispositivos
+/atv[:ch]       :Abrir TV análogica
+/dtv[:ch[-idx]] :Abrir TV digital
+/dvd            :Abrir DVD
+/cd[:drive]     :Abrir unidad especificada
+/add            :Añadir a lista de reproducción
+/insert		:Inserta los contenidos especificados justo debajo del archivo de reproducción (o agrega al final de la lista de reproducción si no hay nada reproduciéndose en ese momento)
+/autoplay       :Reproducir automáticamente
+/same	   	:Carga y reproduce los contenidos especificados como múltiples streams.
+            	-Puede seleccionar independientemente streams de video y audio cargados en los menús contextuales de Video/Audio/Filtros.
+/sort		:Ordena los contenidos especificados por nombre antes de agregarlos a la lista de reproducción.
+/randomize	:Ordena los contenidos especificados aleatoriamente antes de agregarlos a la lista de reproducción.
+/new 		:Reproduce los contenidos especificados dentro de una nueva instancia del programa
+                -El ajuste "F5 > General > Múltiples instancias" no afecta esto.
+/current 	:Reproduce los contenidos especificados dentro de una instancia existente del programa
+                -El ajuste "F5 > General > Múltiples instancias" no afecta esto.
+/clipboard      :Agrega contenido(s) del portapapeles a la lista de reproducción e inicia la reproducción inmediatamente.
+/seek=time      :Inicia la reproducción del contenido especificado/último reproducido desde el punto de tiempo especificado.
+                -El formato de tiempo es: hh:mm:ss.ms (O especifique solo segundos, ejem. /seek=1800 para comenzar en el minuto 30)
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="preset name" -- Usar los ajustes predefinidos
+$}
+{$UKRAINIAN=
+
+Використання: PotPlayerMini64.exe "назва_файла" [параметри]
+
+/filedlg		: Відкрити файл(и)
+/urldlg			: Відкрити посилання
+/folderdlg  		: Відкрити теку
+/simple			: Відкрити менеджер файлів
+/cap			: Відкрити захоплення екрану
+/cam			: Відкрити камеру або інший пристрій
+/atv[:ch]		: Відкрити аналогове ТБ
+/dtv[:ch]		: Відкрити цифрове ТБ
+/dvd			: Відкрити DVD
+/cd[:drive]		: Відкрити КД
+/add			: Додати до списку відтворення
+/autoplay   		: Відтворити останній файл
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="назва_шаблону"	: Використати зазначений шаблон
+$}
+{$HUNGARIAN=
+
+Használat: PotPlayerMini64.exe ["content"] [/switch]
+
+"content"	:Megadhat egy fájlt, mappát vagy URL-t tartalomként.
+                -Több fájlnevet is megadhat, ha azokat szóközzel választja el egymástól.
+                -Megadhat címeket az URL-ekhez úgy, hogy azokat egymástól perjellel (\) választja el az URL-ek végén. ("http://...\ennek az URL-nek a címe")
+            	-A helyettesítő karakterek (*,?) engedélyezettek.
+              	-Az "Egyéb > Fájlok megnyitásakor" beállítás ezt befolyásolja egy fájl megadása esetén.
+
+- 		:Online médiatartalom lejátszása az stdin-ről
+                -Példa a használatára: youtube-dl.exe -o - -f best[ext=webm] https://www.youtube.com/watch?v=l22sS8DEiVU | PotPlayerMini.exe -
+
+/filedlg	:Megnyitja a fájl megnyitása párbeszédablakot.
+/urldlg        	:Megnyitja az URL megnyitási párbeszédablakot.
+/folderdlg	:Megnyitja a mappa megnyitása párbeszédablakot.
+/simple	   	:Megnyitja a fájlválasztót.
+/cap	   	:Futtatja a képernyőfelvételt.
+/cam	   	:Futtatja a webkamerát/egyéb eszközöket.
+/atv[:ch]	:Futtatja az analóg TV-készüléket a megadott csatornáról.
+/dtv[:ch[-idx]]	:Futtatja a digitális TV-készüléket a megadott csatornáról.
+/dvd       	:Futtatja a DVD-készüléket.
+/cd[:drive]	:Futtatja a megadott meghajtót.
+/add		:Hozzáfűzi a megadott tartalmat a lejátszási listához.
+/insert		:Beszúrja a megadott tartalmat a lejátszási listában közvetlenül a lejátszott fájl alá.(Vagy hozzáadja azt a lejátszási lista végéhez, ha épp nincs lejátszás)
+/autoplay 	:Lejátssza a legutóbb játszott elemet.
+/same	   	:Betölti és lejátsza a megadott tartalmakat több adatfolyamként.
+                -A Videó/Audió/Szűrők menüben egymástól függetlenül kiválaszthatja a betöltött videó-és hangfolyamokat.
+/sort		:A megadott tartalmat név szerint rendezi, mielőtt felvenné azokat a lejátszási listára.
+/randomize	:A megadott tartalmat véletlenszerűen rendezi, mielőtt felvenné azokat a lejátszási listára.
+/new		:A megadott tartalom a program új példányán belül kerül lejátszásra.
+                -Az "F5 > Általános > Több példány" beállítás nincs hatással erre.
+/current	:Lejátssza a megadott tartalmat a program egy meglévő példányán belül
+                -Az "F5 > Általános > Több példány" beállítás nincs hatással erre.
+/clipboard      :Hozzáfűzi a vágólap tartalmát a lejátszási listához, és azonnal megkezdi a lejátszást.
+/seek=time      :Megkezdi a megadott/utoljára játszott tartalom lejátszását a megadott időponttól.
+                -Az idő formátuma: hh:mm:ss.ms (VAGY csak másodperceket adjon meg, például /seek=1800 indítás a 30. perctől)
+/sub="subfile"  :Betölti a megadott felirat(oka)t a megadott elérési útvonalakból vagy URL-címekről.
+/user_agent=["]string["] : Beállítja a felhasználói ügynök karakterláncot a http cím(ek)hez
+/referer=["]string["] : Beállítja a hivatkozó karakterláncot a http cím(ek)hez
+/headers=["]string["] : Beállítja a fejlécek karakterláncot a http cím(ek)hez
+config="name"	:Aktiválja a megadott előbeállított mintát.
+$}
+{$SERBIAN=
+
+Употреба : PotPlayerMini64.exe "filename" [избор]
+
+/filedlg		: Отвори дијалог фајла
+/urldlg			: Отвори дијалог адреса
+/folderdlg  		: Отвори фолдер дијалог
+/simple			: Отвори навигатор
+/cap			: Отвори снимање екрана
+/cam			: Отвори вебкам/други уређај
+/atv[:ch]		: Отвори Аналогну TV
+/dtv[:ch]		: Отвори Дигиталну TV
+/dvd			: Отвори DVD
+/cd[:drive]		: Отвори cd драјв
+/add			: Додај у листу за пуштање
+/autoplay   		: Пусти задњи фајл
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="preset name"	: Користи назначене поставке
+$}
+{$THAI=
+
+วิธีใช้ : PotPlayerMini64.exe "ชื่อไฟล์" [ตัวเลือก]
+
+/filedlg		: เปิดกล่องโต้ตอบสำหรับไฟล์
+/urldlg			: เปิดกล่องโต้ตอบสำหรับ URL
+/folderdlg  		: เปิดกล่องโต้ตอบสำหรับโฟลเดอร์
+/simple			: เปิดตัวนำทางไฟล์
+/cap			: เปิดตัวจับหน้าจอ
+/cam			: เปิดกล้องเว็บแคม/อุปกรณ์อื่น
+/atv[:ch]		: เปิดทีวีอนาล็อก
+/dtv[:ch]		: เปิดทีวีดิจิตอล
+/dvd			: เปิด DVD
+/cd[:drive]		: เปิดไดรฟ์ CD
+/add			: เพิ่มสู่บัญชีการเล่น
+/autoplay   		: เล่นไฟล์ที่ถูกเล่นครั้งหลังสุด
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="ชื่อค่าสำเร็จรูป"	: ใช้ค่าสำเร็จรูปที่ระบุ
+$}
+{$TURKISH=
+
+Kullanım: PotPlayerMini64.exe "dosyaadı" [seçenekler]
+
+/filedlg              : Dosya iletişim penceresini aç
+/urldlg		      : URL iletişim penceresini aç
+/folderdlg            : Klasör iletişim penceresini aç
+/simple		      : Dosya tarayıcısını aç
+/cap		      : Ekran yakalamayı aç
+/cam		      : Web kamerası/diğer aygıtları aç
+/atv[:ch]	      : Analog TV aç
+/dtv[:ch]	      : Dijital TV aç
+/dvd		      : DVD aç
+/cd[:drive]	      : Bir CD sürücüsü aç
+/add		      : Çalma listesine ekle
+/autoplay             : Son yürütülen dosyayı oynat
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="preset name"  : Belirtilen yapılandırmayı kullan
+$}
+{$PERSIAN=
+
+طریقه استفاده : PotPlayerMini64.exe "[گزینه ها] " نام فایل
+
+/filedlg		:  باز کردن کادر محاوره ای فایل
+/urldlg			: بازکردن کادر محاوره ای آدرس اینترنتی
+/folderdlg  		: بازکردن پوشه کادر محاوره ای
+/simple			: باز کردن هدایتگر فایل
+/cap			: باز کردن ضبط صفحه نمایش
+/cam			: باز کردن وب کم/سایر دستگاهها
+/atv[:ch]		: باز کردن تلویزیون آنالوگ
+/dtv[:ch]		: باز کردن تلویزیون دیجیتال
+/dvd			: DVD بازکردن 
+/cd[:drive]		: CD بازکردن درایو
+/add			: افزودن به لیست پخش
+/autoplay   		: پخش از آخرین زمان پخش فایل
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="preset name"	:  استفاده ازپیش تعیین شده مشخص                                                                                                                              
+$}
+{$FRENCH=
+
+Utilisation : PotPlayerMini64.exe ["cible"] [/commutateur]
+
+"cible"	: Elle peut être un fichier, un dossier ou une URL.
+		- Vous pouvez spécifier plusieurs cibles, séparées par un espacement.
+		- Vous pouvez donner un titre d'URL en le séparant du lien avec une oblique arrière (\).
+		  -->("http://...\titre de cette url")
+		- Les "jokers" (*,?) sont autorisés.
+		- Le réglage "Divers  > A l'ouverture de fichiers ..." affecte ceci quand la cible est un fichier.
+
+- 	: Lecture de média en "streaming" à partir du flux d'entrée standard (stdin).
+		- Exemple : youtube-dl.exe -o - -f best[ext=webm] https://www.youtube.com/watch?v=l22sS8DEiVU | PotPlayerMini.exe -
+
+/filedlg	: Ouvre le dialogue de fichier
+/urldlg		: Ouvre le dialogue d'url
+/folderdlg	: Ouvre le dialogue de dossier
+/simple		: Ouvre le navigateur (explorateur) de fichiers
+/cap		: Exécute la capture d'écran
+/cam		: Active la webcam/autres appareils
+/atv[:ch]	: Active la TV analogique sur la chaîne indiquée
+/dtv[:ch]	: Active la TV numérique sur la chaîne indiquée
+/dvd		: Ouvre le lecteur de DVD
+/cd[:drive]	: Ouvre le lecteur spécifié
+/add 		: Ajoute à la liste de lecture
+/insert		: Insère la(les) cible(s) indiquée(s) juste sous le fichier en lecture. (Ou l'ajoute à la fin de la liste de lecture si rien n'est lu à ce moment-là)
+/autoplay	: Lit le de dernier fichier lu
+/same		: Charge et lit les cibles sous forme de flux multiples.
+		   -Vous pouvez sélectionner indépendamment les flux audio et vidéo chargés, dans les menus contextuels Vidéo / Audio / Filtres.
+/sort		: Trie les cibles indiquées par nom avant leur ajout dans la liste de lecture.
+/randomize	: Ajoute les cibles indiquées, aléatoirement dans la liste de lecture.
+/new 		: Lit les cibles indiquées dans une nouvelle instance du programme.
+		   - Le préréglages "F5 > Général > Instances multiples" n'affecte pas ceci.
+/current 	: Lit les cibles indiquées dans une instance existante du programme.
+		   - Le préréglages "F5 > Général > Instances multiples" n'affecte pas ceci.
+/clipboard	: Ajoute la(les) cible(s) à la liste de lecture et commence à lire immédiatement.
+/seek=time	: Démarre la lecture de la cible spécifiée/dernière lue à partir du point temporel indiqué.
+		   - Le format d'heure est : hh:mm:ss.ms (OR uniquement en secondes; par ex. : /seek=1800 pour démarrer à la 30ième minute).
+/sub=["]subtitle file["] : Pour spécifier un fichier ou une URL comme sous-titres.
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="nom"	: Active les préréglages dont le nom est spécifié
+$}
+{$HONGKONGESE=
+
+用法：PotPlayerMini64.exe "檔名" [參數]
+
+/filedlg	：開啟檔案話匣
+/urldlg		：開啟網址話匣
+/folderdlg	：開啟資料夾話匣
+/simple		：開啟資料夾導航
+/cap		：螢幕擷取
+/cam		：開啟網絡鏡頭╱其他裝置
+/atv[:ch]	：開啟模擬電視
+/dtv[:ch[-index]] : 開啟數碼電視
+/dvd		：開啟DVD裝置
+/cd[:drive]	：開啟CD裝置
+/add		：加入到播放清單最後位置
+/insert		：加入到播放清單目前播放檔案後的位置
+/autoplay	：播放上次檔案
+/same		：播放全部檔案
+/sort		：按名稱排序
+/randomize	：隨機排序
+config="範本名" ：使用指定工作範本
+|user_agent=xxx&referer=yyy&headers=zzz
+$}
+{$SERBIAN=
+Прекидачи:
+/filedlg		:Отвара фајл(ове) (Ctrl+O)
+/urldlg			:Отвара URL (Ctrl+U)
+/folderdlg  		:Отвара директоријуме (F2)
+/simple			:Отвара file navigator (F12)
+/cap			:Отвара хватање екрана (Ctrl+S)
+/cam			:Отвара вебкам/Друге уређаје (Ctrl+J)
+/atv[:ch]		:Отвара Аналогни ТВ (Ctrl+W)
+/dtv[:ch]		:Отвара Дигиталну ТВ (Ctrl+K)
+/dvd			:Отвара DVD (Ctrl+D)
+/cd[:drive]		:Отвара CD драјв
+/autoplay   		:Пушта последњу отварану датотеку
+"filename" /add		:Додаје наведену датотеку на листу песама
+"filename"  		:Пушта наведену датотеку
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="preset name"	:Користи наведену поставку
+
+Како да пустим PotPlayer из командне линије?
+1-)Десни клик на PotPlayerMini[.exe] у инсталационом директоријуму и кликнути на  направи пречицу
+2-)Сада десни клик на ново направљени фајл "PotPlayerMini[.exe] - Shortcut" и кликнути на својства
+3-)Додај одређену команду на крају командне линије (за пример, "C:\Program Files\Daum\PotPlayer\PotPlayerMini64.exe" /autoplay ) затим притисни OK.
+4-)Дупли клик на "PotPlayerMini[.exe] - Shortcut", програм ће извести жељену акцију на старту.
+
+
+Примери;
+PotPlayerMini64.exe "D:\Data Center\Videos\SD Film\no retreat no surrender.avi"         ;Пушта наведени фајл директно
+PotPlayerMini64.exe "D:\Data Center\Videos\SD Film\no retreat no surrender.avi" /add    ;Додаје наведени фајл у листу за пуштање
+PotPlayerMini64.exe /autoplay                                                           ;Пушта последњу отварану датотеку
+PotPlayerMini64.exe /filedlg                                                            ;Отвара прозор дијалога и додаје фајл(ове) у листу за пуштање
+PotPlayerMini64.exe /dvd                                                                ;Отвара уобичајени DVD уређај
+PotPlayerMini64.exe config="HD Pack"                                                    ;Активира назначена подешавања
+PotPlayerMini64.exe /cd:e                                                               ;Отвара назначени драјв
+$}
+{$BULGARIAN=
+
+Параметри на командния ред: PotPlayerMini64.exe "Име на файл" [Параметри]
+
+"Специално име на файл"
+-			: Възпроизвеждане на поточно предаване със стандартен вход (pipe)
+
+[Опция]
+"Име на файл"		: Можете да зададете файл, папка или URL адрес
+			- Можете да зададете няколко имена на файлове, като ги разделите с интервал
+			- Разрешени са заместващи символи (*,?)
+			- Настройката "Профил/Език/Други опции > Когато отваряте файлове" влияе на това, когато е зададен файл
+/filedlg		: Отваряне диалогов прозорец на файла
+/urldlg			: Отваряне диалогов прозорец на URL адрес
+/folderdlg		: Отваряне диалогов прозорец на папки
+/simple			: Отваряне файлов навигатор
+/cap			: Снимка на екрана
+/cam			: Камера или друго устройство
+/atv[:ch]		: Аналогова телевизия
+/dtv[:ch]		: Цифрова телевизия
+/dvd			: Основно устройство DVD
+/cd[:drive]		: Отваряне дисково устройство
+/add			: Добавяне в списъка
+/insert			: Добавяне в списъка след файла за възпроизвеждане
+/autoplay		: Автоматично възпроизвеждане
+/same			: Възпроизвеждане на всички елементи заедно
+/sort			: Сортиране на елементите по име
+/randomize		: Случайно сортиране на елементите
+/new			: Отваряне ново копие на плейъра (само за една опция)
+			- Настройката "F5> Общи> Стартиране на няколко копия не влияе на това
+/current 		:Възпроизвеждане указаното (ите) съдържание (я) в текущото копие на плейъра
+			- Настройката "F5> Общи> Стартиране на няколко копия не влияе на това
+/clipboard		: Възпроизвеждане от клипборда
+/seek=hh:mm:ss.ms	: Възпроизвеждане в зададено време/последно възпроизведен файл от определена точка от време (чч:мм:сс.мс или секунди)
+/sub=["]субтитри["]	: Зареждане на конкретен файл със субтитри от зададен път или URL адрес със субтитри
+/user_agent=["]низ["] : Задаване на низ от потребителски агенти към http(s) адреса(ите)
+/referer=["]низ["] 	: Задаване на низ за препращане към http(s) адреса(ите)
+/headers=["]низ["] 	: Задаване на низ от заглавия(хедъри ) към http(s) адреса(ите)
+/title=["]низ["]  	: Използване на заглавие
+config="Име на шаблона"	: Избор на шаблон (Предварително указана настройка)
+
+Как да пусна PotPlayer от командния ред?
+
+1) Кликнете върху "PotPlayerMini64.exe" с десния бутон на мишката в инсталационната директория
+   и изберете "Създаване на пряк път"
+
+2) Кликнете с десния бутон върху новосъздадения файл "PotPlayerMini64.exe - Пряк път"
+   и изберете "Свойства"
+
+3) Добавете конкретна команда в края на командния ред (например "C:\Program Files\DAUM\PotPlayer\PotPlayerMini64.exe" /autoplay
+   и след това изберете "OK".
+
+4) Кликнете два пъти върху "PotPlayerMini64.exe - Пряк път" и програмата ще извърши желаното действие при стартиране.
+  (в случая с примера Автоматично възпроизвеждане).
+
+Примери:
+PotPlayer[Mini]64.exe "D:\Data\Video\SD Film\no retreat no surrender.avi" - възпроизвежда директно посочения файл
+PotPlayer[Mini]64.exe "D:\Data\Video\SD Film\no retreat no surrender.avi" /add - добавя определен файл към списък за възпроизвеждане
+PotPlayer[Mini]64.exe /autoplay - възпроизвежда последния отворен файл
+PotPlayer[Mini]64.exe /filedlg - отваря диалогов прозорец и добавя файла(-те) към списъка за възпроизвеждане.
+PotPlayer[Mini]64.exe /dvd - отваря стандартно DVD устройство
+PotPlayer[Mini]64.exe config="HD Pack" - активира посочените настройки (профил)
+PotPlayer[Mini]64.exe /cd:e - отваря посоченото устройство(диск)
+$}
+{$INDONESIAN=
+Pemakaian: PotPlayerMini64.exe ["nama file"] [/perintah]
+
+
+"Nama file khusus"
+-	  	  :Streaming pemutaran dengan input standar (pipa)
+[Opsi]
+"nama file"	:Anda dapat menentukan file, folder, atau URL.
+		 -Anda dapat menentukan beberapa nama file dengan memisahkannya menggunakan spasi.
+		 -Wildcard (*,?) diizinkan.
+		 -Pengaturan "Lain-lain> Saat File Dibuka" mempengaruhi ini ketika file ditentukan.
+/filedlg	:Membuka kotak dialog buka file.
+/urldlg        	:Membuka kotak dialog buka URL.
+/folderdlg	:Membuka kotak dialog buka folder.
+/simple	   	:Membuka navigator file.
+/cap	   	:Menjalankan penjepret layar.
+/cam	   	:Menjalankan perangkat webcam/lainnya.
+/atv[:ch]	:Menjalankan perangkat TV Analog dari saluran yang ditentukan.
+/dtv[:ch[-idx]]	:Menjalankan perangkat TV Digital dari saluran yang ditentukan.
+/dvd       	:Menjalankan perangkat DVD
+/cd[:drive]	:Menjalankan drive yang ditentukan.
+/add		:Menambahkan file/folder/URL yang ditentukan ke daftar putar.
+/insert		:Menyisipkan file yang ditentukan tepat di bawah file yang sedang diputar. (Atau tambahkan di akhir daftar putar jika tidak ada yang diputar saat itu)
+/autoplay 	:Memutar file yang terakhir diputar.
+/same	   	:Menambahkan file yang ditentukan ke daftar putar dan segera memutarnya.
+		 -Pengaturan "Lain-lain> Saat File Dibuka" tidak mempengaruhi ini.
+/sort		:Mengurutkan file yang ditentukan berdasarkan nama sebelum menambahkan ke daftar putar.
+/randomize	:Mengurutkan file yang ditentukan secara acak sebelum menambahkan ke daftar putar.
+/new		:Membuka jendela baru program.
+		 -Pengaturan "F5> Umum> Banyak jendela" tidak memengaruhi ini.
+/clipboard      :Menambahkan file/folder/URL dari papan klip ke daftar putar dan  segera memutarnya.
+/seek=jj:mm:dd.md :Mulai pemutaran file terakhir dimainkan/tertentu dari titik waktu yang ditentukan (jj:mm:dd.md atau detik)
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="nama"	:Mengaktifkan : yang ditentukan.
+$}
+{$CZECH=
+
+Použití : PotPlayerMini64.exe ["název souboru"] [/přepínač]
+
+"speciální název souboru"
+-	  	  : přehrávání proudu ze standardního vstupu
+
+[Možnost]
+"Název souboru"	: Lze zadat soubor, složku či Url
+               	- lze zadat i více názvů, oddělených mezerou
+            	- použití notace (*,?) je povoleno
+              	- Nastavení "Obecné /Při otevírání souborů"" ovlivní chování programu
+/filedlg		: Otevře dialog pro otevření souborů
+/urldlg			: Otevře dialog pro otevření adresy URL
+/folderdlg		: Otevře dialog pro otevření složky
+/simple			: Otevře procházení soubory
+/cap			: Otevře zachytávání obrazovky
+/cam			: Otevře Webovou kameru / další zařízení
+/atv[:ch]		: Otevře analogovou Tv
+/dtv[:ch[-index]]	: Otevře digitální Tv
+/dvd			: Otevře dvd
+/cd[:drive]		: Otevře jednotku CD
+/add			: Přidat na poslední pozici seznamu stop
+/insert			: Přidat na pozici, následující za aktuálně přehrávaným souborem v seznamu stop
+/autoplay		: Přehrát naposledy přehrávaný soubor
+/same			: Přehrát všechny položky
+              	- Nastavení "Obecné /Při otevírání souborů"" neovlivní chování programu
+/sort			: Seřadit podle názvu
+/randomize		: Seřadit náhodně
+/new		: Otevře novou instanci programu
+/current	: Otevře aktuální instanci programu
+/clipboard	 : Přidá do seznamu stop soubor/y ze schránky a spustí jejich přehrávání
+/seek=hh:mm:ss.ms : spustí přehrávání zadaného souboru na zadaném čase (hh:mm:ss.ms nebo s)
+/user_agent=["]string["] : set user agent string for http(s)
+/referer=["]string["] : set referer string for http(s)
+/headers=["]string["] : set headers string for http(s)
+config="název předvolby"	: Použít zadanou předvolbu
+$}
+{$CP1254=
+
+Kullanım: PotPlayerMini64.exe ["içerik"] [/anahtar]
+
+"içerik"	:İçerik olarak bir dosya, klasör veya URL belirtebilirsiniz.
+                -Birden fazla içeriği boşlukla ayırarak belirtebilirsiniz.
+		-URL lerin sonuna ters eğik çizgi (\) ekledikten sonra URL lerin başlığını belirtebilirsiniz. ("http://...\bu urlnin başlığı")
+            	-Joker karakterlere (*,?) izin verilir.
+              	-Bir dosya belirtildiğinde "Çeşitli > Dosyalar Açıldığında" ayarı bunu etkileyecektir.
+
+- 		:stdin den medya akışını oynatır
+                -Örnek kullanım: youtube-dl.exe -o - -f best[ext=webm] https://www.youtube.com/watch?v=l22sS8DEiVU | PotPlayerMini64.exe -
+
+/filedlg	:Dosya aç diyalog kutusunu açar.
+/urldlg        	:URL aç diyalog kutusunu açar.
+/folderdlg	:Klasör aç diyalog kutusunu açar.
+/simple	   	:Dosya gezginini açar.
+/cap	   	:Ekran yakalamayı çalıştırır.
+/cam	   	:Web kamera/diğer aygıtları çalıştırır.
+/atv[:ch]	:Analog TV cihazını belirtilen kanaldan çalıştırır.
+/dtv[:ch[-idx]]	:Dijital TV cihazını belirtilen kanaldan çalıştırır.
+/dvd       	:DVD aygıtını çalıştırır.
+/cd[:sürücü]	:Belirtilen sürücüyü çalıştırır.
+/add		:Belirtilen içeriği oynatım listesine iliştirir.
+/insert		:Belirtilen içeriği oynatım listesinde oynatılan öğenin hemen altına ekler.(Veya o anda hiçbir şey oynatılmıyorsa oynatma listesinin sonuna ekler)
+/autoplay 	:Oynatılan son öğeyi oynatır.
+/same	   	:Belirtilen içerikleri çoklu akışlar olarak yükler ve oynatır.
+            	-Video/Ses/Filtreler içerik menüleri altında yüklenen video ve ses akışlarını bağımsız olarak seçebilirsiniz.
+/sort		:Oynatım listesine eklemeden önce belirtilen içerikleri isme göre sıralar.
+/randomize	:Oynatım listesine eklemeden önce belirtilen içerikleri rastgele sıralar.
+/new 		:Programın yeni bir örneğinde belirtilen içeriği oynatır.
+                -"F5 > Genel > Çoklu örnek" ayarı bunu etkilemez.
+/current 	:Programın mevcut bir örneğinde belirtilen içeriği oynatır.
+                -"F5 > Genel > Çoklu örnek" ayarı bunu etkilemez.
+/clipboard      :Panodaki içeriği oynatım listesine iliştirir ve hemen oynatıma başlar.
+/seek=zaman     :Belirtilen zaman noktasından belirtilen/son oynatılan içeriğin oynatılmasını başlatır.
+                -zaman biçimi: ss:dd:ss.ms (VEYA yalnızca saniyeleri belirtin, örneğin 30.dakikada başlamak için /seek=1800)
+/sub="altdosya" :Belirtilen altyazıları belirtilen yollardan veya URL lerden yükler.
+/user_agent="ua":HTTP(S) istekleri için user agent değerini ayarlar.
+/referer="ref"  :HTTP(S) istekleri için referer değerini ayarlar.
+/headers="hdrs" :HTTP(S) isteklerine belirtilen header değerlerini iliştirir.
+config="isim"	:Belirtilen ön ayarı etkinleştirir.
+$}
+{$CP0=
+
+Usage: PotPlayerMini64.exe ["content"] [/switch]
+
+"content"	:You can specify a file, folder or URL as content.
+                -You can specify multiple contents by separating them with a space.
+		-You can specify titles for URLs by separating them with a backslash (\) at the end of URLs. ("http://...\title of this url")
+            	-Wildcards (*,?) are allowed.
+              	-The setting "Misc > When Files Opened" affects this when a file is specified.
+
+- 		:Plays streaming media from stdin
+                -Example usage: youtube-dl.exe -o - -f best[ext=webm] https://www.youtube.com/watch?v=l22sS8DEiVU | PotPlayerMini64.exe -
+
+/filedlg	:Opens the open file dialog box.
+/urldlg        	:Opens the open URL dialog box.
+/folderdlg	:Opens the open folder dialog box.
+/simple	   	:Opens file navigator.
+/cap	   	:Runs screen capture.
+/cam	   	:Runs webcam/Other devices.
+/atv[:ch]	:Runs Analog TV device from the specified channel.
+/dtv[:ch[-idx]]	:Runs Digital TV device from the specified channel.
+/dvd       	:Runs DVD device.
+/cd[:drive]	:Runs the specified drive.
+/add		:Appends the specified content(s) into playlist.
+/insert		:Inserts the specified content(s) just below the item being played in playlist.(Or adds at the end of playlist if there is nothing playing at the time)
+/autoplay 	:Plays the last played item.
+/same	   	:Loads and plays the specified contents as multiple streams.
+            	-You can independently select loaded video and audio streams under Video/Audio/Filters context menus.
+/sort		:Sorts the specified contents by name before adding them into playlist.
+/randomize	:Sorts the specified contents by randomly before adding them into playlist.
+/new 		:Plays the specified content(s) within a new instance of the program.
+                -The setting "F5 > General > Multiple instances" does not affect this.
+/current 	:Plays the specified content(s) within an existing instance of the program.
+                -The setting "F5 > General > Multiple instances" does not affect this.
+/clipboard      :Appends content(s) from clipboard into playlist and starts playback immediately.
+/seek=time      :Starts playback of the specified/last played content from the specified time point.
+                -time format is: hh:mm:ss.ms (OR specify seconds only e.g. /seek=1800 to start at 30th min)
+/sub="subfile"  :Loads the specified subtitle(s) from the specified paths or URLs.
+/user_agent="ua":Sets user agent header for HTTP(S) requests.
+/referer="ref"  :Sets referer header for HTTP(S) requests.
+/headers="hdrs" :Appends the specified header(s) to HTTP(S) requests.
+/title="title"  : Use title
+config="name"	:Activates the specified preset.
+$}

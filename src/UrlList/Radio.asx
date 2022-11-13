@@ -1,0 +1,82 @@
+﻿<asx version = "3.0" >
+#if<LocaleName==POLISH>
+
+  <entry>
+    <title>Krzyżaniak: Głos szczerej słowiańskiej szydery</title>
+	<ref href = "https://eu10.fastcast4u.com/szydera"/>
+  </entry>
+  <entry>
+    <title>PR Radio Białystok http://www.radio.bialystok.pl/</title>
+    <ref href = "http://www.radio.bialystok.pl/internetowe/radioplayer/mp3stream.pls"/>
+  </entry>
+  <entry>
+    <title>Polskie Radio 1 - Jedynka http://www.polskieradio.pl/7,Jedynka</title>
+    <ref href = "http://stream3.polskieradio.pl:8900/listen.pls"/>
+  </entry>
+  </entry>
+    <title>Polskie Radio 2 - Dwójka http://www.polskieradio.pl/8,Dwojka</title>
+    <ref href = "http://stream3.polskieradio.pl:8902/listen.pls"/>
+  </entry>
+  <entry>
+    <title>Polskie Radio 3 - Trójka http://www.polskieradio.pl/9,Trojka</title>
+    <ref href = "http://stream3.polskieradio.pl:8904/listen.pls"/>
+  </entry>
+  <entry>
+    <title>Polskie Radio Czwórka http://www.polskieradio.pl/10,Czworka</title>
+    <ref href = "http://stream3.polskieradio.pl:8906/listen.pls"/>
+  </entry>
+  <entry>
+    <title>Radio Poland http://www.radiopoland.pl/</title>
+    <ref href = "http://stream3.polskieradio.pl:8908/listen.pls"/>
+  </entry>  
+  <entry>
+    <title>PR Olsztyn http://www.ro.com.pl/</title>
+    <ref href = "http://213.73.25.178:7055/listen.pls"/>
+  </entry>
+  <entry>
+    <title>Antyradio Ballads http://www.antyradio.pl/</title>
+    <ref href = "http://178.32.207.236:8002/listen.pls"/>
+  </entry>
+  <entry>
+    <title>PR Radio Gdańsk http://www.radio.gdansk.pl/</title>
+    <ref href = "http://stream.task.gda.pl:8000/rg1.m3u"/>
+  </entry>
+  <entry>
+    <title>Planeta FM http://www.planetafm.pl/</title>
+    <ref href = "http://pla-net-01.cdn.eurozet.pl:8700/listen.pls"/>
+  </entry>
+  <entry>
+    <title>Antyradio Greatest http://www.antyradio.pl/</title>
+    <ref href = "http://178.32.207.236:8008/listen.pls"/>
+  </entry>
+  <entry>
+    <title>Radio Eska 89,9 FM http://www.eska.pl/?stationId=28</title>
+    <ref href = "http://s3.deb1.scdn.smcloud.net/t060-1.mp3.m3u"/>
+  </entry>
+  <entry>
+    <title>Radio WAWA - Polskie Hity http://www.radiowawa.pl/</title>
+    <ref href = "http://s5.deb1.scdn.smcloud.net/t009-1.mp3.m3u"/>
+  </entry>
+  <entry>
+    <title>Radio ZET http://www.radiozet.pl/</title>
+    <ref href = "http://radiozetmp3-07.eurozet.pl:8400/listen.pls"/>
+  </entry>
+  <entry>
+    <title>PolskaStacja HOT 100 Gorąca Setka Nowości http://www.polskastacja.pl/</title>
+    <ref href = "http://www.polskastacja.pl/play/hot100.pls"/>
+  </entry>
+  <entry>
+    <title>RMF FM http://www.rmf.pl/</title>
+    <ref href = "http://www.miastomuzyki.pl/n/rmffm.pls"/>
+  </entry>
+  <entry>
+    <title>RMF Maxxx http://www.rmfmaxxx.pl/</title>
+    <ref href = "http://www.miastomuzyki.pl/n/rmfmaxxx.pls"/>
+  </entry>
+  <entry>
+    <title>RMF Polskie Przeboje http://www.miastomuzyki.pl/</title>
+    <ref href = "http://www.miastomuzyki.pl/n/rmfpprzeboje.pls"/>
+  </entry>	
+  
+#endif
+</asx>

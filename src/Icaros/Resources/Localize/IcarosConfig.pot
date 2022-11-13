@@ -1,0 +1,948 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Icaros\n"
+"POT-Creation-Date: 2014-10-03 15:23:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+#: EXPLORER PROPERTIES
+
+msgctxt "#VideoTracks"
+msgid "Video tracks"
+msgstr ""
+
+msgctxt "#AudioTracks"
+msgid "Audio tracks"
+msgstr ""
+
+msgctxt "#SubtitleTracks"
+msgid "Subtitle tracks"
+msgstr ""
+
+msgctxt "#ContentCompression"
+msgid "Content compression"
+msgstr ""
+
+msgctxt "#ContainsChapters"
+msgid "Contains chapters"
+msgstr ""
+
+msgctxt "#BitDepth"
+msgid "Bit depth"
+msgstr ""
+
+msgctxt "#SubtitleGroup"
+msgid "Subtitles"
+msgstr ""
+
+
+#: MAIN WINDOW
+
+msgctxt "tglThumbnail"
+msgid "THUMBNAILING"
+msgstr ""
+
+msgctxt "tglProperty"
+msgid "PROPERTIES"
+msgstr ""
+
+msgctxt "tglCache"
+msgid "CACHE"
+msgstr ""
+
+msgctxt "tglTools"
+msgid "TOOLS"
+msgstr ""
+
+msgctxt "tglDebug"
+msgid "DEBUG"
+msgstr ""
+
+msgctxt "tglAbout"
+msgid "ABOUT"
+msgstr ""
+
+msgctxt "tglUiSettings"
+msgid "ui settings"
+msgstr ""
+
+msgctxt "stActivated"
+msgid "ACTIVATED"
+msgstr ""
+
+msgctxt "stDeactivated"
+msgid "DEACTIVATED"
+msgstr ""
+
+msgctxt "stDisabled"
+msgid "DISABLED"
+msgstr ""
+
+msgctxt "stStatic"
+msgid "ENABLED (STATIC)"
+msgstr ""
+
+msgctxt "stDynamic"
+msgid "ENABLED (DYNAMIC)"
+msgstr ""
+
+msgctxt "stNotInstalled"
+msgid "NOT INSTALLED"
+msgstr ""
+
+msgctxt "stIndexing"
+msgid "INDEXING..."
+msgstr ""
+
+
+#: THUMBNAIL PAGE
+
+msgctxt "cptFiletypes"
+msgid "THUMBNAIL FILETYPES"
+msgstr ""
+
+msgctxt "lblPresets"
+msgid "PRESET:"
+msgstr ""
+
+msgctxt "cptSettings"
+msgid "SETTINGS"
+msgstr ""
+
+msgctxt "lblOffset"
+msgid "Thumbnail Offset"
+msgstr ""
+
+msgctxt "lblPrefTime"
+msgid "Prefer Timestamp"
+msgstr ""
+
+msgctxt "cbxBlkDtct"
+msgid "Enable black/white frame detection"
+msgstr ""
+
+msgctxt "lblThreshold"
+msgid "Threshold"
+msgstr ""
+
+msgctxt "cbxShowOverlay"
+msgid "Display icon overlays on thumbnails"
+msgstr ""
+
+msgctxt "cbxShowVidAdorn"
+msgid "Display movie reel on video thumbnails"
+msgstr ""
+
+msgctxt "cbxCoverArt"
+msgid "Use embedded Cover Art for thumbnails"
+msgstr ""
+
+msgctxt "cbxCoverArtAny"
+msgid "Use any embedded image as Cover Art"
+msgstr ""
+
+msgctxt "cbxLandscape"
+msgid "Prefer Landscape Covers"
+msgstr ""
+
+msgctxt "tipAddTypes"
+msgid "Add New Thumbnail Filetypes"
+msgstr ""
+
+msgctxt "tipBlkDtct"
+msgid "With this option enabled, Icaros will perform a quick and simple\nscan of the grabbed frame. If the frame is either too dark or too\nlight, Icaros will skip forward and try to find a better suited frame."
+msgstr ""
+
+msgctxt "tipCoverArt"
+msgid "When Cover Art is enabled, Icaros will look for embedded\ncover art in files that support it while generating thumbnails.\nIf a cover is found, it will be used as thumbnail, otherwise\nIcaros will automatically fall back to normal thumbnailing.\n\nNote: This should not affect the thumbnailing speed in any\nnoticeable way."
+msgstr ""
+
+msgctxt "tipCoverAny"
+msgid "With this option enabled, Icaros will use any embedded image in\nthe file as a cover, whether it follows the file specifications or not.\nImages intended as covers will always be preferred."
+msgstr ""
+
+msgctxt "tipCoverLand"
+msgid "Some MKV files contain multiple covers. With such files\nIcaros will default to using the first normal/vertical cover.\nThis option will make Icaros prioritize landscape/horizontal\ncovers instead."
+msgstr ""
+
+msgctxt "dlgcptPrstChng"
+msgid "Preset Info"
+msgstr ""
+
+msgctxt "dlgPrstChng"
+msgid "The current list contains filetypes that are not included in the selected preset.\n\nDo you wish to include these filetypes in the list?"
+msgstr ""
+
+msgctxt "dlgcptThmbCheck"
+msgid "Thumbnail Check"
+msgstr ""
+
+msgctxt "dlgThmbCheck"
+msgid "The following filetypes did not pass the thumbnail check:\n\n{0}\n\nDo you still wish to add them?"
+msgstr ""
+
+msgctxt "ntfNewFiles"
+msgid "{0} new filetype(s) added ({1})"
+msgstr ""
+
+msgctxt "ntfRefresh"
+msgid "Refreshed thumbnails of {0} file(s)"
+msgstr ""
+
+msgctxt "txtThumbUpdater"
+msgid "Drag and drop one or more files and/or folders to this page to refresh their thumbnails/icons"
+msgstr ""
+
+msgctxt "prstDefault"
+msgid "DEFAULT"
+msgstr ""
+
+msgctxt "prstCommon"
+msgid "COMMON"
+msgstr ""
+
+msgctxt "prstVidOnly"
+msgid "VIDEO ONLY"
+msgstr ""
+
+msgctxt "prstAudOnly"
+msgid "AUDIO ONLY"
+msgstr ""
+
+msgctxt "prstMostKnown"
+msgid "MOST KNOWN"
+msgstr ""
+
+msgctxt "prstCustom"
+msgid "CUSTOM"
+msgstr ""
+
+
+#: PROPERTIES PAGE
+
+msgctxt "txtPropInfo"
+msgid "With  PROPERTIES  activated, Icaros will allow you to view information such as length, width, height, artist etc. in Explorer, for any of the checked filetypes below"
+msgstr ""
+
+msgctxt "cptVideo"
+msgid "VIDEO"
+msgstr ""
+
+msgctxt "cptAudio"
+msgid "AUDIO"
+msgstr ""
+
+msgctxt "btnSelectAll"
+msgid "Select All"
+msgstr ""
+
+msgctxt "btnDeselectAll"
+msgid "Deselect All"
+msgstr ""
+
+
+#: CACHE PAGE
+
+msgctxt "tglIndexer"
+msgid "SETTINGS"
+msgstr ""
+
+msgctxt "tglIndexLocs"
+msgid "LOCATIONS"
+msgstr ""
+
+msgctxt "lblCacheLocation"
+msgid "Cache Location"
+msgstr ""
+
+msgctxt "lblDriveRoot"
+msgid "Free Space on [{0}] Drive:"
+msgstr ""
+
+msgctxt "lblMinFreeSpace"
+msgid "Min Free Space"
+msgstr ""
+
+msgctxt "lblMaxCacheSize"
+msgid "Max Cache Size"
+msgstr ""
+
+msgctxt "tipMaxCache"
+msgid "Sets the max size limit of the Icaros Cache.\nIf 0 is set, the cache size is unlimited."
+msgstr ""
+
+msgctxt "lblExclTypes"
+msgid "Excluded Filetypes"
+msgstr ""
+
+msgctxt "tipUsedCache"
+msgid "{0:0.00}% of the available cache space is currently used"
+msgstr ""
+
+msgctxt "tipCacheSize"
+msgid "Icaros Cache Size"
+msgstr ""
+
+msgctxt "lblEntries"
+msgid "{0} entries"
+msgstr ""
+
+msgctxt "lblCacheTut1"
+msgid "With the Icaros Cache ENABLED, Icaros will keep a local record of all thumbnails in an internal cache.\nThis allows Icaros to regenerate any cached thumbnail almost instantly in case Windows Explorer loses them.\n"
+msgstr ""
+
+msgctxt "lblCacheTut2"
+msgid "\nBy adding folders to the LOCATIONS page, and clicking the Build button below, it is possible to fill the cache\ndirectly from within IcarosConfig."
+msgstr ""
+
+msgctxt "lblCacheSt1"
+msgid "STATIC"
+msgstr ""
+
+msgctxt "lblCacheSt2"
+msgid "DYNAMIC"
+msgstr ""
+
+msgctxt "lblCacheStInfo1"
+msgid "allows Icaros to retrieve cached thumbnails, but only IcarosConfig can modify the cache."
+msgstr ""
+
+msgctxt "lblCacheStInfo2"
+msgid "allows Icaros to retrieve cached thumbnails, as well as dynamically add any new thumbnails to the cache."
+msgstr ""
+
+msgctxt "lblStatus"
+msgid "Status:"
+msgstr ""
+
+msgctxt "lblProgress"
+msgid "Progress:"
+msgstr ""
+
+msgctxt "lblCompleted"
+msgid "Completed:"
+msgstr ""
+
+msgctxt "lblFailed"
+msgid "Failed:"
+msgstr ""
+
+msgctxt "btnFailed"
+msgid "View"
+msgstr ""
+
+msgctxt "btnBuild"
+msgid "Build Cache"
+msgstr ""
+
+msgctxt "btnRebuild"
+msgid "Rebuild Cache"
+msgstr ""
+
+msgctxt "btnCancel"
+msgid "Cancel"
+msgstr ""
+
+msgctxt "btnClearCache"
+msgid "Clear Cache"
+msgstr ""
+
+msgctxt "lblSetLocInfo"
+msgid "At least one location must be added to use the indexer"
+msgstr ""
+
+msgctxt "dlgClrIcCache"
+msgid "You are about to delete the Icaros Cache.\nDo you still wish to proceed?"
+msgstr ""
+
+msgctxt "dlgCacheLoc"
+msgid "Select a thumbnail cache location"
+msgstr ""
+
+msgctxt "dlgcptFailed"
+msgid "FAILED FILES"
+msgstr ""
+
+msgctxt "tipOpenDirSelect"
+msgid "Open folder and select file"
+msgstr ""
+
+msgctxt "btnSaveList"
+msgid "Save List"
+msgstr ""
+
+msgctxt "stsIdxerInit"
+msgid "Indexer Initialized"
+msgstr ""
+
+msgctxt "stsCollect"
+msgid "Preparing files for processing..."
+msgstr ""
+
+msgctxt "stsIdxFiles"
+msgid "Indexing files..."
+msgstr ""
+
+msgctxt "stsIdxFolders"
+msgid "Indexing folders..."
+msgstr ""
+
+msgctxt "stsIdxSuccess"
+msgid "Indexing Completed Successfully"
+msgstr ""
+
+msgctxt "stsIdxFailed"
+msgid "Indexing Failed"
+msgstr ""
+
+msgctxt "stsIdxCancel"
+msgid "Indexing was cancelled"
+msgstr ""
+
+msgctxt "stsIdxComplete"
+msgid "Indexing Completed"
+msgstr ""
+
+msgctxt "lblTimeElapsed"
+msgid "Took: {}h {}m {}s {}ms"
+msgstr ""
+
+msgctxt "stsEHash"
+msgid "Failed to calculate proper file hash"
+msgstr ""
+
+msgctxt "stsEThread"
+msgid "Failed to initialize thread"
+msgstr ""
+
+msgctxt "stsECacheInit"
+msgid "Failed to initialize Icaros Cache"
+msgstr ""
+
+msgctxt "stsEServerInit"
+msgid "Failed to initialize Icaros Thumbnail Provider"
+msgstr ""
+
+msgctxt "stsECacheLimit"
+msgid "Maximum cache size reached"
+msgstr ""
+
+msgctxt "stsESpaceLimit"
+msgid "Minimum space limit reached"
+msgstr ""
+
+msgctxt "stsEDBAccess"
+msgid "Failed to access the database"
+msgstr ""
+
+msgctxt "stsEIDXAccess"
+msgid "Failed to access the index"
+msgstr ""
+
+msgctxt "stsERegAccess"
+msgid "Failed to access the registry"
+msgstr ""
+
+msgctxt "stsECleanUp"
+msgid "Clean up was incomplete"
+msgstr ""
+
+msgctxt "stsENoFiles"
+msgid "Indexer found no files with included filetypes in current cache locations"
+msgstr ""
+
+msgctxt "stsEUnknown"
+msgid "Undetermined result"
+msgstr ""
+
+msgctxt "btnAdd"
+msgid "Add"
+msgstr ""
+
+msgctxt "btnRemove"
+msgid "Remove"
+msgstr ""
+
+msgctxt "btnClear"
+msgid "Clear"
+msgstr ""
+
+msgctxt "hdrLocation"
+msgid "Included Locations"
+msgstr ""
+
+msgctxt "hdrViewSize"
+msgid "View Size"
+msgstr ""
+
+msgctxt "hdrRecursive"
+msgid "Recursive"
+msgstr ""
+
+msgctxt "hdrExcluded"
+msgid "Excluded Locations"
+msgstr ""
+
+msgctxt "enuSmall"
+msgid "Small"
+msgstr ""
+
+msgctxt "enuMedium"
+msgid "Large"
+msgstr ""
+
+msgctxt "enuLarge"
+msgid "XL"
+msgstr ""
+
+msgctxt "enuXL"
+msgid "Win 8 Icons"
+msgstr ""
+
+msgctxt "enuXXL"
+msgid "Win 10 Icons"
+msgstr ""
+
+msgctxt "dlgAddDir"
+msgid "Please select the directory, you wish to add to the list"
+msgstr ""
+
+msgctxt "dlgClearLocs"
+msgid "Are you sure, you wish to clear all the entries off this list?"
+msgstr ""
+
+msgctxt "dlgDirAccessErr"
+msgid "The selected folder does not have the proper Read/Write permissions to use as Cache Location.\nWill you allow Icaros to add the necessary user permissions to this folder?"
+msgstr ""
+
+msgctxt "dlgMoveCache"
+msgid "You are about to change the Cache Location. Would you like to move the existing cache to new the location?"
+msgstr ""
+
+msgctxt "cptIcRunWrn"
+msgid "Close IcarosConfig confirmation"
+msgstr ""
+
+msgctxt "dlgIcRunWrn"
+msgid "The Icaros cache indexer is still running.\nAre you sure you wish to close IcarosConfig and stop the indexer?"
+msgstr ""
+
+
+#: TOOLS PAGE
+
+msgctxt "cptWinCache"
+msgid "WINDOWS THUMBNAIL CACHE"
+msgstr ""
+
+msgctxt "lblWinCacheSize"
+msgid "Cache Size:  {0} MB"
+msgstr ""
+
+msgctxt "btnWinCacheClear"
+msgid "Clear"
+msgstr ""
+
+msgctxt "tipOpenCacheLoc"
+msgid "Open Windows thumbnail cache directory"
+msgstr ""
+
+msgctxt "cptExplorer"
+msgid "WINDOWS EXPLORER"
+msgstr ""
+
+msgctxt "btnExpRefresh"
+msgid "Refresh"
+msgstr ""
+
+msgctxt "btnExpRestart"
+msgid "Restart"
+msgstr ""
+
+msgctxt "cptResetTypes"
+msgid "RESET NATIVE FILETYPES"
+msgstr ""
+
+msgctxt "btnResetThumb"
+msgid "Reset Thumbnail Filetypes"
+msgstr ""
+
+msgctxt "btnResetProps"
+msgid "Reset Property Filetypes"
+msgstr ""
+
+msgctxt "txtResetLimits"
+msgid "The native filetypes can only be reset while Icaros thumbnailing\nand/or properties are not activated"
+msgstr ""
+
+msgctxt "dlgClrCacheErr"
+msgid "The Thumbnail Cache is currently in use.\n Wait a moment, then try again."
+msgstr ""
+
+msgctxt "dlgcptExpRestrt"
+msgid "Restart Explorer"
+msgstr ""
+
+msgctxt "dlgExpRestrt"
+msgid "Warning!\nRestarting Explorer may interrupt file copy/move operations,\nand may cause certain processes to halt.\n\nDo you wish to continue?"
+msgstr ""
+
+msgctxt "dlgRstThumb"
+msgid "Are you sure, you want to reset all native filetypes back to their default thumbnail providers?"
+msgstr ""
+
+msgctxt "dlgRstProps"
+msgid "Are you sure, you want to reset all native filetypes back to their default property handlers and property lists?"
+msgstr ""
+
+msgctxt "dlgRstSuccess"
+msgid "All native filetypes was reset successfully!"
+msgstr ""
+
+
+#: DEBUG PAGE
+
+msgctxt "lblTest"
+msgid "TEST:"
+msgstr ""
+
+msgctxt "lblSize"
+msgid "SIZE:"
+msgstr ""
+
+msgctxt "enuThumbnailViaIcaros"
+msgid "THUMBNAILING VIA ICAROS"
+msgstr ""
+
+msgctxt "enuThumbnailViaExplorer"
+msgid "THUMBNAILING VIA EXPLORER"
+msgstr ""
+
+msgctxt "enuPropertiesViaExplorer"
+msgid "PROPERTIES VIA EXPLORER"
+msgstr ""
+
+msgctxt "btnRunAllTest"
+msgid "Run All"
+msgstr ""
+
+msgctxt "btnRunTest"
+msgid "Run ({0})"
+msgstr ""
+
+msgctxt "hdrTestFiles"
+msgid "Test Files"
+msgstr ""
+
+msgctxt "hdrTime"
+msgid "Time"
+msgstr ""
+
+msgctxt "hdrShellExtension"
+msgid "Shell Extension"
+msgstr ""
+
+msgctxt "hdrCache"
+msgid "From Cache"
+msgstr ""
+
+msgctxt "lblDropFiles"
+msgid "DROP FILES AND/OR FOLDERS YOU WISH TO TEST HERE"
+msgstr ""
+
+msgctxt "lblNoProperties"
+msgid "NO PROPERTIES HAS BEEN GENERATED FOR THIS FILE\nUSE THE 'PROPERTY TEST' TO VIEW PROPERTIES FOR THIS FILE"
+msgstr ""
+
+msgctxt "lblLevel"
+msgid "LVL:"
+msgstr ""
+
+msgctxt "lblDebugCount"
+msgid "{0} ENTRIES"
+msgstr ""
+
+msgctxt "tipRefresh"
+msgid "Refresh the thumbnails of the selected files in Explorer"
+msgstr ""
+
+msgctxt "tipSubDirDepth"
+msgid "The level/depth of subdirectories to scan through when getting files from a dropped folder (1-9)"
+msgstr ""
+
+msgctxt "tipClosePanel"
+msgid "Close panel"
+msgstr ""
+
+msgctxt "tipAutoScrollOn"
+msgid "Disable auto scrolling"
+msgstr ""
+
+msgctxt "tipAutoScrollOff"
+msgid "Enable auto scrolling"
+msgstr ""
+
+msgctxt "tipThumbPlaceholder"
+msgid "Use one of the two 'Thumbnail tests' to view the thumbnail for this file"
+msgstr ""
+
+msgctxt "tipThumbPreview"
+msgid "Thumbnail dimensions:\n{0} x {1}"
+msgstr ""
+
+
+#: ABOUT PAGE
+
+msgctxt "lnkSupport"
+msgid "Follow Beta development of Icaros or get support"
+msgstr ""
+
+msgctxt "lblSpcTks"
+msgid "SPECIAL THANKS TO"
+msgstr ""
+
+
+#: UI SETTINGS PAGE
+
+msgctxt "lblLocalize"
+msgid "LOCALIZATION"
+msgstr ""
+
+msgctxt "cbxPropLocal"
+msgid "Enable Property Localization"
+msgstr ""
+
+msgctxt "lblTheming"
+msgid "THEME OPTIONS"
+msgstr ""
+
+msgctxt "lblChromeClr"
+msgid "CHROME COLOR"
+msgstr ""
+
+msgctxt "enuMonoColor"
+msgid "Mono Color"
+msgstr ""
+
+msgctxt "enuColorPerPage"
+msgid "Color Per Page"
+msgstr ""
+
+msgctxt "cbxRemWinSize"
+msgid "Remember Window Size"
+msgstr ""
+
+msgctxt "cbxRemWinPos"
+msgid "Remember Window Position"
+msgstr ""
+
+msgctxt "cbxAnimation"
+msgid "Disable Page Animations"
+msgstr ""
+
+msgctxt "lblGlassOpacity"
+msgid "Glass Overlay Opacity"
+msgstr ""
+
+msgctxt "lblGlassDark"
+msgid "Dark"
+msgstr ""
+
+msgctxt "lblGlassLight"
+msgid "Light"
+msgstr ""
+
+msgctxt "tipModSettings"
+msgid "To Export/Import/Reset the Icaros settings, thumbnailing\nand properties must be deactivated"
+msgstr ""
+
+msgctxt "optExport"
+msgid "Export Settings"
+msgstr ""
+
+msgctxt "optImport"
+msgid "Import Settings"
+msgstr ""
+
+msgctxt "optReset"
+msgid "Reset All Settings"
+msgstr ""
+
+msgctxt "dlgThemeAccent"
+msgid "Would you like to use this theme's default chrome colors?\n\nWarning: This will overwrite your current chrome color settings!"
+msgstr ""
+
+msgctxt "cptThemeAccent"
+msgid "Use default theme chrome colors?"
+msgstr ""
+
+msgctxt "dlgExportLoc"
+msgid "Please chose where you wish to export the Icaros settings"
+msgstr ""
+
+msgctxt "dlgImportWrn"
+msgid "This will overwrite ALL your existing settings.\n\nDo you still wish to continue?"
+msgstr ""
+
+msgctxt "dlgResetAll"
+msgid "This will reset ALL your existing settings.\n\nDo you still wish to continue?"
+msgstr ""
+
+msgctxt "cptResetWrn"
+msgid "Settings Reset Confirmation"
+msgstr ""
+
+
+#: WELCOME OVERLAY
+
+msgctxt "lblWlcIntro1"
+msgid "WELCOME"
+msgstr ""
+
+msgctxt "lblWlcIntro2"
+msgid "TO THE NEW ICAROS GUI"
+msgstr ""
+
+msgctxt "lblWlcSelect"
+msgid "Please select your preferred"
+msgstr ""
+
+msgctxt "lblWlcLang"
+msgid "language:"
+msgstr ""
+
+msgctxt "lblWlcTheme"
+msgid "theme:"
+msgstr ""
+
+msgctxt "lblWlcTip1"
+msgid "Click here to change language and ui settings"
+msgstr ""
+
+msgctxt "lblWlcTip2"
+msgid "Click these icons to browse the various pages of settings"
+msgstr ""
+
+msgctxt "lblWlcTip3"
+msgid "Click the 'Activation buttons' to toggle the state of the shell extensions"
+msgstr ""
+
+msgctxt "lblWlcTip4"
+msgid "Drag and drop files onto this page to test if Icaros can thumbnail them\nThe filetype will automatically be added to the list of 'Thumbnail filetypes', if it is compatible with Icaros\n\nDropping a file that already exists in the 'Thumbnail filetypes' list, will just refresh that file's thumbnail"
+msgstr ""
+
+
+#: GLOBAL
+
+msgctxt "tipAddFiles"
+msgid "Add files"
+msgstr ""
+
+msgctxt "tipClearList"
+msgid "Clear list"
+msgstr ""
+
+msgctxt "tipWow64On"
+msgid "Icaros is enabled for 32-bit file dialogs"
+msgstr ""
+
+msgctxt "tipWow64Off"
+msgid "Icaros is disabled for 32-bit file dialogs"
+msgstr ""
+
+msgctxt "tipBrowse"
+msgid "Browse to location"
+msgstr ""
+
+msgctxt "cptDonate"
+msgid "Donate"
+msgstr ""
+
+msgctxt "lblDonateTxt"
+msgid "If you like Icaros please consider making a donation to keep up the development of Icaros"
+msgstr ""
+
+msgctxt "lblDonateTxt2"
+msgid "Donations received so far in {0}"
+msgstr ""
+
+msgctxt "lblFlattrTxt"
+msgid "Become a microdonator to continuously support the development of Icaros"
+msgstr ""
+
+msgctxt "lblCreatedBy"
+msgid "Created and developed by"
+msgstr ""
+
+msgctxt "tipMail"
+msgid "Send a mail to the developer of Icaros"
+msgstr ""
+
+msgctxt "tipTwitter"
+msgid "Follow Icaros development on Twitter"
+msgstr ""
+
+msgctxt "swtOn"
+msgid "On"
+msgstr ""
+
+msgctxt "swtOff"
+msgid "Off"
+msgstr ""
+
+msgctxt "btnDone"
+msgid "Done"
+msgstr ""
+
+msgctxt "btnOK"
+msgid "OK"
+msgstr ""
+
+msgctxt "btnYes"
+msgid "Yes"
+msgstr ""
+
+msgctxt "btnNo"
+msgid "No"
+msgstr ""
+
+msgctxt "btnContinue"
+msgid "Continue"
+msgstr ""
+
+msgctxt "btnGotIt"
+msgid "Got It!"
+msgstr ""
+
+msgctxt "dlgcptConf"
+msgid "Confirmation"
+msgstr ""
+
+msgctxt "dlgcptInfo"
+msgid "Info"
+msgstr ""
+
+msgctxt "btnRstColor"
+msgid "Reset Color"
+msgstr ""
+
+msgctxt "btnMin"
+msgid "Minimize"
+msgstr ""
+
+msgctxt "btnMax"
+msgid "Maximize"
+msgstr ""
+
+msgctxt "btnResDown"
+msgid "Restore Down"
+msgstr ""
+
+msgctxt "btnClose"
+msgid "Close"
+msgstr ""
+
