@@ -2,6 +2,12 @@ FanPack-Lite
 ==============
 
 
+Wersja 1.0.78 - 15.11.2022
+=====================================
+* AKTUALIZACJA:
+  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.5.3
+
+
 Wersja 1.0.77 - 12.11.2022
 =====================================
 * AKTUALIZACJA:
