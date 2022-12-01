@@ -1,0 +1,283 @@
+FanPack-Lite
+==============
+
+
+Version 1.1.80 - 01.12.2022
+=====================================
+* ADD:
+  * Added English language of the installer
+* UPDATED:
+  * New version of the installation script
+
+
+Wersja 1.0.77 - 12.11.2022
+=====================================
+* AKTUALIZACJA:
+  * Zaktualizowano TorrServer MatriX do wersji v118
+  * Zaktualizowano MPC Video Renderer do wersji v0.6.3.1956
+  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.5
+  * Zaktualizowano Icaros do wersji v3.3.0 RC1
+  * Zaktualizowano yt-dlp do wersji 2022.11.11
+
+Wersja 1.0.75 - 21.07.2022
+=====================================
+* DODANO:
+  * Dodano mo¿liwoœæ pobrania i instalacji Ace Stream Engine i listy odtwarzania z TTV
+  * Dodano mo¿liwoœæ instalacji YouTube-DLP Parser
+* AKTUALIZACJA:
+  * Zaktualizowano MPC Video Renderer do wersji v0.6.1.1931
+  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.3.91
+  * Zaktualizowano Icaros do wersji v3.3.0 b3
+
+Wersja 1.0.73 - 16.06.2022
+=====================================
+* AKTUALIZACJA: 
+  * Zaktualizowano MPC Video Renderer do wersji v0.6.0.1901
+  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.3.1
+  * Zaktualizowano TorrServer MatriX do wersji v117
+  * Zaktualizowano Icaros do wersji v3.3.0 b2
+* ULEPSZONO: 
+  * Zmieniono sposób instalacji TorrServer MatriX (kompaktowy instalator)
+
+Wersja 1.0.72 - 18.05.2022
+=====================================
+* AKTUALIZACJA: 
+  * Zaktualizowano MPC Video Renderer do wersji v0.5.8.1877
+  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.2.7075
+
+Wersja 1.0.71 - 01.05.2022
+=====================================
+* AKTUALIZACJA: 
+  * Zaktualizowano MPC Video Renderer do wersji v0.5.7.1872
+  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.2.7054
+
+Wersja 1.0.70 - 27.03.2022
+=====================================
+* DODANO: 
+  * Dodano TorrServer MatriX v112
+* AKTUALIZACJA: 
+  * AviSynth+ & SVPflow - naprawiono b³¹d powoduj¹cy ukazywanie siê czerwonej ramki
+  * AviSynth+ & SVPflow - naprawiono b³¹d powoduj¹cy zamykanie odtwarzacza podczas przeszukiwania
+  * AviSynth+ & SVPflow - naprawiono b³¹d powoduj¹cy chwilowe zamra¿anie obrazu podczas przeszukiwania
+* USUNIÊTO: 
+  * Usuniêto ACE Stream Engine
+
+Wersja 1.0.69 - 18.03.2022
+=====================================
+= Zaktualizowano AviSynth+ do wersji v3.7.2
+= Zaktualizowano MPC Video Renderer do wersji v0.5.7.1829
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.2.6944
+
+Wersja 1.0.68 - 8.01.2022
+=====================================
+= Zaktualizowano MPC Video Renderer do wersji v0.5.6.1807
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.1.6780
+= Zaktualizowano AviSynth+ do wersji v3.7.1
+
+Wersja 1.0.67 - 18.12.2021
+=====================================
+= Zaktualizowano MPC Video Renderer do wersji v0.5.5.1802
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.0.6761
+
+Wersja 1.0.66 - 05.12.2021
+=====================================
++ Dodano samoaktualizuj¹ce siê listy odtwarzania IPTV
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.0.6727
+
+Wersja 1.0.65 - 02.12.2021
+=====================================
+= Zaktualizowano MPC Video Renderer do wersji v0.5.5.1801
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.0.6721
+
+Wersja 1.0.64 - 25.11.2021
+=====================================
+= Zaktualizowano MPC Video Renderer do wersji v0.5.5.1785
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.0.6690
+= Zaktualizowano AviSynth+ (v3.7.0.0) i komponenty SVP (v4.3.0.160)
+= Zaktualizowano dekodery OpenCodec
+= Zaktualizowano ustawienia odtwarzacza
+- Usuniêto 3DYD Youtube Source
+
+Wersja 1.0.60 - 30.07.2021
+==========================
+= Zaktualizowano Icaros do wersji v3.2.1
+= Zaktualizowano 3DYD Youtube Source do wersji v2.2.5
+= Zaktualizowano MPC Video Renderer do wersji v0.5.5.1738
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV do wersji v1.6.0.6325
+= Zaktualizowano youtube-dl (2021.06.06)
+= Zaktualizowano ustawienia odtwarzacza (profil CUDA)
+
+Wersja 1.0.55 - 13.04.2021
+==========================
+= Zaktualizowano Icaros do wersji v3.2.0
+= Zaktualizowano 3DYD Youtube Source do wersji v2.2.4
+= Zaktualizowano MPC Video Renderer do wersji v0.5.3.1699
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV do wersji v1.5.7.6176
+= Zaktualizowano youtube-dl (2021.04.08)
+= Zaktualizowano rozszerzenie Twich
+
+Wersja 1.0.51 - 30.01.2021
+==========================
+= Zaktualizowano MPC Video Renderer do wersji v0.5.3.1631
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV do wersji v1.5.6.5992
+= Zaktualizowano rozszerzenie Twich
+
+Wersja 1.0.50 - 26.01.2021
+==========================
+= Zaktualizowano AviSynth+ do wersji v3.7.0.0
+= Zaktualizowano MPC Video Renderer do wersji v0.5.2.1607
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV do wersji v1.5.6.5943
+= Zaktualizowano youtube-dl (2021.01.24.1)
+
+Wersja 1.0.49 - 23.12.2020
+==========================
+= Zaktualizowano MPC Video Renderer do wersji v0.5.0.1567
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV do wersji v1.5.6.5842
+= Zaktualizowano youtube-dl (2020.12.22)
+
+Wersja 1.0.48 - 12.12.2020
+==========================
+= Zaktualizowano MPC Video Renderer do wersji v0.4.10.1521
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV do wersji v1.5.6.5802
+= Zaktualizowano youtube-dl (2020.12.12)
+
+Wersja 1.0.47 - 21.10.2020
+==========================
+= Zaktualizowano 3DYD Youtube Source do wersji v2.2.3
+= Zaktualizowano MPC Video Renderer do wersji v0.4.10.1476
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV do wersji v1.5.6.5697
+= Zaktualizowano youtube-dl (2020.11.19)
+
+Wersja 1.0.46 - 12.10.2020
+==========================
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV do wersji v1.5.6.5574
+= Zaktualizowano MPC Video Renderer do wersji v0.4.10.1466
+= Zaktualizowano youtube-dl (2020.09.20)
+= Zaktualizowano rozszerzenie Twich
+
+Wersja 1.0.45 - 09.08.2020
+==========================
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV do wersji v1.5.5.5388
+= Zaktualizowano MPC Video Renderer do wersji v0.4.8.1438
+= Zaktualizowano youtube-dl (2020.07.28)
+= Zaktualizowano Icaros do wersji v3.2.0 b1
+
+Wersja 1.0.44 - 22.06.2020
+==========================
+= Zaktualizowano MPC Video Renderer do wersji v0.4.7.1356
+
+Wersja 1.0.43 - 20.06.2020
+==========================
+= Zaktualizowano MPC Video Renderer do wersji v0.4.6.1353
+= Zaktualizowano AviSynth+ do wersji v3.6.1.0
+
+Wersja 1.0.42 - 17.06.2020
+==========================
+= Zaktualizowano MPC Video Renderer do wersji v0.4.6.1335
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV
+= Zaktualizowano youtube-dl (2020.06.16.1)
+= Zaktualizowano 3DYD Youtube Source do wersji v2.2.2
+
+Wersja 1.0.41 - 24.05.2020
+==========================
+= Zaktualizowano MPC Video Renderer do wersji v0.4.6.1283
+= Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV
+= Zaktualizowano AviSynth+ (v3.6.0.0)
+= Zaktualizowano youtube-dl (2020.05.08)
+= Zaktualizowano rozszerzenie Twich
+= Zoptymalizowano instalator
+
+Wersja 1.0.40 - 22.04.2020
+==========================
+= Zaktualizowano MPC Video Renderer do wersji v0.4.5.1242
+= Zaktualizowano 3DYD Youtube Source do wersji v2.2.1
+= Zoptymalizowano ustawienia odtwarzacza (opcja Shader(2PASS) Lanczos 3 zast¹pi³a usuwanie przeplotu, dzia³a tylko z mniejsz¹ lub wiêksz¹ od natywnej rozdzielczoœci¹ ekranu)
+
+Wersja 1.0.39 - 04.04.2020
+==========================
+= Zaktualizowano MPC Video Renderer v0.4.3.1215
+= Zaktualizowano youtube-dl (2020.03.24)
+= Zaktualizowano AviSynth+ do wersji v3.5.1 i komponenty SVP
+
+Wersja 1.0.38 - 15.03.2020
+==========================
++ Dodano zewnêtrzne splittery AVI, MKV, MP4/MOV
+= Zaktualizowano MPC Video Renderer v0.4.2.1187
+= Zaktualizowano youtube-dl (2020.03.08)
+= Zaktualizowano 3DYD Youtube Source do wersji v2.2
+= Zaktualizowano AviSynth+ do wersji v3.5.0 i komponenty SVP
+= Zaktualizowano Pixel Shader
+= Zaktualizowano ustawienia odtwarzacza
+
+Wersja 1.0.28 - 04.01.2020
+==========================
++ Dodano MPC Video Renderer v0.3.8.1060
++ Dodano Sanear Audio Renderer v0.3
+= Zaktualizowano youtube-dl (2020.01.01)
+= Zaktualizowano ustawienia
+
+Wersja 1.0.26 - 14.12.2019
+==========================
+= Zaktualizowano 3DYD Youtube Source do wersji v2.1
+= Zaktualizowano youtube-dl (2019.12.25)
+
+Wersja 1.0.25 - 21.12.2019
+==========================
+= Zaktualizowano 3DYD Youtube Source do wersji v2.1 beta4
+
+Wersja 1.0.24 - 14.12.2019
+==========================
+= Zaktualizowano 3DYD Youtube Source do wersji v2.1 beta3
+= Zaktualizowano youtube-dl (2019.11.28)
+= Zaktualizowano ustawienia do najnowszej wersji odtwarzacza
+
+Wersja 1.0.23 - 21.11.2019
+==========================
++ Zaimplementowano obs³ugê youtube-dl (dzia³anie z 3DYD Youtube Source)
+= Zaktualizowano 3DYD Youtube Source do wersji v2.1 beta2
+= Zaktualizowano AviSynth+ do wersji v3.4.0
+= Zaktualizowano rozszerzenie Twich
+= Zaktualizowano ustawienia Pixel Shaders
+= Zaktualizowano ustawienia odtwarzacza
+
+Wersja 1.0.20 - 28.09.2019
+==========================
+= Zaktualizowano 3DYD Youtube Source do wersji v1.10.1
+= Zaktualizowano Icaros do wersji v3.1.1_b2
+= Zaktualizowano ustawienia do najnowszej wersji odtwarzacza
+- Usuniêto obs³ugê youtube-dl (zosta³a zablokowana w odtwarzaczu przez dewelopera)
+
+Wersja 1.0.19 - 13.07.2019
+==========================
+= Zaktualizowano 3DYD Youtube Source do wersji v1.10
+= Zaktualizowano youtube-dl
+
+Wersja 1.0.18 - 08.07.2019
+==========================
++ Dodano youtube-dl
+= Drobne poprawki w skrypcie instalatora
+
+Wersja 1.0.17 - 09.06.2019
+==========================
+= Usprawniono skrypt instalatora
+- Usuniêto b³¹d wyboru folderu dla list odtwarzania
+
+Wersja 1.0.16 - 05.06.2019
+==========================
++ Dodano 3DYD Youtube Source
++ Dodano ustawienia dla Icaros
+= Drobne poprawki w skrypcie instalatora
+
+Wersja 1.0.15 - 02.06.2019
+==========================
+* Rozpoczêto pisanie skryptu instalacyjnego do pierwszej wersji FanPacka64 Lite
+
++ Dodano madVR
++ Dodano ACE Stream Engine
++ Dodano Icaros
++ Dodano AviSynth+ & SVPflow
++ Dodano ustawienia wstêpne dla PotPlayera
++ Dodano skórki
++ Dodano OpenCodec (FFmpeg, Intel H.264 MVC Decoder)
++ Dodano dodatkowe skrypty Pixel Shader
++ Dodano rozszerzenia (Torrent, Twich, Addic7ed)

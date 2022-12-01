@@ -2,10 +2,12 @@ FanPack-Lite
 ==============
 
 
-Wersja 1.0.78 - 15.11.2022
+Wersja 1.1.80 - 01.12.2022
 =====================================
+* DODANO:
+  * Dodano jêzyk angielski instalatora
 * AKTUALIZACJA:
-  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.5.3
+  * Nowa wersja skryptu instalacyjnego
 
 
 Wersja 1.0.77 - 12.11.2022

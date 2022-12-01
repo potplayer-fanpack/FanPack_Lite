@@ -1,0 +1,14 @@
+LICENSE FOR FanPack-Lite
+
+LICENSE AGREEMENT AND LIABILITY
+This program is completely free of charge. You can do whatever you want with it, only your conscience can be the limitation.
+This program is provided "as is", without any expressed or implied warranty. 
+In no event shall the author be liable for any damages resulting from the use of this software, that it is of adequate quality, 
+and that it will meet the user's expectations.
+
+The installation files used in my installers are the property of their authors, and the names and registered trademarks belong to them.
+
+
+
+Copyright © 2014-2022 PotPlayer Club
+http://www.potplayerclub.pl/

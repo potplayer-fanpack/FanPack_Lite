@@ -1,33 +1,45 @@
-; Ten skrypt pokazuje, jak funkcja obs³ugi CreateDownloadPage mo¿e byæ u¿ywana do pobierania plików tymczasowych, 
-; jednoczeœnie pokazuj¹c u¿ytkownikowi postêp pobierania.
+; Skrypt wygenerowany przez Inno Setup Script Wizard.
+; ZOBACZ DOKUMENTACJÊ, ABY UZYSKAÆ SZCZEGÓ£OWE INFORMACJE NA TEMAT TWORZENIA PLIKÓW SKRYPTÓW INSTALACYJNYCH INNO!
+#pragma include __INCLUDE__ + ";" + ReadReg(HKLM, "Software\Mitrich Software\Inno Download Plugin", "InstallDir")
 
-#define MyAppName "FanPack"
-#define MyAppVersion "1.0.77"
-#define MyAppPublisher "PotPlayer Club"
-#define MyAppURL "http://www.potplayerclub.pl"
+#define localize = "true"
+
+#define appname "FanPack"
+#define brandname "FanPack"
+#define vmajor 1
+#define vminor 1
+#define vbuild 80
+#define publisher "PotPlayer Club"
+#define URL "http://www.potplayerclub.pl"
 
 #define keyPM "Software\Daum\PotPlayerMini"
 #define keyPMS "Software\Daum\PotPlayerMini\Settings"
 #define keyPMOS "Software\Daum\PotPlayerMini\Override_Settings"
 #define keyMVR "Software\MPC-BE Filters\MPC Video Renderer"
+#define keyPCF "Software\DAUM\PotPlayerMini\CaptionFolderList"
+#define keyPAF "Software\DAUM\PotPlayerMini\AudioFolderList"
+#define keyPEI "Software\DAUM\PotPlayerMini\ExtensionInfoList"
 
 [Setup]
 ; UWAGA: Wartoœæ AppId jednoznacznie identyfikuje tê aplikacjê. Nie u¿ywaj tej samej wartoœci AppId w instalatorach dla innych aplikacji.
 ; (Aby wygenerowaæ nowy GUID, kliknij Narzêdzia | Generuj GUID wewn¹trz IDE.)
-AppId                              = {{33706324-07D9-4A45-BD21-80DE3CE6A4D2}
-AppName                            = {#MyAppName}
-AppVersion                         = {#MyAppVersion}
-AppPublisher                       = {#MyAppPublisher}
-AppPublisherURL                    = {#MyAppURL}
-AppSupportURL                      = {#MyAppURL}
-AppUpdatesURL                      = {#MyAppURL}
-DefaultDirName                     = {autopf}\{#MyAppName}
-DefaultGroupName                   = {#MyAppName}
-AppCopyright                       = Copyright © {#MyAppPublisher} 2014-2022
+AppID                              = {code:GetAppID|''}
+; AppId                              = {{33706324-07D9-4A45-BD21-80DE3CE6A4D2}
+AppName                            = {#appname} v{#vmajor}.{#vminor}.{#vbuild}
+AppVerName                         = {#appname} v{#vmajor}.{#vminor}.{#vbuild}
+AppVersion                         = {#vmajor}.{#vminor}.{#vbuild}
+AppPublisher                       = {#publisher}
+AppPublisherURL                    = {#URL}
+AppSupportURL                      = {#URL}
+AppUpdatesURL                      = {#URL}
+DefaultDirName                     = {autopf}\{#appname}
+DefaultGroupName                   = {#appname}
+AppCopyright                       = Copyright © {#publisher} 2014-2022
 AllowNoIcons                       = yes
 OutputDir                          = bin
 SourceDir                          = .
 SetupIconFile                      = embedded\PotPlayer.ico
+UninstallDisplayIcon               = {app}\MyProg.exe
 Compression                        = lzma2/ultra
 InternalCompressLevel              = ultra
 SolidCompression                   = yes
@@ -35,779 +47,990 @@ WizardStyle                        = modern
 WizardSmallImageFile               = embedded\WizardSmallImage.bmp
 WizardImageFile                    = embedded\WizModernImage.bmp
 Uninstallable                      = yes
-OutputBaseFilename                 = {#MyAppName}_Lite
+OutputBaseFilename                 = {#appname}_Lite
 ShowTasksTreeLines                 = yes
-VersionInfoVersion                 = {#MyAppVersion}
+VersionInfoVersion                 = {#vmajor}.{#vminor}.{#vbuild}
 VersionInfoCompany                 = PotPlayer Club
-VersionInfoTextVersion             = 1.0 build 77
+VersionInfoTextVersion             = {#vmajor}.{#vminor}.{#vbuild}
 VersionInfoCopyright               = PotPlayer Club
 ArchitecturesAllowed               = x86 x64
 PrivilegesRequiredOverridesAllowed = dialog
 DisableDirPage                     = yes
 DisableProgramGroupPage            = yes
+UsePreviousLanguage                = no
+UsePreviousPrivileges              = no
 
 [Languages]
-Name: "polish"; MessagesFile: "compiler:Languages\Polish.isl"
+Name: "pl"; MessagesFile: "compiler:Languages\Polish.isl";
+#if localize == "true"
+Name: "en"; MessagesFile: "compiler:Default.isl";
+#endif
+
+; Include installer's custom messages
+#include "custom_messages.iss"
 
 [Messages]
-BeveledLabel= PotPlayer Club
+BeveledLabel= 01.12.2022
+
+#include <idp.iss>
+#include <idplang\Polish.iss>
 
 [Files]
-; Normalne pliki instalatora
-Source: "InstallDir\Changelog.txt";                                                     DestDir: "{app}";                                     Components: program; Flags: ignoreversion
-Source: "InstallDir\License.txt";                                                       DestDir: "{app}";                                     Components: program; Flags: ignoreversion
-Source: "InstallDir\CzytajTo.txt";                                                      DestDir: "{app}";                                     Components: program; Flags: isreadme;
-Source: "InstallDir\LGPL.TXT";                                                          DestDir: "{app}";                                     Components: program; Flags: ignoreversion
-Source: "InstallDir\MyProg.exe";                                                        DestDir: "{app}";                                     Components: program; Flags: ignoreversion
-;Source: "src\CmdLine.txt";                                                              DestDir: "{commonpf32}\DAUM\PotPlayer";               Components: program; Flags: uninsneveruninstall ignoreversion
-;Source: "src\Language\Polish.ini";                                                      DestDir: "{commonpf32}\DAUM\PotPlayer\Language";      Components: program; Flags: uninsneveruninstall ignoreversion
-;Source: "src\History\Polish.txt";                                                       DestDir: "{commonpf32}\DAUM\PotPlayer\History";       Components: program; Flags: uninsneveruninstall ignoreversion
-Source: "src\UrlList\Radio.asx";                                                        DestDir: "{commonpf32}\DAUM\PotPlayer\UrlList";       Components: program; Flags: ignoreversion uninsneveruninstall
-Source: "src\UrlList\TV.asx";                                                           DestDir: "{commonpf32}\DAUM\PotPlayer\UrlList";       Components: program; Flags: ignoreversion uninsneveruninstall
-Source: "{tmp}\Module.7z";                                                              DestDir: "{tmp}";                                     Components: program; Flags: deleteafterinstall
-Source: "{tmp}\PxShader.7z";                                                            DestDir: "{tmp}";                                     Components: program; Flags: deleteafterinstall
-Source: "{commonpf32}\DAUM\PotPlayer\ffcodec.dll"; DestName: "FFmpeg.dll";              DestDir: "{commonpf32}\DAUM\PotPlayer\Module\FFmpeg4"; Flags: external;
-Source: "src\Skins\FMOD.Gilly.dsf";                                                     DestDir: "{commonpf32}\DAUM\PotPlayer\Skins";         Components: program; Flags: uninsrestartdelete ignoreversion
-Source: "src\Skins\FMOD.Light.dsf";                                                     DestDir: "{commonpf32}\DAUM\PotPlayer\Skins";         Components: program; Flags: uninsrestartdelete ignoreversion
-Source: "src\Skins\PotMPC v1.0.dsf";                                                    DestDir: "{commonpf32}\DAUM\PotPlayer\Skins";         Components: program; Flags: uninsrestartdelete ignoreversion
-Source: "src\Skins\PotMPC v2.0.dsf";                                                    DestDir: "{commonpf32}\DAUM\PotPlayer\Skins";         Components: program; Flags: uninsrestartdelete ignoreversion
-Source: "src\Skins\Default.MOD.dsf";                                                    DestDir: "{commonpf32}\DAUM\PotPlayer\Skins";         Components: program; Flags: uninsrestartdelete ignoreversion
-Source: "src\Skins\Default.MOD.Optimized,1.dsf"; DestName: "Default.MOD.Optimized.DSF"; DestDir: "{commonpf32}\DAUM\PotPlayer\Skins";         Tasks: skin1; Flags: uninsrestartdelete ignoreversion
-Source: "src\x86\PotPlayerMini,1.exe";               DestName: "PotPlayerMini.exe";     DestDir: "{commonpf32}\DAUM\PotPlayer";               Tasks: skin1; Flags: ignoreversion uninsneveruninstall
-Source: "src\Skins\Default.MOD.Optimized,2.dsf"; DestName: "Default.MOD.Optimized.DSF"; DestDir: "{commonpf32}\DAUM\PotPlayer\Skins";         Tasks: fixpot; Flags: uninsrestartdelete ignoreversion
-Source: "src\x86\PotPlayerMini,2.exe";               DestName: "PotPlayerMini.exe";     DestDir: "{commonpf32}\DAUM\PotPlayer";               Tasks: fixpot; Flags: ignoreversion uninsneveruninstall
-Source: "src\Skins\FMOD.dsf";                                                           DestDir: "{commonpf32}\DAUM\PotPlayer\Skins";         Components: program; Tasks: skin2; Flags: uninsrestartdelete ignoreversion
-Source: "src\Skins\PotMPC v3.0.dsf";                                                    DestDir: "{commonpf32}\DAUM\PotPlayer\Skins";         Components: program; Tasks: skin3; Flags: uninsrestartdelete ignoreversion
-Source: "src\Skins\PotXMP.dsf";                                                         DestDir: "{commonpf32}\DAUM\PotPlayer\Skins";         Components: program; Tasks: skin4; Flags: uninsrestartdelete ignoreversion
-;
-Source: "{userappdata}\Playlist\IPTV.dpl";                                              DestDir: "{userappdata}\PotPlayerMini\Playlist";      Tasks: playlist; Flags: restartreplace uninsrestartdelete ignoreversion  
-;Source: "{userappdata}\Playlist\IPTV2.dpl";                                              DestDir: "{userappdata}\PotPlayerMini\Playlist";      Tasks: playlist; Flags: restartreplace uninsrestartdelete ignoreversion 
-Source: "{userappdata}\Playlist\Ten komputer.dpl";                                      DestDir: "{userappdata}\PotPlayerMini\Playlist";      Tasks: savedef; Flags: restartreplace uninsrestartdelete ignoreversion 
-Source: "{userappdata}\Playlist\FilmPolski.dpl";                                        DestDir: "{userappdata}\PotPlayerMini\Playlist";      Tasks: playlist; Flags: restartreplace uninsrestartdelete ignoreversion
-Source: "{userappdata}\Playlist\Torrent.dpl";                                           DestDir: "{userappdata}\PotPlayerMini\Playlist";      Components: ext/torrent; Tasks: playlist; Flags: restartreplace uninsrestartdelete ignoreversion 
-Source: "{userappdata}\Playlist\YouTube.dpl";                                           DestDir: "{userappdata}\PotPlayerMini\Playlist";      Tasks: playlist; Flags: restartreplace uninsrestartdelete ignoreversion 
-Source: "{userdocs}\Playlist\IPTV.dpl";                                                 DestDir: "{userdocs}\PotPlayerMini\Playlist";         Tasks: playlist; Flags: restartreplace uninsrestartdelete ignoreversion  
-;Source: "{userdocs}\Playlist\IPTV2.dpl";                                                 DestDir: "{userdocs}\PotPlayerMini\Playlist";         Tasks: playlist; Flags: restartreplace uninsrestartdelete ignoreversion 
-Source: "{userdocs}\Playlist\Ten komputer.dpl";                                         DestDir: "{userdocs}\PotPlayerMini\Playlist";         Tasks: savedocs; Flags: restartreplace uninsrestartdelete ignoreversion
-Source: "{userdocs}\Playlist\FilmPolski.dpl";                                           DestDir: "{userdocs}\PotPlayerMini\Playlist";         Tasks: playlist; Flags: restartreplace uninsrestartdelete ignoreversion
-Source: "{userdocs}\Playlist\Torrent.dpl";                                              DestDir: "{userdocs}\PotPlayerMini\Playlist";         Components: ext/torrent; Tasks: playlist; Flags: restartreplace uninsrestartdelete ignoreversion
-Source: "{userdocs}\Playlist\YouTube.dpl";                                              DestDir: "{userdocs}\PotPlayerMini\Playlist";         Tasks: playlist; Flags: restartreplace uninsrestartdelete ignoreversion
-;<-- // Rozszerzenia // -->
-; Source: "src\Extension\Media\PlayParse\MediaPlayParse - YouTube.as";                    DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\PlayParse";    Flags: uninsrestartdelete ignoreversion
-Source: "src\x86\Extension\Lib\TorrentReader.dll";                                      DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Lib";                Components: ext/torrent; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\PlayParse\MediaPlayParse - LibTorrent.as";                 DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: ext/torrent; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\PlayParse\MediaPlayParse - LibTorrent.ico";                DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: ext/torrent; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\PlayParse\config.ini";                                     DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: ext/twich; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\PlayParse\MediaPlayParse - Twitch.as";                     DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: ext/twich; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\PlayParse\MediaPlayParse - Twitch.ico";                    DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: ext/twich; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\SourceReader\MediaSourceReader - LibTorrent.as";           DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\SourceReader"; Components: ext/torrent; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\SourceReader\MediaSourceReader - LibTorrent.ico";          DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\SourceReader"; Components: ext/torrent; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\UrlList\MediaUrlList - Twitch.as";                         DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\UrlList";      Components: ext/twich; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\UrlList\MediaUrlList - Twitch.ico";                        DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\UrlList";      Components: ext/twich; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\UrlList\config.ini";                                       DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\UrlList";      Components: ext/twich; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\PlayParse\MediaPlayParse - yt-dlp.as";                     DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";      Components: ext/ytdlp; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\PlayParse\MediaPlayParse - yt-dlp.ico";                    DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";      Components: ext/ytdlp; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\PlayParse\yt-dlp_x86.exe";                                 DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";      Components: ext/ytdlp; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\PlayParse\yt-dlp_x86-parser.exe";                          DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";      Components: ext/ytdlp; Flags: uninsrestartdelete ignoreversion
-;<-- // AviSynth and SVPflow // -->
-Source: "src\AviSynth\CPU-1-Low.avs";                                                   DestDir: "{commonpf32}\DAUM\PotPlayer\AviSynth";       Components: avs; Flags: uninsrestartdelete ignoreversion 
-Source: "src\AviSynth\CPU-2-Medium.avs";                                                DestDir: "{commonpf32}\DAUM\PotPlayer\AviSynth";       Components: avs; Flags: uninsrestartdelete ignoreversion 
-Source: "src\AviSynth\CPU-3-High.avs";                                                  DestDir: "{commonpf32}\DAUM\PotPlayer\AviSynth";       Components: avs; Flags: uninsrestartdelete ignoreversion 
-Source: "src\AviSynth\GPU-1-Low.avs";                                                   DestDir: "{commonpf32}\DAUM\PotPlayer\AviSynth";       Components: avs; Flags: uninsrestartdelete ignoreversion 
-Source: "src\AviSynth\GPU-2-Medium.avs";                                                DestDir: "{commonpf32}\DAUM\PotPlayer\AviSynth";       Components: avs; Flags: uninsrestartdelete ignoreversion 
-Source: "src\AviSynth\GPU-3-High.avs";                                                  DestDir: "{commonpf32}\DAUM\PotPlayer\AviSynth";       Components: avs; Flags: uninsrestartdelete ignoreversion
-Source: "src\x86\AviSynth.dll";                                                         DestDir: "{commonpf32}\DAUM\PotPlayer";                Components: avs; Flags: uninsrestartdelete ignoreversion 
-Source: "src\x86\svp.avs";                                                              DestDir: "{commonpf32}\DAUM\PotPlayer";                Components: avs; Flags: uninsrestartdelete ignoreversion
-Source: "src\x86\msvcp140.dll";                                                         DestDir: "{commonpf32}\DAUM\PotPlayer";                Components: avs; Flags: uninsrestartdelete ignoreversion 
-Source: "src\x86\svpflow1.dll";                                                         DestDir: "{commonpf32}\DAUM\PotPlayer";                Components: avs; Flags: uninsrestartdelete ignoreversion 
-Source: "src\x86\svpflow2.dll";                                                         DestDir: "{commonpf32}\DAUM\PotPlayer";                Components: avs; Flags: uninsrestartdelete ignoreversion
-Source: "src\x86\vcruntime140.dll";                                                     DestDir: "{commonpf32}\DAUM\PotPlayer";                Components: avs; Flags: uninsrestartdelete ignoreversion
-; Pliki pobierane w trakcie instalacji
+; <-- // Normalne pliki instalatora // -->
+Source: "InstallDir\Changelog.txt";                 DestName: "Lista zmian.txt";          DestDir: "{app}";                                                  Components: "program"; Languages: "pl"; Flags: ignoreversion
+Source: "InstallDir\Changelog_Eng.txt";             DestName: "Changelog.txt";            DestDir: "{app}";                                                  Components: "program"; Languages: "en"; Flags: ignoreversion
+Source: "InstallDir\License.txt";                   DestName: "Licencja.txt";             DestDir: "{app}";                                                  Components: "program"; Languages: "pl"; Flags: ignoreversion
+Source: "InstallDir\License_Eng.txt";               DestName: "License.txt";              DestDir: "{app}";                                                  Components: "program"; Languages: "en"; Flags: ignoreversion
+Source: "InstallDir\ReadMe.txt";                    DestName: "CzytajTo.txt";             DestDir: "{app}";                                                  Components: "program"; Languages: "pl"; Flags: isreadme;
+Source: "InstallDir\ReadMe_Eng.txt";                DestName: "ReadMe.txt";               DestDir: "{app}";                                                  Components: "program"; Languages: "en"; Flags: isreadme;
+Source: "InstallDir\LGPL.TXT";                                                            DestDir: "{app}";                                                  Components: "program"; Flags: ignoreversion
+Source: "InstallDir\MyProg.exe";                                                          DestDir: "{app}";                                                  Components: "program"; Flags: ignoreversion
+; <-- // Listy // -->
+Source: "src\UrlList\Radio.asx";                                                          DestDir: "{commonpf}\DAUM\PotPlayer\UrlList";                      Components: "program"; Flags: ignoreversion uninsneveruninstall
+Source: "src\UrlList\TV.asx";                                                             DestDir: "{commonpf}\DAUM\PotPlayer\UrlList";                      Components: "program"; Flags: ignoreversion uninsneveruninstall
+; <-- // Skins // -->
+Source: "src\Skins\FMOD.Gilly.dsf";                                                       DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Skins\FMOD.Light.dsf";                                                       DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Skins\PotMPC v1.0.dsf";                                                      DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Skins\PotMPC v2.0.dsf";                                                      DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Skins\Default.MOD.dsf";                                                      DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Flags: uninsrestartdelete ignoreversion
+; <-- // Skórki i ikony odtwarzacza // -->
+Source: "src\Skins\Default.MOD.Optimized,1.dsf"; DestName: "Default.MOD.Optimized.DSF";   DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                                               Tasks: "skin1"; Flags: uninsrestartdelete ignoreversion
+Source: "src\x86\PotPlayerMini,1.exe";           DestName: "PotPlayerMini.exe";           DestDir: "{commonpf}\DAUM\PotPlayer";                                                     Tasks: "skin1"; Flags: ignoreversion uninsneveruninstall
+Source: "src\Skins\Default.MOD.Optimized,2.dsf"; DestName: "Default.MOD.Optimized.DSF";   DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                                               Tasks: "fixpot"; Flags: uninsrestartdelete ignoreversion
+Source: "src\x86\PotPlayerMini,2.exe";           DestName: "PotPlayerMini.exe";           DestDir: "{commonpf}\DAUM\PotPlayer";                                                     Tasks: "fixpot"; Flags: ignoreversion uninsneveruninstall
+Source: "src\Skins\FMOD.dsf";                                                             DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin2"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Skins\PotMPC v3.0.dsf";                                                      DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin3"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Skins\PotXMP.dsf";                                                           DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin4"; Flags: uninsrestartdelete ignoreversion
+; <-- // Splittery MPC-BE // -->
+Source: "src\x86\Module\AviSplitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
+Source: "src\x86\Module\MatroskaSplitter.ax";                                             DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
+Source: "src\x86\Module\MP4Splitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
+; <-- // Operacje na plikach odtwarzacza // -->
+Source: "{commonpf}\DAUM\PotPlayer\ffcodec.dll"; DestName: "FFmpeg.dll";                  DestDir: "{commonpf}\DAUM\PotPlayer\Module\FFmpeg4";                                      Flags: external;
+Source: "{tmp}\Module.7z";                                                                DestDir: "{tmp}";                                                  Components: "program"; Flags: deleteafterinstall
+Source: "{tmp}\PxShader.7z";                                                              DestDir: "{tmp}";                                                  Components: "program"; Flags: deleteafterinstall
+; <-- // Samoaktualizuj¹ce listy odtwarzania // -->
+Source: "src\Playlist\IPTV.dpl";                                                          DestDir: "{userappdata}\PotPlayerMini\Playlist";                 Tasks: "playlist"; Flags: uninsrestartdelete ignoreversion   
+Source: "src\Playlist\Ten komputer.dpl";                                                  DestDir: "{userappdata}\PotPlayerMini\Playlist";                 Tasks: "playlist"; Flags: uninsrestartdelete ignoreversion 
+Source: "src\Playlist\FilmPolski.dpl";                                                    DestDir: "{userappdata}\PotPlayerMini\Playlist";                 Tasks: "playlist"; Flags: uninsrestartdelete ignoreversion 
+Source: "src\Playlist\YouTube.dpl";                                                       DestDir: "{userappdata}\PotPlayerMini\Playlist";                 Tasks: "playlist"; Flags: uninsrestartdelete ignoreversion
+; <-- // AviSynth and SVPflow // -->
+Source: "src\AviSynth\CPU-1-Low.avs";                                                     DestDir: "{commonpf}\DAUM\PotPlayer\AviSynth";                     Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
+Source: "src\AviSynth\CPU-2-Medium.avs";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\AviSynth";                     Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
+Source: "src\AviSynth\CPU-3-High.avs";                                                    DestDir: "{commonpf}\DAUM\PotPlayer\AviSynth";                     Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
+Source: "src\AviSynth\GPU-1-Low.avs";                                                     DestDir: "{commonpf}\DAUM\PotPlayer\AviSynth";                     Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
+Source: "src\AviSynth\GPU-2-Medium.avs";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\AviSynth";                     Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
+Source: "src\AviSynth\GPU-3-High.avs";                                                    DestDir: "{commonpf}\DAUM\PotPlayer\AviSynth";                     Components: "SVP"; Flags: uninsrestartdelete ignoreversion
+Source: "src\x86\AviSynth.dll";                                                           DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
+Source: "src\x86\svp.avs";                                                                DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
+Source: "src\x86\msvcp140.dll";                                                           DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
+Source: "src\x86\svpflow1.dll";                                                           DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
+Source: "src\x86\svpflow2.dll";                                                           DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP"; Flags: uninsrestartdelete ignoreversion
+Source: "src\x86\vcruntime140.dll";                                                       DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP"; Flags: uninsrestartdelete ignoreversion
+; ;<-- // madVR // -->
+Source: "{tmp}\madVR_v0.9.17.exe";                                                        DestDir: "{tmp}";                                                  Components: "madVR"; Flags: deleteafterinstall
+Source: "InstallDir\delete madVR.bat";                                                    DestDir: "{app}";                                                  Components: "madVR"; Flags: uninsrestartdelete ignoreversion
+; ;<-- // Icaros // -->
+Source: "{tmp}\Icaros.exe";                                                               DestDir: "{tmp}";                                                  Components: "icaros"; Flags: external deleteafterinstall;
+Source: "{tmp}\Icaros_HKCU.reg";                                                          DestDir: "{tmp}";                                                  Components: "icaros"; Flags: deleteafterinstall
+Source: "{tmp}\icaros_HKLM_64.reg";                                                       DestDir: "{tmp}";                                                  Components: "icaros"; Flags: deleteafterinstall
+Source: "{tmp}\icaros_HKLM_32.reg";                                                       DestDir: "{tmp}";                                                  Components: "icaros"; Flags: deleteafterinstall
+Source: "src\Icaros\Resources\Localize\Config.pl.po";                                                                                                        Components: "icaros"; Flags: dontcopy
 ; <-- // TorrServer // -->
-Source: "{tmp}\TS.MatriX.Setup.exe";                                                    DestDir: "{tmp}";                                                 Components: tor; Flags: external deleteafterinstall;
-Source: "src\Extension\Media\PlayParse\MediaPlayParse - TorrServer.as";                 DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\PlayParse"; Components: tor; Flags: uninsrestartdelete ignoreversion
-Source: "src\Extension\Media\PlayParse\MediaPlayParse - TorrServer.ico";                DestDir: "{commonpf32}\DAUM\PotPlayer\Extension\Media\PlayParse"; Components: tor; Flags: uninsrestartdelete ignoreversion
-; <-- // Icaros // -->
-Source: "{tmp}\Icaros.exe";                                                             DestDir: "{tmp}";                                      Components: icaros; Flags: external deleteafterinstall;
-Source: "{tmp}\Icaros_HKCU.reg";                                                        DestDir: "{tmp}";                                      Components: icaros; Flags: deleteafterinstall
-Source: "{tmp}\icaros_HKLM_64.reg";                                                     DestDir: "{tmp}";                                      Components: icaros; Flags: deleteafterinstall
-Source: "{tmp}\icaros_HKLM_32.reg";                                                     DestDir: "{tmp}";                                      Components: icaros; Flags: deleteafterinstall
-Source: "src\Icaros\Resources\Localize\Config.pl.po";                                                                                          Components: icaros; Flags: dontcopy
+Source: "{tmp}\TS.MatriX.Setup.exe";                                                      DestDir: "{tmp}";                                                  Components: "TOR"; Flags: external deleteafterinstall;
+Source: "src\Extension\Media\PlayParse\MediaPlayParse - TorrServer.as";                   DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: "TOR"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Extension\Media\PlayParse\MediaPlayParse - TorrServer.ico";                  DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: "TOR"; Flags: uninsrestartdelete ignoreversion
 ; <-- // Ace Stream Engine // -->
-Source: "{tmp}\ace_engine_setup.exe";                                                   DestDir: "{tmp}";                                      Components: ace; Flags: external deleteafterinstall;
-Source: "{userappdata}\Playlist\AceTV.dpl";                                             DestDir: "{userappdata}\PotPlayerMini\Playlist";       Components: ace; Tasks: savedef; Flags: ignoreversion 
-Source: "{userdocs}\Playlist\AceTV.dpl";                                                DestDir: "{userdocs}\PotPlayerMini\Playlist";          Components: ace; Tasks: savedocs; Flags: ignoreversion
-;<-- // madVR // -->
-Source: "{tmp}\madVR_v0.9.17.exe";                                                      DestDir: "{tmp}";                                      Components: madvr; Flags: deleteafterinstall
-Source: "InstallDir\delete madVR.bat";                                                  DestDir: "{app}";                                      Components: madvr; Flags: uninsrestartdelete ignoreversion
-;<-- // MediaInfo // -->
-Source: "src\x86\Module\MediaInfo.exe";                                                 DestDir: "{commonpf32}\DAUM\PotPlayer\Module\";        Components: minfo; Flags: restartreplace uninsrestartdelete ignoreversion
- ; MPC Video Renderer
-Source: "src\x86\Module\MpcVideoRenderer.ax";                                           DestDir: "{commonpf32}\DAUM\PotPlayer\Module";         Tasks: mpcvr; Flags: regserver ignoreversion
-; Sanear Audio Renderer
-Source: "src\x86\Module\sanear.ax";                                                     DestDir: "{commonpf32}\DAUM\PotPlayer\Module";         Tasks: sanear; Flags: regserver ignoreversion
-; ; Splittery MPC-BE
-Source: "src\x86\Module\AviSplitter.ax";                                                DestDir: "{commonpf32}\DAUM\PotPlayer\Module";         Components: program; Flags: restartreplace uninsrestartdelete ignoreversion
-Source: "src\x86\Module\MatroskaSplitter.ax";                                           DestDir: "{commonpf32}\DAUM\PotPlayer\Module";         Components: program; Flags: restartreplace uninsrestartdelete ignoreversion
-Source: "src\x86\Module\MP4Splitter.ax";                                                DestDir: "{commonpf32}\DAUM\PotPlayer\Module";         Components: program; Flags: restartreplace uninsrestartdelete ignoreversion
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-Source: "7za.exe";                                                                      DestDir: "{tmp}";                                      Flags: deleteafterinstall;
+Source: "{tmp}\ace_engine_setup.exe";                                                     DestDir: "{tmp}";                                                  Components: "ACE"; Flags: external deleteafterinstall;
+Source: "src\Playlist\AceTV.dpl";                                                         DestDir: "{userappdata}\PotPlayerMini\Playlist";                   Components: "ACE"; Flags: uninsrestartdelete ignoreversion
+; <-- // Rozszerzenia // -->
+Source: "src\x86\Extension\Lib\TorrentReader.dll";                                        DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Lib";                Components: "ext/torrent"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Extension\Media\PlayParse\MediaPlayParse - LibTorrent.as";                   DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: "ext/torrent"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Extension\Media\PlayParse\MediaPlayParse - LibTorrent.ico";                  DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: "ext/torrent"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Extension\Media\SourceReader\MediaSourceReader - LibTorrent.as";             DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\SourceReader"; Components: "ext/torrent"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Extension\Media\SourceReader\MediaSourceReader - LibTorrent.ico";            DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\SourceReader"; Components: "ext/torrent"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Playlist\Torrent.dpl";                                                       DestDir: "{userappdata}\PotPlayerMini\Playlist";                   Components: "ext/torrent"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Extension\Media\PlayParse\config.ini";                                       DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: "ext/twich"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Extension\Media\PlayParse\MediaPlayParse - Twitch.as";                       DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: "ext/twich"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Extension\Media\PlayParse\MediaPlayParse - Twitch.ico";                      DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: "ext/twich"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Extension\Media\UrlList\MediaUrlList - Twitch.as";                           DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\UrlList";      Components: "ext/twich"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Extension\Media\UrlList\MediaUrlList - Twitch.ico";                          DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\UrlList";      Components: "ext/twich"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Extension\Media\UrlList\config.ini";                                         DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\UrlList";      Components: "ext/twich"; Flags: uninsrestartdelete ignoreversion
+Source: "{tmp}\yt-dlp-parser.7z";                                                         DestDir: "{tmp}";                                                  Components: "ext/ytdlp"; Flags: external deleteafterinstall;
+; ;<-- // MediaInfo // --> 
+Source: "src\x86\Module\MediaInfo.exe";                                                   DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "minfo"; Flags: uninsrestartdelete ignoreversion  
+; <-- // MPC Video Renderer // -->
+Source: "src\x86\Module\MpcVideoRenderer.ax";                                             DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Tasks: "extmpcvr"; Flags: regserver ignoreversion
+; <-- // Sanear Audio Renderer // -->
+Source: "src\x86\Module\sanear.ax";                                                       DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Tasks: "extsanear"; Flags: regserver ignoreversion
+; ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "7za.exe";                                                                        DestDir: "{tmp}"; Flags: deleteafterinstall;
 
 [Dirs]
-Name: {app};               Permissions: everyone-full; Flags: UninsAlwaysUninstall; Components: program;
-Name: {userappdata}\madVR; Permissions: everyone-full; Flags: UninsAlwaysUninstall; Components: madvr;
+Name: {app};               Permissions: everyone-full; Flags: UninsAlwaysUninstall; Components: "program";
+Name: {userappdata}\madVR; Permissions: everyone-full; Flags: UninsAlwaysUninstall; Components: "madVR";
 
 [Registry]
-Root: HKCU; Subkey: Software\madshi;                                                                              Components: "madvr"; Flags: uninsdeletekey dontcreatekey;
-Root: HKCU; Subkey: Software\madshi\madHcCtrl; ValueType: dword; ValueName: "ShowTrayIcon"; ValueData: "$1";      Components: "madvr"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: Software\madshi\madVR; ValueType: string; ValueName: "LastSettingsKey"; ValueData: "devices"; Components: "madvr"; Flags: uninsdeletekey;
-;
-Root: HKCU; Subkey: "Software\MediaInfo"; ValueName: "Path"; ValueType: String; ValueData: "{commonpf32}\DAUM\PotPlayer\Module\";                                  Tasks: minfo; Flags: uninsdeletevalue uninsdeletekeyifempty 
-Root: HKCU; Subkey: "Software\Classes\*\shell\MediaInfo"; ValueName: "Icon"; ValueType: String; ValueData: """{commonpf32}\DAUM\PotPlayer\Module\mediainfo.exe"""; Tasks: minfo; Flags: uninsdeletevalue uninsdeletekeyifempty 
-Root: HKCU; Subkey: "Software\Classes\*\shell\MediaInfo\Command"; ValueType: String; ValueData: """{commonpf32}\DAUM\PotPlayer\Module\mediainfo.exe"" ""%1""";     Tasks: minfo; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; Subkey: {#keyPM}; ValueType: dword; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}; ValueType: dword; ValueName: "AddMyComPL"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}; ValueType: dword; ValueName: "ServiceValue"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\AtscAntenaList; ValueType: string; ValueName: "0"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\AtscCableList; ValueType: string; ValueName: "0"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Dialog324; ValueType: string; ValueName: "WindowPosition"; ValueData: "585,238,1336,802"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Dialog324; ValueType: dword; ValueName: "TopMost"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\DvbcList; ValueType: string; ValueName: "0"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\DvbsList; ValueType: string; ValueName: "0"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\DvbtList; ValueType: string; ValueName: "0"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "0"; ValueData: "SubtitleSearch - Napisy24.as"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "0DN"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "0UP"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "0U"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "0P"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "0S"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "0D"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "1"; ValueData: "SubtitleSearch - OpenSubtitle.as"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "1DN"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "1UP"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "1U"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "1P"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "1S"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "1D"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "2"; ValueData: "SubtitleSearch - podnapisi.as"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "2DN"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "2UP"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "2U"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "2P"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "2S"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "2D"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "3"; ValueData: "SubtitleSearch - SubDB.as"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "3DN"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "3UP"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "3U"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "3P"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "3S"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "3D"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "4"; ValueData: "SubtitleSearch - titlovi.as"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "4DN"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "4UP"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "4U"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "4P"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "4S"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "4D"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "5"; ValueData: "SubtitleSearch - ysubs.as"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "5DN"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: dword; ValueName: "5UP"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "5U"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "5P"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "5S"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "5D"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionInfoList; ValueType: string; ValueName: "6"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionSection; ValueType: string; ValueName: "MediaUrlList"; ValueData: "MediaUrlList - YouTube.as"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionSection; ValueType: string; ValueName: "MediaPlayParse"; ValueData: "MediaPlayParse - YouTube.as"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionSection; ValueType: string; ValueName: "OnlineSubtitleSearch"; ValueData: "SubtitleSearch - Napisy24.as/SubtitleSearch - OpenSubtitle.as/SubtitleSearch - podnapisi.as/SubtitleSearch - SubDB.as/SubtitleSearch - titlovi.as/SubtitleSearch - ysubs.as"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\ExtentionSection; ValueType: string; ValueName: "OnlineSubtitleTrans"; ValueData: "SubtitleTranslate - bing.as/SubtitleTranslate - google.as/SubtitleTranslate - papago.as/SubtitleTranslate - papagoNMT.as"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "MainX"; ValueData: "$1db"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "MainY"; ValueData: "$c8"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "MainWidth2"; ValueData: "$1e6"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "MainHeight2"; ValueData: "$18a"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowWidth"; ValueData: "$1e0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectL0"; ValueData: "$1db"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectT0"; ValueData: "$c8"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectR0"; ValueData: "$3c1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectB0"; ValueData: "$252"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowState1"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectL1"; ValueData: "$1b6"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectT1"; ValueData: "$64"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectR1"; ValueData: "$2f6"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectB1"; ValueData: "$1fc"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowState2"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectL2"; ValueData: "$365"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectT2"; ValueData: "$225"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectR2"; ValueData: "$49b"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "VideoWindowRectB2"; ValueData: "$2ee"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "PlayListWidth"; ValueData: "$140"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "TopMostWindow0"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "TopMostWindow1"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "TopMostWindow2"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "TopMostWindow3"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "TopMostWindow4"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "TopMostWindow5"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "TopMostWindow6"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "TopMostWindow7"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "TopMostWindow8"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "TopMostWindow9"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\Positions; ValueType: dword; ValueName: "ControlBoxWidth"; ValueData: "$136"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MftDecoder"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "DmoDecoder"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "Info1"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "Info6"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "Info7"; ValueData: ""; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "LastConfigPage"; ValueData: "$179"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AllowMultiple"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "PlaybackMode"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AudioVolume"; ValueData: "$46"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "LastPlayListName"; ValueData: "PotPlayerMini.dpl"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "LastSkinStyle"; ValueData: "'MoveTop''SetButtons''AddVis''AddTime''AddButtons'"; Tasks: fixpot; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "LastSkinName"; ValueData: "Default.MOD.Optimized.dsf";                           Tasks: fixpot; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "LastSkinStyle"; ValueData: "'MoveTop''SetButtons''AddVis''AddTime''AddButtons'"; Tasks: skin1; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "LastSkinName"; ValueData: "Default.MOD.Optimized.dsf";                           Tasks: skin1; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "LastSkinName"; ValueData: "Default.dsf";                                         Tasks: skin0; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "CaptionStyle"; ValueData: "5;5;5;5;2;0;2.000000;2.000000;3.000000;3.000000;0xffffff;0x000000;0x000000;0x000000;0x00;0x00;0x00;0x90;1;Segoe UI;17.000000;100.000000;100.000000;0.000000;700;0;0;0;0;0.000000;0.000000;0.000000;0.000000;2;0;1;50;95;0.000000;0;0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "LastSkinXmlName"; ValueData: "VideoSkin.xml"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "LastSkinXmlNameVideo"; ValueData: "VideoSkin.xml"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "EffectPage"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "EffectCastOnly"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SkipCastPreview"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "ChatAttachToMain2"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "UseSideWindow"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "BroadcastAttachToMain2"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "PlaylistAttachSize2"; ValueData: "$13f"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "CaptionTranslateEngine2"; ValueData: "SubtitleTranslate - google.as"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AttachWindowIndex"; ValueData: "$2"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "PageSelectedIndex1"; ValueData: "$4"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "ExtentionUpdate"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "PlayScreenSize"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_FontSize"; ValueData: "$12"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_WindowSize"; ValueData: "$3"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_Cover"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_16_9"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_LargeFrame"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_LargeSelect"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_FastLink"; ValueData: "$2"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_RightList"; ValueData: "$2"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_FolderOpen"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_FolderOpenSub"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SortByFolderPL"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "NoSameFileAddPL"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AutoAddPL"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AutoDetectTimePL"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "DropMousePos"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "VMR9VSyncInternal"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "D3DFullScreenUi"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "DisplayCdVolumeLabel"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "SkinPopupMenuStyle"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "MessageFontName"; ValueData: "Oswald"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MessageFontWeight"; ValueData: "$258"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MessageFontSize"; ValueData: "$1a"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "ItuRecSpec"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SkinDarkMenu"; ValueData: "$1"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MessageChapter"; ValueData: "$0"; Flags: uninsdeletekey;
-; ; Ustawienia skórek, Sta³y rozmiar okna, menu, odtwarzanie
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "StartScreenSize"; ValueData: "$3";        Tasks: skinfix; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "StartScreenSizeUserW"; ValueData: "$2d0"; Tasks: skinfix\a; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "StartScreenSizeUserH"; ValueData: "$194"; Tasks: skinfix\a; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "StartScreenSizeUserW"; ValueData: "$320"; Tasks: skinfix\b; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "StartScreenSizeUserH"; ValueData: "$1c2"; Tasks: skinfix\b; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "StartScreenSizeUserW"; ValueData: "$500"; Tasks: skinfix\c; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "StartScreenSizeUserH"; ValueData: "$2d0"; Tasks: skinfix\c; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AutoResizeFullScreen"; ValueData: "$1";   Tasks: autoresfullscr; Flags: uninsdeletekey;
+; ---start autoupdate code; see http://www.microchipc.com/innosetup/innosetup_auto_versioning_upgrade.php--
+Root: HKLM; Subkey: "Software\{#appname}"; ValueType: string; ValueName: CurrentVersion; ValueData: {code:GetAppCurrentVersion|''}; Flags: uninsdeletekey
+; ---end autoupdate code---
+Root: HKCU; Subkey: "Software\madshi";                                                                                                                              Components: "madVR"; Flags: uninsdeletekey dontcreatekey;
+Root: HKCU; Subkey: "Software\madshi\madHcCtrl"; ValueType: dword; ValueName: "ShowTrayIcon"; ValueData: "$1";                                                      Components: "madVR"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "Software\madshi\madVR"; ValueType: string; ValueName: "LastSettingsKey"; ValueData: "devices";                                                 Components: "madVR"; Flags: uninsdeletekey;
+; ;
+Root: HKCU; Subkey: "Software\MediaInfo"; ValueName: "Path"; ValueType: String; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MI\";                                  Tasks: "minfo1"; Flags: uninsdeletevalue uninsdeletekeyifempty 
+Root: HKCU; Subkey: "Software\Classes\*\shell\MediaInfo"; ValueName: "Icon"; ValueType: String; ValueData: """{commonpf}\DAUM\PotPlayer\Module\MI\mediainfo.exe"""; Tasks: "minfo1"; Flags: uninsdeletevalue uninsdeletekeyifempty 
+Root: HKCU; Subkey: "Software\Classes\*\shell\MediaInfo\Command"; ValueType: String; ValueData: """{commonpf}\DAUM\PotPlayer\Module\MI\mediainfo.exe"" ""%1""";     Tasks: "minfo1"; Flags: uninsdeletevalue uninsdeletekeyifempty 
+; ;
+Root: HKCU; SubKey: "{#keyPM}"; ValueType: dword; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}"; ValueType: dword; ValueName: "AddMyComPL"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}"; ValueType: dword; ValueName: "ServiceValue"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}"; ValueType: dword; ValueName: "ExtensionDays"; ValueData: "$0000016b"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}"; ValueType: string; ValueName: "MInfo1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}"; ValueType: string; ValueName: "MInfo2"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\RememberFiles"; Flags: uninsdeletekey;
+Root: HKCU; SubKey: "{#keyPM}\AtscAntenaList"; ValueType: string; ValueName: "0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\AtscCableList"; ValueType: string; ValueName: "0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "0"; ValueData: ".\Sound"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "1"; ValueData: ".\Pol Sound"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "2"; ValueData: ".\Eng Sound"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "3"; ValueData: ".\Sound Pol"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "4"; ValueData: ".\Sound Eng"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "5"; ValueData: ".\Pol_Sound"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "6"; ValueData: ".\Eng_Sound"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "7"; ValueData: ".\Sound_Pol"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "8"; ValueData: ".\Sound_Eng"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "9"; ValueData: ".\Pol.Sound"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "10"; ValueData: ".\Eng.Sound"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "11"; ValueData: ".\Sound.Pol"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "12"; ValueData: ".\Sound.Eng"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPAF}"; ValueType: string; ValueName: "13"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\BMItem_0"; Flags: uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "0"; ValueData: ".\Sub"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "1"; ValueData: ".\Sub Pol"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "2"; ValueData: ".\Sub Eng"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "3"; ValueData: ".\Pol Sub"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "4"; ValueData: ".\Eng Sub"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "5"; ValueData: ".\Sub_Pol"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "6"; ValueData: ".\Sub_Eng"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "7"; ValueData: ".\Pol_Sub"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "8"; ValueData: ".\Eng_Sub"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "9"; ValueData: ".\Subs"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "10"; ValueData: ".\Subs Pol"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "11"; ValueData: ".\Subs Eng"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "12"; ValueData: ".\Pol Subs"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "13"; ValueData: ".\Eng Subs"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "14"; ValueData: ".\Subs_Pol"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "15"; ValueData: ".\Subs_Eng"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "16"; ValueData: ".\Pol_Subs"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "17"; ValueData: ".\Eng_Subs"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "18"; ValueData: ".\Subtitles"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "19"; ValueData: ".\Subtitles Pol"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "20"; ValueData: ".\Subtitles Eng"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "21"; ValueData: ".\Pol Subtitles"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "22"; ValueData: ".\Eng Subtitles"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "23"; ValueData: ".\Subtitles_Pol"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "24"; ValueData: ".\Subtitles_Eng"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "25"; ValueData: ".\Pol_Subtitles"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "26"; ValueData: ".\Eng_Subtitles"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "27"; ValueData: ".\Napisy"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "28"; ValueData: ".\Napisy Pol"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "29"; ValueData: ".\Napisy Eng"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "30"; ValueData: ".\Pol Napisy"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "31"; ValueData: ".\Eng Napisy"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "32"; ValueData: ".\Napisy_Pol"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "33"; ValueData: ".\Napisy_Eng"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "34"; ValueData: ".\Pol_Napisy"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "35"; ValueData: ".\Eng_Napisy"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPCF}"; ValueType: string; ValueName: "36"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\CaptionWordSearchList"; ValueType: string; ValueName: "0"; ValueData: "pl.bab.la=http://pl.bab.la/slownik/angielski-polski/%%SS"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\CaptionWordSearchList"; ValueType: string; ValueName: "1"; ValueData: "Wikipedia=http://pl.wikipedia.org/w/index.php?search=%%SS"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\CaptionWordSearchList"; ValueType: string; ValueName: "2"; ValueData: "Wiktionary=https://pl.wiktionary.org/wiki/%%SS"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\CaptionWordSearchList"; ValueType: string; ValueName: "3"; ValueData: "OneLook=http://www.onelook.com/?w=%%SS"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\CaptionWordSearchList"; ValueType: string; ValueName: "4"; ValueData: "Google=http://www.google.com/#newwindow=1&q=%%SS"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\CaptionWordSearchList"; ValueType: string; ValueName: "5"; ValueData: "DuckDuckGo=https://duckduckgo.com/?q=%%SS"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\CaptionWordSearchList"; ValueType: string; ValueName: "6"; ValueData: "Kopiuj do schowka="; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\CaptionWordSearchList"; ValueType: string; ValueName: "7"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Dialog324"; ValueType: string; ValueName: "WindowPosition"; ValueData: "585,234,1336,798"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Dialog324"; ValueType: dword; ValueName: "TopMost"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Dialog409"; ValueType: dword; ValueName: "TopMost"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\DvbcList"; ValueType: string; ValueName: "0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\DvbsList"; ValueType: string; ValueName: "0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\DvbtList"; ValueType: string; ValueName: "0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "0"; ValueData: "SubtitleSearch - Napisy24.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "0DN"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "0UP"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "0U"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "0P"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "0S"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "0D"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "1"; ValueData: "SubtitleSearch - OpenSubtitle.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "1DN"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "1UP"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "1U"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "1P"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "1S"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "1D"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "2"; ValueData: "SubtitleSearch - podnapisi.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "2DN"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "2UP"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "2U"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "2P"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "2S"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "2D"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "3"; ValueData: "SubtitleSearch - SubDB.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "3DN"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "3UP"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "3U"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "3P"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "3S"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "3D"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "4"; ValueData: "SubtitleSearch - titlovi.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "4DN"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "4UP"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "4U"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "4P"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "4S"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "4D"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "5"; ValueData: "SubtitleSearch - ysubs.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "5DN"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: dword; ValueName: "5UP"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "5U"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "5P"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "5S"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "5D"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPEI}"; ValueType: string; ValueName: "6"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\ExtensionSection"; ValueType: string; ValueName: "MediaUrlList"; ValueData: "MediaUrlList - Twitch.as/MediaUrlList - YouTube.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\ExtensionSection"; ValueType: string; ValueName: "MediaPlayParse"; ValueData: "MediaPlayParse - LibTorrent.as/MediaPlayParse - Twitch.as/MediaPlayParse - YouTube.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\ExtensionSection"; ValueType: string; ValueName: "MediaSourceReader"; ValueData: "MediaSourceReader - LibTorrent.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\ExtensionSection"; ValueType: string; ValueName: "OnlineSubtitleSearch"; ValueData: "SubtitleSearch - Napisy24.as/SubtitleSearch - OpenSubtitle.as/SubtitleSearch - podnapisi.as/SubtitleSearch - SubDB.as/SubtitleSearch - titlovi.as/SubtitleSearch - ysubs.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\ExtensionSection"; ValueType: string; ValueName: "OnlineSubtitleTrans"; ValueData: "SubtitleTranslate - google.as/SubtitleTranslate - bing.as/SubtitleTranslate - papago.as/SubtitleTranslate - papagoNMT.as/SubtitleTranslate - Yandex.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\MainShortCutList"; ValueType: string; ValueName: "0"; ValueData: "9,2,10863,0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\MainShortCutList"; ValueType: string; ValueName: "1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "MainX"; ValueData: "$000001b5"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "MainY"; ValueData: "$00000108"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "MainWidth2"; ValueData: "$00000416"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "MainHeight2"; ValueData: "$000001f7"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowWidth"; ValueData: "$000002d0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowHeight"; ValueData: "$00000194"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectL0"; ValueData: "$000001b5"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectT0"; ValueData: "$00000108"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectR0"; ValueData: "$000005cb"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectB0"; ValueData: "$000002ff"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowState1"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectL1"; ValueData: "$000001b6"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectT1"; ValueData: "$00000064"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectR1"; ValueData: "$000002f6"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectB1"; ValueData: "$000001fc"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowState2"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectL2"; ValueData: "$00000365"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectT2"; ValueData: "$00000225"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectR2"; ValueData: "$00000492"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "VideoWindowRectB2"; ValueData: "$00000308"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "ChatWindowVisible"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "PlayListWidth"; ValueData: "$00000140"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "BroadcastListWindowVisible"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "TopMostWindow0"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "TopMostWindow1"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "TopMostWindow2"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "TopMostWindow3"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "TopMostWindow4"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "TopMostWindow5"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "TopMostWindow6"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "TopMostWindow7"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "TopMostWindow8"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "TopMostWindow9"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "ControlBoxWidth"; ValueData: "$0000012d"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\Positions"; ValueType: dword; ValueName: "ControlBoxHeight"; ValueData: "$000000e3"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "DefPath0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: dword; ValueName: "DefType"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "DefPath1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "DefPath2"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "DefPath3"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "DefPath4"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "DefPath5"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "DefPath6"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "DefPath7"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "DefPath8"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "DefPath9"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "PathToken"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "FindText"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "Sort"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPM}\SimpleOpen"; ValueType: string; ValueName: "Genre"; ValueData: "Genre"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "MftDecoder"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "DmoDecoder"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "Info1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "Info6"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "Info7"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "LastConfigPage"; ValueData: "$00000179"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "PlaybackMode"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "LastPlayListName"; ValueData: "PotPlayerMini.dpl"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "LastSkinXmlName"; ValueData: "VideoSkin.xml"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "LastSkinXmlNameVideo"; ValueData: "VideoSkin.xml"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "LastSkinXmlNameAudio"; ValueData: "AudioSkin.xml"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "LastUrlList"; ValueData: "Radio.asx"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "DisplayCdVolumeLabel"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "AudioVolume"; ValueData: "$0000003c"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "CaptionStyle"; ValueData: "5;5;5;5;2;0;2.000000;2.000000;3.000000;3.000000;0xffffff;0x000000;0x000000;0x000000;0x00;0x00;0x00;0x90;1;Segoe UI;17.000000;100.000000;100.000000;0.000000;700;0;0;0;0;0.000000;0.000000;0.000000;0.000000;2;0;1;50;95;0.000000;0;0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "PlayScreenSize"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionRemoveEmpty"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionAutoLoad"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "AllowMultiple"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "EffectPage"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "EffectCastOnly"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "SkipCastPreview"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "BroadcastAttachToMain2"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "ChatAttachSize2"; ValueData: "$0000013d"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "PlaylistAttachSize2"; ValueData: "$0000013d"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "VideoCaptureFrame"; ValueData: "$3"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "Thumbnail16_9PL"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "NoSameFileAddPL"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "AutoAddPL"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "AutoDetectTimePL"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "WinampDspIndex"; ValueData: "$ffffffff"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionPreferFirst"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionSupportAutoGen"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionDownloadAlert"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "CaptionTranslateEngine2"; ValueData: "SubtitleTranslate - google.as"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "WdmCountryCode"; ValueData: "$00000030"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "BookmarkPromptAdd"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "D3DFullScreenUi"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "MessageFontName"; ValueData: "Oswald"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "MessageFontWeight"; ValueData: "$00000258"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "MessageFontSize"; ValueData: "$0000001a"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "SO_Cover"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "SO_16_9"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "SO_FolderOpen"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "SO_FolderOpenSub"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "AttachWindowIndex"; ValueData: "$2"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "AudioPreferFirst"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "BaseOpenFolder"; ValueData: "{%USERPROFILE}\Videos"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "CheckAutoUpdate"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "AutoDownloadFile"; ValueData: "$0"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "ExtensionUpdate"; ValueData: "$1"; Flags: uninsdeletevalue uninsdeletekeyifempty
+; ;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "LastSkinName"; ValueData: "Default.dsf";                                                          Tasks: "skin0"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "LastSkinStyle"; ValueData: "'SetButtons''AddTime''AddButtons'";                                   Tasks: "skin1"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "LastSkinName"; ValueData: "Default.MOD.Optimized.dsf";                                            Tasks: "skin1"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "LastSkinStyle"; ValueData: "'SetButtons''AddTime''AddButtons'";                                   Tasks: "skin1"; Components: "SVP"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "LastSkinStyle"; ValueData: "'SetButtons''AddTime''AddButtons'";                                   Tasks: "skin2"; Components: "SVP"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "LastSkinStyle"; ValueData: "'SetSub''AddTime''AddButtons'";                                       Tasks: "skin3"; Components: "SVP"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "LastSkinStyle"; ValueData: "'SetButtons''AddTime''AddButtons'";                                   Tasks: "fixpot"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "LastSkinName"; ValueData: "Default.MOD.Optimized.dsf";                                            Tasks: "fixpot"; Flags: uninsdeletekey;
 ; ; Skin menu
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "SkinDarkMenu"; ValueData: "$1";         Tasks: skinmenu; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "SkinPopupMenuStyle"; ValueData: "$1";   Tasks: skinmenu; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: Dword; ValueName: "SkinDarkMenu"; ValueData: "$1";                                                                    Tasks: "skinmenu"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: Dword; ValueName: "SkinPopupMenuStyle"; ValueData: "$1";                                                              Tasks: "skinmenu"; Flags: uninsdeletekey;
 ; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SkinDefaultStart"; ValueData: "$2";     Tasks: skinstart; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SkinSizePersist"; ValueData: "$1";      Tasks: skinsize; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MoveSizeByCenter"; ValueData: "$1";     Tasks: sizebycenter; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "StartCenterPos"; ValueData: "$1";       Tasks: startcenter; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "DefSizeOnClose"; ValueData: "$1";       Tasks: sizeonclose; Flags: uninsdeletekey;
-; ;Ustawienia odtwarzania
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "PauseOnMin"; ValueData: "$1";            Tasks: pauseonmin\a; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "PauseOnMin"; ValueData: "$2";            Tasks: pauseonmin\b; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "ShowRememberList"; ValueData: "$1";      Tasks: rememberlist; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "PlayScreenMoveCenter"; ValueData: "$1";  Tasks: movecenter; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "RememberPosition"; ValueData: "$1";      Tasks: remposvideo; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "RememberPositionAudio"; ValueData: "$1"; Tasks: remposaudio; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "CloseOnComplete"; ValueData: "$1";       Tasks: closecomplete; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "PreviewThumbnail"; ValueData: "$1";      Tasks: prevthumb; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "DVDRestorePosition"; ValueData: "$2";    Tasks: remposdvd; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueName: "DisplayBookmark";                                          Tasks: dispbookmark; Flags: deletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "PreviewSeekTime"; ValueData: "$1";       Tasks: seektime; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "DisplayAsThumbnail"; ValueData: "$1";    Tasks: dispasthumb; Flags: uninsdeletekey;
-; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "PlaybackFailSkip"; ValueData: "$1";      Tasks: failskip_a; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "PlaybackFailSkip"; ValueData: "$2";      Tasks: failskip_b; Flags: uninsdeletekey;
-; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "OnTopMode"; ValueData: "$2";             Tasks: ontopmode; Flags: uninsdeletekey;
-; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "ScreenFitBySize"; ValueData: "$1";      Tasks: screenfitbysize\a; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "ScreenFitBySize"; ValueData: "$2";      Tasks: screenfitbysize\b; Flags: uninsdeletekey;
-; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MessagePlayInfo"; ValueData: "$1";      Tasks: mesplayinfo; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MessagePlayInfoFull"; ValueData: "$1";  Tasks: mesplayinfo; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MessagePlayTime"; ValueData: "$7";      Tasks: mesplayinfo; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MessageFileName"; ValueData: "$0";      Tasks: mesplayinfo; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MessageChapter"; ValueData: "$0";       Tasks: mesplayinfo\a; Flags: deletekey;
-; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MousePanScanControl"; ValueData: "$1";  Tasks: mouse_ps; Flags: uninsdeletekey;
-; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MessageBetery"; ValueData: "$1";        Tasks: powerststus\a; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MessageBetery"; ValueData: "$2";        Tasks: powerststus\b; Flags: uninsdeletekey;
-; ; Eksternal audio, gain
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AutoLoadExtAudio"; ValueData: "$1";     Tasks: extaudio; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueName: "AudioNormalize"; Tasks: gain; Flags: deletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "Ac3DtsVolumeControl"; ValueData: "$1";  Tasks: gain2; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudioVolumeMaxVal"; ValueData: "$c8";   Tasks: gain3; Flags: uninsdeletekey;
-; ;<-- // Dodajemy ustawienia g³oœników // -->
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudSpkIndex_new"; ValueData: "$1";      Tasks: stereo; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudExpandSurround"; ValueData: "$1";    Tasks: stereo; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudExpandCenter"; ValueData: "$1";      Tasks: stereo; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudExpandCenter"; ValueData: "$1";      Tasks: ch6; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudExpandSurround"; ValueData: "$1";    Tasks: ch6; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudSpkIndex_new"; ValueData: "$11";     Tasks: ch6; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudSpkIndex_new"; ValueData: "$16";     Tasks: asis; Flags: uninsdeletevalue;
-; ;Virtual Dolby Decoder
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudSpkIndex_new"; ValueData: "$19";     Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "Ac3Drc_new"; ValueData: "$1";           Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "UseOnly48000"; ValueData: "$0";         Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudioResampleMode"; ValueData: "$2";    Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudioResampleQuality"; ValueData: "$0"; Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "IntMp1_0"; ValueData: "$4";             Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "IntMp2_0"; ValueData: "$4";             Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "IntMp3_0"; ValueData: "$5";             Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "IntAac_0"; ValueData: "$4";             Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "IntLatm"; ValueData: "$2";              Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "IntAc3_0"; ValueData: "$3";             Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "IntEac3_0"; ValueData: "$2";            Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "IntTrueHD_0"; ValueData: "$1";          Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "IntMlp_0"; ValueData: "$1";             Tasks: virtual_dolby; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "IntDts_0"; ValueData: "$3";             Tasks: virtual_dolby; Flags: uninsdeletevalue;
-; ;<-- // W³¹czenie Sanear // -->
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "AudioRen"; ValueData: "@device:sw:{{E0F158E1-CB04-11D0-BD4E-00A0C911CE86}\{{DF557071-C9FD-433A-9627-81E0D3640ED9}"; Tasks: sanear; Flags: uninsdeletevalue;
-; ;<-- // W³¹czenie WASAPI // -->
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "AudioRen"; ValueData: "{{EE9109D9-1534-4B24-B86E-EAADE6850E59}"; Tasks: wasapi; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntAudioRenWSExclusive"; ValueData: "$1";                         Tasks: wasapi; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntAudioRenWSBitExact"; ValueData: "$1";                          Tasks: wasapi; Flags: uninsdeletevalue;
-; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AudioCrossfeedUse"; ValueData: "$1";                       Tasks: Crossfeed; Flags: uninsdeletevalue;
-; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AudioVolumeStart"; ValueData: "$1";                        Tasks: audio_start; Flags: uninsdeletevalue;
-; ;< --// Próbkowanie audio // -->
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudOutBit_new"; ValueData: "$0";                           Tasks: bit_depth16; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudOutBit_new"; ValueData: "$1";                           Tasks: bit_depth24; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudOutBit_new"; ValueData: "$2";                           Tasks: bit_depth32; Flags: uninsdeletevalue;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AudOutBit_new"; ValueData: "$3";                           Tasks: bit_depth32f; Flags: uninsdeletevalue;
-; ; Zak³adki do PBF
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "BookmarkSaveExternal"; ValueData: "$1";                    Tasks: bookmark; Flags: uninsdeletekey;
-; ; Zapisz na Pulpit lub galeria
-Root: HKCU; Subkey: {#keyPMS}; ValueType: String; ValueName: "VideoCaptureFolder"; ValueData: "{userdesktop}";          Tasks: savedesktop; Flags: createvalueifdoesntexist;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "ThumbnailSameDir"; ValueData: "$1";                        Tasks: savegalery; Flags: uninsdeletekey;
-; ; Format przechwytu obrazków
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "VideoCaptureFormat"; ValueData: "$0";                      Tasks: saveformat\bmp; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "VideoCaptureFormat"; ValueData: "$2";                      Tasks: saveformat\png; Flags: uninsdeletekey;
-; ; Automatyczne wczytywanie URL ze schowka
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "UseClipboardUrl"; ValueData: "$1";                         Tasks: loadurl; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "AudExpandCenter"; ValueType: Dword; ValueData: "$0"; 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "AudExpandSurround"; ValueType: Dword; ValueData: "$0";
+;
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: IntDXVAUseMode; ValueData: $1;                                                                      Tasks: "dxva"; Flags: uninsdeletevalue uninsdeletekeyifempty
+; ; 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "AvisynthBufferBack"; ValueType: Dword; ValueData: "$0";                                                              Components: "SVP"; Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "AvisynthScript"; ValueType: String; ValueData: "svp=1 alg=1 fim=1 bf=0 sh=0 uhd=0 gpu=0 fps=60 import(""svp.avs"")"; Components: "SVP"; Flags: uninsdeletekey;
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: UseSelfDxva; ValueData: $1;                                                                         Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: IntDXVAUseMode; ValueData: $1;                                                                      Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
+; Filtry
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "VideoPropertyHwFirst"; ValueData: "$1";                                                            Tasks: "hwcc"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "DX9ResizeMode_0"; ValueData: "$13";                                                                Tasks: "resizer"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "Sharpen"; ValueData: "$1";                                                                         Tasks: "sharpen"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "VideoDeband"; ValueData: "$1";                                                                     Tasks: "deband"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "LevelFix"; ValueData: "$1";                                                                        Tasks: "levelfix"; Flags: uninsdeletekey;
+;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "HqRgbConv"; ValueData: "$1";                                                                       Tasks: "HqRgbConv"; Flags: uninsdeletekey;
+;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "ThreadConv"; ValueData: "$1";                                                                      Tasks: "ThreadConv"; Flags: uninsdeletekey;
+; ; Priorytet odtwarzania
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "PlayPriority2"; ValueData: "$4";                                                                   Tasks: "playpriority"; Flags: uninsdeletekey;
+; ; W³¹czenie MVC3D
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "SupportH264MVC"; ValueData: "$1";                                                                  Tasks: "mvc3d"; Flags: uninsdeletekey;
+; ; Koniec w³¹czenia MVC3D
+Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "UseStreamTimeShift";                                                                                                 Tasks: "tsh"; Flags: deletevalue
+;
+; W³¹czenie FFmpeg dla H265
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntH265_0"; ValueData: "$2";                                                                       Tasks: "ffmpeg"; Flags: uninsdeletekey;
+; ; Renderer madVR
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "VideoRen2"; ValueData: "$a";                                                                       Tasks: "renderer\madVR"; Flags: uninsdeletekey;
+; ; Renderer Open GL
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "VideoRen2"; ValueData: "$c";                                                                       Tasks: "renderer\opengl"; Flags: uninsdeletekey;
+; ; Renderer D3D11
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "VideoRen2"; ValueData: "$f";                                                                       Tasks: "renderer\d3d11"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "VMR9VSyncInternal"; ValueData: "$0";                                                               Tasks: "renderer\d3d11"; Flags: uninsdeletekey;
+; ; Ustawienia skórek, Sta³y rozmiar okna, menu, odtwarzanie
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "StartScreenSize"; ValueData: "$3";                                                                 Tasks: "skinfix"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "StartScreenSizeUserW"; ValueData: "$2d0";                                                          Tasks: "skinfix\a"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "StartScreenSizeUserH"; ValueData: "$194";                                                          Tasks: "skinfix\a"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "StartScreenSizeUserW"; ValueData: "$320";                                                          Tasks: "skinfix\b"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "StartScreenSizeUserH"; ValueData: "$1c2";                                                          Tasks: "skinfix\b"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "StartScreenSizeUserW"; ValueData: "$500";                                                          Tasks: "skinfix\c"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "StartScreenSizeUserH"; ValueData: "$2d0";                                                          Tasks: "skinfix\c"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AutoResizeFullScreen"; ValueData: "$1";                                                            Tasks: "autoresfullscr"; Flags: uninsdeletekey;
+; ;< -- // Ustawiamy foldery zapisu -->
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: String; ValueName: "VideoCaptureFolder"; ValueData: "{userdocs}\PotPlayerMini\Capture";                             Tasks: "savedocs"; Flags: createvalueifdoesntexist 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: String; ValueName: "AudioCaptureFolder"; ValueData: "{userdocs}\PotPlayerMini\Capture";                             Tasks: "savedocs"; Flags: createvalueifdoesntexist 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: String; ValueName: "MovieCaptureFolder"; ValueData: "{userdocs}\PotPlayerMini\Capture";                             Tasks: "savedocs"; Flags: createvalueifdoesntexist 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: String; ValueName: "BroadcastSaveFolder"; ValueData: "{userdocs}\PotPlayerMini\Capture";                            Tasks: "savedocs"; Flags: createvalueifdoesntexist 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: String; ValueName: "BdaSaveFolder"; ValueData: "{userdocs}\PotPlayerMini\Capture";                                  Tasks: "savedocs"; Flags: createvalueifdoesntexist 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: String; ValueName: "PlayListFolder"; ValueData: "{userdocs}\PotPlayerMini\Playlist";                                Tasks: "savedocs"; Flags: createvalueifdoesntexist 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: String; ValueName: "TempFolder"; ValueData: "{userdocs}\PotPlayerMini\Temp";                                        Tasks: "savedocs"; Flags: createvalueifdoesntexist 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: String; ValueName: "WinampDspPath"; ValueData: "{userdocs}\PotPlayerMini\Plugins";                                  Tasks: "savedocs"; Flags: createvalueifdoesntexist
 ; ;Domyœlne dzia³anie otwierania
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "DefOpenMode"; ValueData: "$1";                             Tasks: opendef\url; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "DefOpenMode"; ValueData: "$2";                             Tasks: opendef\folder; Flags: uninsdeletekey;
-; ;Domyœlne dzia³anie otwierania - pliki
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "OpenWithSameName"; ValueData: "$2";     Tasks: openwithsamename_a; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AppendFilePL"; ValueData: "$1";         Tasks: openwithsamename_a\1; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "OpenWithSameName"; ValueData: "$0";     Tasks: openwithsamename_b; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "SavePlayList"; ValueData: "$0";         Tasks: openwithsamename_b\savepl; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "PlaybackSearchFile"; ValueData: "$1";   Tasks: openwithsamename_sf; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "AttachOpenFullScreen"; ValueData: "$0"; Tasks: playlistopenfullscreen; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "DefOpenMode"; ValueData: "$1";                                                                     Tasks: "opendef\url"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "DefOpenMode"; ValueData: "$2";                                                                     Tasks: "opendef\folder"; Flags: uninsdeletekey;
 ; ; Ustawienia Nawigatora po plikach
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_WindowSize"; ValueData: "$3";        Tasks: opendef\navig; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "DefOpenMode"; ValueData: "$3";          Tasks: opendef\navig; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_FontSize"; ValueData: "$14";         Tasks: opendef\navig; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_RightList"; ValueData: "$1";         Tasks: opendef\navig\a; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_RightList"; ValueData: "$2";         Tasks: opendef\navig\b; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_LargeSelect"; ValueData: "$0";       Tasks: opendef\navig\disable_zoom; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_LargeFrame"; ValueData: "$1";        Tasks: opendef\navig\large_frame; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SO_NoClose"; ValueData: "$1";           Tasks: opendef\navig\no_close; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "SO_WindowSize"; ValueData: "$3";                                                                   Tasks: "opendef\navig"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "DefOpenMode"; ValueData: "$3";                                                                     Tasks: "opendef\navig"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "SO_FontSize"; ValueData: "$14";                                                                    Tasks: "opendef\navig"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "SO_RightList"; ValueData: "$1";                                                                    Tasks: "opendef\navig\a"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "SO_RightList"; ValueData: "$2";                                                                    Tasks: "opendef\navig\b"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "SO_LargeSelect"; ValueData: "$0";                                                                  Tasks: "opendef\navig\disable_zoom"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "SO_LargeFrame"; ValueData: "$1";                                                                   Tasks: "opendef\navig\large_frame"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "SO_NoClose"; ValueData: "$1";                                                                      Tasks: "opendef\navig\no_close"; Flags: uninsdeletekey;
+; ; Automatyczne wczytywanie URL ze schowka
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "UseClipboardUrl"; ValueData: "$1";                                                                 Tasks: "loadurl"; Flags: uninsdeletekey;
+; Ustawienia odtwarzacza
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "PauseOnMin"; ValueData: "$1";                                                                      Tasks: "pauseonmin\a"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "PauseOnMin"; ValueData: "$2";                                                                      Tasks: "pauseonmin\b"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "SkinDefaultStart"; ValueData: "$1";                                                                Tasks: "skinstart"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "SkinSizePersist"; ValueData: "$1";                                                                 Tasks: "skinsize"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "MoveSizeByCenter"; ValueData: "$1";                                                                Tasks: "sizebycenter"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "StartCenterPos"; ValueData: "$1";                                                                  Tasks: "startcenter"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "DefSizeOnClose"; ValueData: "$1";                                                                  Tasks: "sizeonclose"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "PlayScreenMoveCenter"; ValueData: "$1";                                                            Tasks: "movecenter"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "CloseOnComplete"; ValueData: "$1";                                                                 Tasks: "closecomplete"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "DVDRestorePosition"; ValueData: "$2";                                                              Tasks: "remposvideo"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "RememberPosition"; ValueData: "$1";                                                                Tasks: "remposvideo"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "RememberPositionAudio"; ValueData: "$1";                                                           Tasks: "remposaudio"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "ShowRememberList"; ValueData: "$1";                                                                Tasks: "rememberlist"; Flags: uninsdeletekey;
 ; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "Win7WorkTool"; ValueData: "$2";         Tasks: win7worktool; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "PlaybackFailSkip"; ValueData: "$1";                                                                Tasks: "failskip_a"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "PlaybackFailSkip"; ValueData: "$2";                                                                Tasks: "failskip_b"; Flags: uninsdeletekey;
+;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "PreviewSeekTime"; ValueData: "$1";                                                                 Tasks: "seektime"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "DisplayBookmark";                                                                                                    Tasks: "dispbookmark"; Flags: deletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "PreviewThumbnail"; ValueData: "$1";                                                                Tasks: "prevthumb"; Flags: uninsdeletekey;
+; ;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "ScreenFitBySize"; ValueData: "$1";                                                                 Tasks: "screenfitbysize\a"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "ScreenFitBySize"; ValueData: "$2";                                                                 Tasks: "screenfitbysize\b"; Flags: uninsdeletekey;
+; ;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "MessagePlayInfo"; ValueData: "$1";                                                                 Tasks: "mesplayinfo"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "MessagePlayInfoFull"; ValueData: "$1";                                                             Tasks: "mesplayinfo"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "MessagePlayTime"; ValueData: "$7";                                                                 Tasks: "mesplayinfo"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "MessageFileName"; ValueData: "$0";                                                                 Tasks: "mesplayinfo"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "MessageChapter"; ValueData: "$0";                                                                  Tasks: "mesplayinfo\a"; Flags: deletekey;
+
+; ;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "Win7WorkTool"; ValueData: "$2";                                                                    Tasks: "win7worktool"; Flags: uninsdeletekey;
+; ;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "OnTopMode"; ValueData: "$2";                                                                       Tasks: "ontopmode"; Flags: uninsdeletekey;
+; ;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "MousePanScanControl"; ValueData: "$1";                                                             Tasks: "mouse_ps"; Flags: uninsdeletekey;
+;;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: Dword; ValueName: "DisplayAsThumbnail"; ValueData: "$2";                                                              Tasks: "dispasthumb"; Flags: uninsdeletekey;
+; ; Zak³adki do PBF
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "BookmarkSaveExternal"; ValueData: "$1";                                                            Tasks: "bookmark"; Flags: uninsdeletekey;
+; ; Zapisz na Pulpit lub galeria
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: String; ValueName: "VideoCaptureFolder"; ValueData: "{userdesktop}";                                                  Tasks: "savedesktop"; Flags: createvalueifdoesntexist;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: Dword; ValueName: "ThumbnailSameDir"; ValueData: "$1";                                                                Tasks: "savegalery"; Flags: uninsdeletekey;
+; ; Format przechwytu obrazków
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: Dword; ValueName: "VideoCaptureFormat"; ValueData: "$0";                                                              Tasks: "saveformat\bmp"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: Dword; ValueName: "VideoCaptureFormat"; ValueData: "$2";                                                              Tasks: "saveformat\png"; Flags: uninsdeletekey;
+; ;Domyœlne dzia³anie otwierania - pliki
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: Dword; ValueName: "OpenWithSameName"; ValueData: "$2";                                                                Tasks: "openwithsamename_a"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AppendFilePL"; ValueData: "$1";                                                                    Tasks: "openwithsamename_a\1"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: Dword; ValueName: "OpenWithSameName"; ValueData: "$0";                                                                Tasks: "openwithsamename_b"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: Dword; ValueName: "SavePlayList"; ValueData: "$0";                                                                    Tasks: "openwithsamename_b\savepl"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: Dword; ValueName: "PlaybackSearchFile"; ValueData: "$1";                                                              Tasks: "openwithsamename_sf"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: Dword; ValueName: "AttachOpenFullScreen"; ValueData: "$0";                                                            Tasks: "playlistopenfullscreen"; Flags: uninsdeletekey;
 ; ; Ustawienia napisów
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "CaptionVisible"; ValueData: "$0"; Flags: uninsdeletekey; 
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "DVDCaptionVisible"; ValueData: "$0"; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueName: "CaptionVisible";                                          Tasks: sub; Flags: deletevalue 
-Root: HKCU; Subkey: {#keyPMS}; ValueName: "DVDCaptionVisible";                                       Tasks: sub; Flags: deletevalue 
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "UseCaptionBinFilter"; ValueData: "$1";  Tasks: subfilter; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "ForceCaptionLoad"; ValueData: "$1";     Tasks: force_sub\a; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "MouseCaptionMove"; ValueData: "$1";     Tasks: pos_sub; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "IdxSubOverridePos"; ValueData: "$1";    Tasks: pos_pgs; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionVisible"; ValueData: "$0";                                                                                Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "DVDCaptionVisible"; ValueData: "$0";                                                                             Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "CaptionVisible";                                                                                                     Tasks: "sub"; Flags: deletevalue 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "DVDCaptionVisible";                                                                                                  Tasks: "sub"; Flags: deletevalue 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "UseCaptionBinFilter"; ValueData: "$1";                                                             Tasks: "subfilter"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "ForceCaptionLoad"; ValueData: "$1";                                                                Tasks: "force_sub\a"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "MouseCaptionMove"; ValueData: "$1";                                                                Tasks: "pos_sub"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IdxSubOverridePos"; ValueData: "$1";                                                               Tasks: "pos_pgs"; Flags: uninsdeletekey;
+;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "PrefCapLang"; ValueData: "forced&polish default&polish plcc pol pl polish";                       Tasks: "subpol"; Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "PrefCapLang"; ValueData: "forced&english default&english encc eng en english";                    Tasks: "subeng"; Flags: uninsdeletekey; 
 ; ; Pobieranie napisów
 ; ; OSDB - u¿ywaj tylko wtedy gdy brak napisów, wczytaj pierwsze dostêpne
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "CaptionDownloadBefore"; ValueData: "$1"; Tasks: downsub_first; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "CaptionDownloadAfter"; ValueData: "$1";  Tasks: downsub_first; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionDownloadBefore"; ValueData: "$1";                                                           Tasks: "downsub_first"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionDownloadAfter"; ValueData: "$1";                                                            Tasks: "downsub_first"; Flags: uninsdeletekey;
 ; ; W³¹czenie LEKTORA
-Root: HKCU; SubKey: {#keyPMS}; ValueType: string; ValueName: "CaptionStyle"; ValueData: "5;5;5;5;2;0;2.000000;2.000000;3.000000;3.000000;0xffffff;0x000000;0x000000;0x000000;0x00;0x00;0x00;0x90;1;Segoe UI;0.000000;100.000000;100.000000;0.000000;700;0;0;0;0;0.000000;0.000000;0.000000;0.000000;2;0;1;50;95;0.000000;0;0"; Tasks: lektor; Flags: uninsdeletekey;
-Root: HKCU; SubKey: {#keyPMS}; ValueType: dword; ValueName: "CaptionTTS"; ValueData: "$1";            Tasks: lektor; Flags: uninsdeletekey;
-Root: HKCU; SubKey: {#keyPMS}; ValueType: dword; ValueName: "EngineTTS"; ValueData: "$0";             Tasks: lektor; Flags: uninsdeletekey;
-Root: HKCU; SubKey: {#keyPMS}; ValueType: dword; ValueName: "SpeedTTS"; ValueData: "$0";              Tasks: lektor; Flags: uninsdeletekey;
-Root: HKCU; SubKey: {#keyPMS}; ValueType: dword; ValueName: "AudioVolume"; ValueData: "$2d";          Tasks: lektor; Flags: uninsdeletekey;
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: string; ValueName: "CaptionStyle"; ValueData: "5;5;5;5;2;0;2.000000;2.000000;3.000000;3.000000;0xffffff;0x000000;0x000000;0x000000;0x00;0x00;0x00;0x90;1;Segoe UI;0.000000;100.000000;100.000000;0.000000;700;0;0;0;0;0.000000;0.000000;0.000000;0.000000;2;0;1;50;95;0.000000;0;0"; Tasks: "lektor"; Flags: uninsdeletekey;
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionTTS"; ValueData: "$1";                                                                      Tasks: "lektor"; Flags: uninsdeletekey;
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "EngineTTS"; ValueData: "$0";                                                                       Tasks: "lektor"; Flags: uninsdeletekey;
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "SpeedTTS"; ValueData: "$0";                                                                        Tasks: "lektor"; Flags: uninsdeletekey;
+Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: "AudioVolume"; ValueData: "$2d";                                                                    Tasks: "lektor"; Flags: uninsdeletekey;
 ; ; Zmniejszenie Interlinii
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "CaptionLineSpace"; ValueData: "$ffffffec";      Tasks: interlinia; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionLineSpace"; ValueData: "$ffffffec";                                                         Tasks: "interlinia"; Flags: uninsdeletekey;
 ; ; Maksymalny czas ukazywania napisów
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "CaptionMaxVisUse"; ValueData: "$1";             Tasks: maxtime; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: binary; ValueName: "CaptionMaxVisTime"; ValueData: "00 00 e0 40";  Tasks: maxtime; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionMaxVisUse"; ValueData: "$1";                                                                Tasks: "maxtime"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: binary; ValueName: "CaptionMaxVisTime"; ValueData: "00 00 e0 40";                                                     Tasks: "maxtime"; Flags: uninsdeletekey;
 ; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "CaptionForceSecond"; ValueData: "$1";    Tasks: subsecond; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "CaptionForceSecond"; ValueData: "$1";                                                              Tasks: "subsecond"; Flags: uninsdeletekey;
 ; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "PrefCapLangHide"; ValueData: "$1";       Tasks: hidesub; Flags: uninsdeletekey;
-; ; Renderer madVR
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "VideoRen2"; ValueData: "$a";             Tasks: renderer\madvr; Flags: uninsdeletekey;
-; ; Renderer Open GL
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "VideoRen2"; ValueData: "$c";             Tasks: renderer\opengl; Flags: uninsdeletekey;
-; ; Renderer D3D11
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "VideoRen2"; ValueData: "$f";             Tasks: renderer\d3d11; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "VMR9VSyncInternal"; ValueData: "$0";     Tasks: renderer\d3d11; Flags: uninsdeletekey;
-; W³¹czenie AviSynth i SVP
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "LastSkinStyle"; ValueData: "'MoveTop''SetSub''AddVis''AddTime''AddButtons'";                         Tasks: hw\avs and skin3; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "LastSkinStyle"; ValueData: "'MoveTop''SetButtons''AddVis''AddTime''AddButtons'";                     Tasks: hw\avs and skin2; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "LastSkinStyle"; ValueData: "''TopButtons''StreamButton''PlayPauseButton''TimeLabel''OpenurlButton'"; Tasks: hw\avs and skin1; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AvisynthUse"; ValueData: "$1";                                                                        Tasks: hw\avs; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: string; ValueName: "AvisynthScript"; ValueData: "svp=3 alg=3 fim=3 bf=0 sh=0 uhd=0 gpu=0 fps=60 import(""svp.avs"")";    Tasks: hw\avs; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AvisynthBufferAhead"; ValueData: "$b";                                                                Tasks: hw\avs; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "AvisynthBufferBack"; ValueData: "$0";                                                                 Tasks: hw\avs; Flags: uninsdeletekey;
-; Koniec w³¹czenia AviSynth i SVP
-; W³¹czenie FFmpeg64 dla H265
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntH265_0"; ValueData: "$2";           Tasks: ffmpeg; Flags: uninsdeletekey;
-;
-; ; DXVA
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntDXVAUseMode"; ValueData: "$1";      Tasks: hw\dxva; Flags: uninsdeletekey;
-; ; DXVA FullHD
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntDXVAUseMode"; ValueData: "$1";         Tasks: hw\dxva1; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntDXVAUpperHoriVal"; ValueData: "$1000"; Tasks: hw\dxva1; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntDXVAUpperVertVal"; ValueData: "$6b8";  Tasks: hw\dxva1; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntDXVALowerHoriVal"; ValueData: "$780";  Tasks: hw\dxva1; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntDXVALowerVertVal"; ValueData: "$3d4";  Tasks: hw\dxva1; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntDXVAResLimit"; ValueData: "$3";        Tasks: hw\dxva1; Flags: uninsdeletekey;
-; ; DXVA Copy-back
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntDXVAUseMode"; ValueData: "$1";      Tasks: hw\dxva2; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "UseSelfDxva"; ValueData: "$1";         Tasks: hw\dxva2; Flags: uninsdeletekey;
-; ; CUDA
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntDXVAUseMode"; ValueData: "$1";      Tasks: hw\cuda; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntH264_0"; ValueData: "$2";           Tasks: hw\cuda; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntMPEG1_0"; ValueData: "$1";          Tasks: hw\cuda; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntMPEG2_0"; ValueData: "$2";          Tasks: hw\cuda; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntMPEG4_0"; ValueData: "$1";          Tasks: hw\cuda; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntVc1"; ValueData: "$2";              Tasks: hw\cuda; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntMjpeg"; ValueData: "$1";            Tasks: hw\cuda; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntVp8_0"; ValueData: "$2";            Tasks: hw\cuda; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntVp9_0"; ValueData: "$2";            Tasks: hw\cuda; Flags: uninsdeletekey;
-; ;QSYNC
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntDXVAUseMode"; ValueData: "$1";      Tasks: hw\qsyn; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntH264_0"; ValueData: "$1";           Tasks: hw\qsyn; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntMPEG2_0"; ValueData: "$1";          Tasks: hw\qsyn; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "IntVc1"; ValueData: "$1";              Tasks: hw\qsyn; Flags: uninsdeletekey;
-; ; Filtry
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "VideoPropertyHwFirst"; ValueData: "$1"; Tasks: hwfirst; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "DX9ResizeMode_0"; ValueData: "$13";     Tasks: resizer; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "Sharpen"; ValueData: "$1";              Tasks: sharpen; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "VideoDeband"; ValueData: "$1";          Tasks: deband; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: Dword; ValueName: "LevelFix"; ValueData: "$1";             Tasks: levelfix; Flags: uninsdeletekey;
-; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "HqRgbConv"; ValueData: "$1";            Tasks: HqRgbConv; Flags: uninsdeletekey;
-; ;
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "ThreadConv"; ValueData: "$1";           Tasks: ThreadConv; Flags: uninsdeletekey;
-; ; Priorytet odtwarzania
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "PlayPriority2"; ValueData: "$4";        Tasks: playpriority; Flags: uninsdeletekey;
-; ; W³¹czenie MVC3D
-Root: HKCU; Subkey: {#keyPMS}; ValueType: dword; ValueName: "SupportH264MVC"; ValueData: "$1";                               Tasks: mvc3d; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyPM}\OptionList_DXVA Native Decoder; ValueType: dword; ValueName: "SupportH264MVC"; ValueData: "$1"; Tasks: mvc3d; Flags: uninsdeletekey;
-; ; Koniec w³¹czenia MVC3D
-; ;< -- // Ustawiamy foldery zapisu -->
-Root: HKCU; Subkey: {#keyPMS}; ValueType: String; ValueName: "VideoCaptureFolder"; ValueData: "{userdocs}\PotPlayerMini\Capture";  Tasks: savedocs; Flags: createvalueifdoesntexist 
-Root: HKCU; Subkey: {#keyPMS}; ValueType: String; ValueName: "AudioCaptureFolder"; ValueData: "{userdocs}\PotPlayerMini\Capture";  Tasks: savedocs; Flags: createvalueifdoesntexist 
-Root: HKCU; Subkey: {#keyPMS}; ValueType: String; ValueName: "MovieCaptureFolder"; ValueData: "{userdocs}\PotPlayerMini\Capture";  Tasks: savedocs; Flags: createvalueifdoesntexist 
-Root: HKCU; Subkey: {#keyPMS}; ValueType: String; ValueName: "BroadcastSaveFolder"; ValueData: "{userdocs}\PotPlayerMini\Capture"; Tasks: savedocs; Flags: createvalueifdoesntexist 
-Root: HKCU; Subkey: {#keyPMS}; ValueType: String; ValueName: "BdaSaveFolder"; ValueData: "{userdocs}\PotPlayerMini\Capture";       Tasks: savedocs; Flags: createvalueifdoesntexist 
-Root: HKCU; Subkey: {#keyPMS}; ValueType: String; ValueName: "PlayListFolder"; ValueData: "{userdocs}\PotPlayerMini\Playlist";     Tasks: savedocs; Flags: createvalueifdoesntexist 
-Root: HKCU; Subkey: {#keyPMS}; ValueType: String; ValueName: "TempFolder"; ValueData: "{userdocs}\PotPlayerMini\Temp";             Tasks: savedocs; Flags: createvalueifdoesntexist 
-Root: HKCU; Subkey: {#keyPMS}; ValueType: String; ValueName: "WinampDspPath"; ValueData: "{userdocs}\PotPlayerMini\Plugins";       Tasks: savedocs; Flags: createvalueifdoesntexist
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "PrefCapLangHide"; ValueData: "$1";                                                                 Tasks: "hidesub"; Flags: uninsdeletekey;
 ; ; Imported Registry File: "MPC Video Renderer"
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "UseD3D11"; ValueData: "$1";                   Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "ShowStatistics"; ValueData: "$0";             Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "TextureFormat"; ValueData: "$0";              Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "VPEnableNV12"; ValueData: "$1";               Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "VPEnableP01x"; ValueData: "$1";               Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "VPEnableYUY2"; ValueData: "$1";               Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "VPEnableOther"; ValueData: "$1";              Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "DoubleFramerateDeinterlace"; ValueData: "$1"; Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "VPScaling"; ValueData: "$1";                  Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "ChromaScaling"; ValueData: "$0";              Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "Upscaling"; ValueData: "$2";                  Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "Downscaling"; ValueData: "$2";                Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "InterpolateAt50pct"; ValueData: "$1";         Tasks: mpcvr; Flags: uninsdeletekey;
-Root: HKCU; Subkey: {#keyMVR}; ValueType: dword; ValueName: "SwapEffect"; ValueData: "$0";                 Tasks: mpcvr; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "UseD3D11"; ValueData: "$1";                                                                        Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "ShowStatistics"; ValueData: "$0";                                                                  Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "TextureFormat"; ValueData: "$0";                                                                   Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "VPEnableNV12"; ValueData: "$1";                                                                    Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "VPEnableP01x"; ValueData: "$1";                                                                    Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "VPEnableYUY2"; ValueData: "$1";                                                                    Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "VPEnableOther"; ValueData: "$1";                                                                   Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "DoubleFramerateDeinterlace"; ValueData: "$1";                                                      Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "VPScaling"; ValueData: "$1";                                                                       Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "ChromaScaling"; ValueData: "$0";                                                                   Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "Upscaling"; ValueData: "$2";                                                                       Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "Downscaling"; ValueData: "$2";                                                                     Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "InterpolateAt50pct"; ValueData: "$1";                                                              Tasks: "extmpcvr"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyMVR}"; ValueType: dword; ValueName: "SwapEffect"; ValueData: "$0";                                                                      Tasks: "extmpcvr"; Flags: uninsdeletekey;
+; ;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "MessageBetery"; ValueData: "$1";                                                                   Tasks: "powerststus\a"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "MessageBetery"; ValueData: "$2";                                                                   Tasks: "powerststus\b"; Flags: uninsdeletekey;
+; ; Eksternal audio, gain
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AutoLoadExtAudio"; ValueData: "$1";                                                                Tasks: "extaudio"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "AudioNormalize";                                                                                                     Tasks: "gain"; Flags: deletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "Ac3DtsVolumeControl"; ValueData: "$1";                                                             Tasks: "gain2"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudioVolumeMaxVal"; ValueData: "$c8";                                                              Tasks: "gain3"; Flags: uninsdeletekey;
+; ;<-- // Dodajemy ustawienia g³oœników // -->
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudSpkIndex_new"; ValueData: "$1";                                                                 Tasks: "stereo"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudSpkIndex_new"; ValueData: "$11";                                                                Tasks: "ch6"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudSpkIndex_new"; ValueData: "$16";                                                                Tasks: "asis"; Flags: uninsdeletevalue;
+; ;< --// Próbkowanie audio // -->
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudOutBit_new"; ValueData: "$0";                                                                   Tasks: "bit_depth16"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudOutBit_new"; ValueData: "$1";                                                                   Tasks: "bit_depth24"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudOutBit_new"; ValueData: "$2";                                                                   Tasks: "bit_depth32"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudOutBit_new"; ValueData: "$3";                                                                   Tasks: "bit_depth32f"; Flags: uninsdeletevalue;
+; ;Virtual Dolby Decoder
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudSpkIndex_new"; ValueData: "19";                                                                 Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "Ac3Drc_new"; ValueData: "$1";                                                                      Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "UseOnly48000"; ValueData: "$0";                                                                    Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudioResampleMode"; ValueData: "$2";                                                               Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudioResampleQuality"; ValueData: "$0";                                                            Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntMp1_0"; ValueData: "$4";                                                                        Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntMp2_0"; ValueData: "$4";                                                                        Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntMp3_0"; ValueData: "$5";                                                                        Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntAac_0"; ValueData: "$4";                                                                        Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntLatm"; ValueData: "$2";                                                                         Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntAc3_0"; ValueData: "$3";                                                                        Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntEac3_0"; ValueData: "$2";                                                                       Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntTrueHD_0"; ValueData: "$1";                                                                     Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntMlp_0"; ValueData: "$1";                                                                        Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntDts_0"; ValueData: "$3";                                                                        Tasks: "virtual_dolby"; Flags: uninsdeletevalue;
+; ;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudioVolumeStart"; ValueData: "$1";                                                                Tasks: "audio_start"; Flags: uninsdeletevalue;
+; ;<-- // W³¹czenie Sanear // -->
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "AudioRen"; ValueData: "@device:sw:{{E0F158E1-CB04-11D0-BD4E-00A0C911CE86}\{{DF557071-C9FD-433A-9627-81E0D3640ED9}"; Tasks: "extsanear"; Flags: uninsdeletevalue;
+; ;<-- // W³¹czenie WASAPI // -->
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "AudioRen"; ValueData: "{{EE9109D9-1534-4B24-B86E-EAADE6850E59}";                                  Tasks: "wasapi"; Flags: uninsdeletevalue;
+; ;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "AudioCrossfeedUse"; ValueData: "$1";                                                               Tasks: "crossfeed"; Flags: uninsdeletevalue;
 ; ; Imported Registry File: "Sanear Audio Renderer"
-Root: HKCU; Subkey: Software\sanear; ValueType: string; ValueName: "DeviceId"; ValueData: "";                    Tasks: sanear; Flags: uninsdeletekey;
-Root: HKCU; Subkey: Software\sanear; ValueType: dword; ValueName: "DeviceExclusive"; ValueData: "$0";            Tasks: sanear; Flags: uninsdeletekey;
-Root: HKCU; Subkey: Software\sanear; ValueType: dword; ValueName: "DeviceBufferDuration"; ValueData: "$c8";      Tasks: sanear; Flags: uninsdeletekey;
-Root: HKCU; Subkey: Software\sanear; ValueType: dword; ValueName: "AllowBitstreaming"; ValueData: "$1";          Tasks: sanear; Flags: uninsdeletekey;
-Root: HKCU; Subkey: Software\sanear; ValueType: dword; ValueName: "CrossfeedEnabled"; ValueData: "$0";           Tasks: sanear; Flags: uninsdeletekey;
-Root: HKCU; Subkey: Software\sanear; ValueType: dword; ValueName: "CrossfeedCutoffFrequency"; ValueData: "$2bc"; Tasks: sanear; Flags: uninsdeletekey;
-Root: HKCU; Subkey: Software\sanear; ValueType: dword; ValueName: "CrossfeedLevel"; ValueData: "$3c";            Tasks: sanear; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "Software\sanear";                                                                                                                            Tasks: "extsanear"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "Software\sanear"; ValueType: string; ValueName: "DeviceId"; ValueData: "";                                                                   Tasks: "extsanear"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "DeviceExclusive"; ValueData: "$0";                                                           Tasks: "extsanear"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "DeviceBufferDuration"; ValueData: "$c8";                                                     Tasks: "extsanear"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "AllowBitstreaming"; ValueData: "$1";                                                         Tasks: "extsanear"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedEnabled"; ValueData: "$0";                                                          Tasks: "extsanear"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedCutoffFrequency"; ValueData: "$2bc";                                                Tasks: "extsanear"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedLevel"; ValueData: "$3c";                                                           Tasks: "extsanear"; Flags: uninsdeletekey;
 ; ; Zewnêtrzne splittery MPC
-Root: HKCU; Subkey: {#keyPMOS}\0000; ValueName: "Type"; ValueType: Dword; ValueData: "$1"; 
-Root: HKCU; Subkey: {#keyPMOS}\0000; ValueName: "Disabled"; ValueType: Dword; ValueData: "$1"; 
-Root: HKCU; Subkey: {#keyPMOS}\0000; ValueName: "Path"; ValueType: String; ValueData: "{app}\Module\AviSplitter64.ax"; 
-Root: HKCU; Subkey: {#keyPMOS}\0000; ValueName: "Name"; ValueType: String; ValueData: "MPC AVI Source"; 
-Root: HKCU; Subkey: {#keyPMOS}\0000; ValueName: "CLSID"; ValueType: String; ValueData: "{{CEA8DEFF-0AF7-4DB9-9A38-FB3C3AEFC0DE}"; 
-Root: HKCU; Subkey: {#keyPMOS}\0000; ValueName: "FilterType"; ValueType: Dword; ValueData: "$0"; 
-Root: HKCU; Subkey: {#keyPMOS}\0000; ValueName: "Merit"; ValueType: Dword; ValueData: "$600001"; 
-Root: HKCU; Subkey: {#keyPMOS}\0000; ValueName: "MeritHi"; ValueType: Dword; ValueData: "$0"; 
-Root: HKCU; Subkey: {#keyPMOS}\0001; ValueName: "Type"; ValueType: Dword; ValueData: "$1"; 
-Root: HKCU; Subkey: {#keyPMOS}\0001; ValueName: "Disabled"; ValueType: Dword; ValueData: "$1"; 
-Root: HKCU; Subkey: {#keyPMOS}\0001; ValueName: "Path"; ValueType: String; ValueData: "{app}\Module\MatroskaSplitter64.ax"; 
-Root: HKCU; Subkey: {#keyPMOS}\0001; ValueName: "Name"; ValueType: String; ValueData: "MPC Matroska Source"; 
-Root: HKCU; Subkey: {#keyPMOS}\0001; ValueName: "CLSID"; ValueType: String; ValueData: "{{0A68C3B5-9164-4A54-AFAF-995B2FF0E0D4}"; 
-Root: HKCU; Subkey: {#keyPMOS}\0001; ValueName: "FilterType"; ValueType: Dword; ValueData: "$0"; 
-Root: HKCU; Subkey: {#keyPMOS}\0001; ValueName: "Merit"; ValueType: Dword; ValueData: "$600000"; 
-Root: HKCU; Subkey: {#keyPMOS}\0001; ValueName: "MeritHi"; ValueType: Dword; ValueData: "$0"; 
-Root: HKCU; Subkey: {#keyPMOS}\0002; ValueName: "Type"; ValueType: Dword; ValueData: "$1"; 
-Root: HKCU; Subkey: {#keyPMOS}\0002; ValueName: "Disabled"; ValueType: Dword; ValueData: "$1"; 
-Root: HKCU; Subkey: {#keyPMOS}\0002; ValueName: "Path"; ValueType: String; ValueData: "{app}\Module\MP4Splitter64.ax"; 
-Root: HKCU; Subkey: {#keyPMOS}\0002; ValueName: "Name"; ValueType: String; ValueData: "MPC MP4/MOV Source"; 
-Root: HKCU; Subkey: {#keyPMOS}\0002; ValueName: "CLSID"; ValueType: String; ValueData: "{{3CCC052E-BDEE-408A-BEA7-90914EF2964B}"; 
-Root: HKCU; Subkey: {#keyPMOS}\0002; ValueName: "FilterType"; ValueType: Dword; ValueData: "$0"; 
-Root: HKCU; Subkey: {#keyPMOS}\0002; ValueName: "Merit"; ValueType: Dword; ValueData: "$600000"; 
-Root: HKCU; Subkey: {#keyPMOS}\0002; ValueName: "MeritHi"; ValueType: Dword; ValueData: "$0"; 
-Root: HKCU; Subkey: {#keyPMOS}\0003; ValueName: "Type"; ValueType: Dword; ValueData: "$FFFFFFFE"; 
-Root: HKCU; Subkey: {#keyPMOS}\0000; ValueName: "Disabled"; ValueType: Dword; ValueData: "$0"; Tasks: extsource; 
-Root: HKCU; Subkey: {#keyPMOS}\0001; ValueName: "Disabled"; ValueType: Dword; ValueData: "$0"; Tasks: extsource; 
-Root: HKCU; Subkey: {#keyPMOS}\0002; ValueName: "Disabled"; ValueType: Dword; ValueData: "$0"; Tasks: extsource;
+Root: HKCU; Subkey: "{#keyPMOS}";                                                                                                                                 Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\AviSplitter.ax";                        Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Name"; ValueData: "MPC AVI Source";                                                         Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "CLSID"; ValueData: "{{CEA8DEFF-0AF7-4DB9-9A38-FB3C3AEFC0DE}";                               Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Merit"; ValueData: "$600001";                                                                Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MatroskaSplitter.ax";                   Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Name"; ValueData: "MPC Matroska Source";                                                    Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "CLSID"; ValueData: "{{0A68C3B5-9164-4A54-AFAF-995B2FF0E0D4}";                               Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MP4Splitter.ax";                        Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Name"; ValueData: "MPC MP4/MOV Source";                                                     Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "CLSID"; ValueData: "{{3CCC052E-BDEE-408A-BEA7-90914EF2964B}";                               Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0003"; ValueType: dword; ValueName: "Type"; ValueData: "$FFFFFFFE";                                                               Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
+;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "PrefAudLang"; ValueData: "pol";                                                                   Tasks: "audpol"; Flags: uninsdeletekey; 
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "PrefAudLang"; ValueData: "eng";                                                                   Tasks: "audeng"; Flags: uninsdeletekey;
+
 
 [INI]
-Filename: "{app}\Links\FanPack w sieci.url";                  Section: "InternetShortcut"; Key: "URL"; String: "http://www.potplayerclub.pl/"
-Filename: "{app}\Links\Addons Mozilla PotPlayer YouTube.url"; Section: "InternetShortcut"; Key: "URL"; String: "https://addons.mozilla.org/pl/firefox/addon/potplayer-youtube-shortcut/"
-Filename: "{app}\Links\Addons Chrome PotPlayer YouTube.url";  Section: "InternetShortcut"; Key: "URL"; String: "https://chrome.google.com/webstore/search/potplayer"
+Filename: "{app}\FanPack w sieci.url";                  Section: "InternetShortcut"; Key: "URL"; String: "http://www.potplayerclub.pl/"
+Filename: "{app}\Addons Mozilla PotPlayer YouTube.url"; Section: "InternetShortcut"; Key: "URL"; String: "https://addons.mozilla.org/pl/firefox/addon/potplayer-youtube-shortcut/"
+Filename: "{app}\Addons Chrome PotPlayer YouTube.url";  Section: "InternetShortcut"; Key: "URL"; String: "https://chrome.google.com/webstore/search/potplayer"
 
 [Icons]
-Name: "{group}\Addons Mozilla PotPlayer YouTube.url"; Filename: "https://addons.mozilla.org/pl/firefox/addon/potplayer-youtube-shortcut/"; Tasks: addon\1;
-Name: "{group}\Addons Chrome PotPlayer YouTube.url";  Filename: "https://chrome.google.com/webstore/search/potplayer";                     Tasks: addon\2;
-Name: "{group}\CzytajTo";                             Filename: "{app}\CzytajTo.txt"; 
-Name: "{group}\Licencja";                             Filename: "{app}\License.txt";
-Name: "{group}\Resetuj madVR";                        Filename: "{userappdata}\madVR\restore default settings.bat";                        Components: madvr;
+Name: "{group}\Addons Mozilla PotPlayer YouTube.url"; Filename: "https://addons.mozilla.org/pl/firefox/addon/potplayer-youtube-shortcut/"; Tasks: "addon\1";
+Name: "{group}\Addons Chrome PotPlayer YouTube.url";  Filename: "https://chrome.google.com/webstore/search/potplayer";                     Tasks: "addon\2";
+Name: "{group}\CzytajTo";                             Filename: "{app}\CzytajTo.txt"; Languages: "pl";
+Name: "{group}\Licencja";                             Filename: "{app}\Licencja.txt"; Languages: "pl";
+Name: "{group}\ReadMe";                               Filename: "{app}\Readme.txt";   Languages: "en";
+Name: "{group}\License";                              Filename: "{app}\License.txt";  Languages: "en";
+Name: "{group}\Reset madVR";                          Filename: "{userappdata}\madVR\restore default settings.bat";                        Components: "madvr";
 Name: "{group}\Addons Mozilla PotPlayer YouTube";     Filename: "https://addons.mozilla.org/pl/firefox/addon/potplayer-youtube-shortcut/";
 Name: "{group}\Addons Chrome PotPlayer YouTube";      Filename: "https://chrome.google.com/webstore/search/potplayer";
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}";   Filename: "{uninstallexe}";
-Name: "{group}\FanPack w sieci";                      Filename: "{#MyAppURL}"
-
-[Run]
-Filename: "{tmp}\madVR_v0.9.17.exe";                                                      WorkingDir: {tmp}; Description: "Trwa instalacja madVR. Proszê czekaæ...";             StatusMsg: "Trwa instalacja madVR. Proszê czekaæ...";             Components: "madvr";  Check: IsmadVRInstalled;
-Filename: "{tmp}\Icaros.exe";            Parameters: "/VERYSILENT";                       WorkingDir: {tmp}; Description: "Trwa instalacja Icaros. Proszê czekaæ...";            StatusMsg: "Trwa instalacja Icaros. Proszê czekaæ...";            Components: "icaros"; Check: IsIcarosInstalled; 
-Filename: "{tmp}\TS.MatriX.Setup.exe";   Parameters: "/VERYSILENT";                       WorkingDir: {tmp}; Description: "Trwa instalacja TorrServer. Proszê czekaæ...";        StatusMsg: "Trwa instalacja TorrServer. Proszê czekaæ...";        Components: "tor";    Check: IsTORInstalled;
-Filename: "{tmp}\\ace_engine_setup.exe"; Parameters: "/VERYSILENT";                       WorkingDir: {tmp}; Description: "Trwa instalacja Ace Sream Engine. Proszê czekaæ...";  StatusMsg: "Trwa instalacja Ace Sream Engine. Proszê czekaæ..."; Components: "ace";    Check: IsAceInstalled;
-Filename: "reg";                         Parameters: "IMPORT Icaros_HKCU.reg /reg:64";    WorkingDir: {tmp}; Description: "Konfiguracja Icaros.";                                StatusMsg: "Konfiguracja Icaros.";                                Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
-Filename: "reg";                         Parameters: "IMPORT icaros_HKLM_64.reg /reg:64"; WorkingDir: {tmp}; Description: "Konfiguracja Icaros.";                                StatusMsg: "Konfiguracja Icaros.";                                Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
-Filename: "reg";                         Parameters: "IMPORT icaros_HKLM_32.reg /reg:32"; WorkingDir: {tmp}; Description: "Konfiguracja Icaros.";                                StatusMsg: "Konfiguracja Icaros.";                                Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
-Filename: "{tmp}\7za.exe";               Parameters: "x ""{tmp}\Module.7z"" -o""{commonpf32}\DAUM\PotPlayer\Module"" * -r -aoa";                                                                                                                   Components: "program"; Flags: runhidden runascurrentuser;
-Filename: "{tmp}\7za.exe";               Parameters: "x ""{tmp}\PxShader.7z"" -o""{commonpf32}\DAUM\PotPlayer\PxShader"" * -r -aoa";                                                                                                               Components: "program"; Flags: runhidden runascurrentuser;
-Filename: "{commonpf32}\DAUM\PotPlayer\PotPlayerMini.exe";                                                   Description: "{cm:LaunchProgram,PotPlayer}";                                      Flags: postinstall skipifsilent nowait 
-Filename: "https://addons.mozilla.org/pl/firefox/addon/potplayer-youtube-shortcut/";                         Description: "Przekieruj do Firefox Potplayer Youtube Shortcut";  Tasks: addon\1; Flags: postinstall ShellExec
-Filename: "https://chrome.google.com/webstore/search/potplayer";                                             Description: "Przekieruj do Chrome Potplayer Youtube Shortcut";   Tasks: addon\2; Flags: postinstall ShellExec
-
-[UninstallRun]
-Filename: "delete madVR.bat";                    WorkingDir: "{app}";                     StatusMsg: "Deinstalacja madVR.";      RunOnceId: "DelService"; Flags: shellexec runhidden
-Filename: "unins000.exe"; Parameters: "/SILENT"; WorkingDir: "{userappdata}\TorrServer\"; StatusMsg: "Deinstalacja TorrServer."; RunOnceId: "Uninstall"; Flags: shellexec
-Filename: "unins000.exe"; Parameters: "/SILENT"; WorkingDir: "{userappdata}\ACEStream\";  StatusMsg: "Deinstalacja ACEStream.";  RunOnceId: "DelAce"; Flags: shellexec
-
-[Tasks]      
-Name: "minfo";                      Description: "Dodaj MediaInfo do menu kontekstowego plików";                           GroupDescription: "Integracja:";        Components: minfo
-Name: "addon";                      Description: "Instalacja dodatków dla przegl¹darek";                                   GroupDescription: "Integracja:";        Flags: unchecked;
-Name: "addon\1";                    Description: "Przekieruj do Firefox Potplayer Youtube Shortcut";                       GroupDescription: "Integracja:";        Flags: exclusive unchecked;
-Name: "addon\2";                    Description: "Przekieruj do Chrome Potplayer Youtube Shortcut";                        GroupDescription: "Integracja:";        Flags: exclusive unchecked;
-Name: "skin0";                      Description: """Default skin"" (instalacja domyœlna)";                                                GroupDescription: "Ustawienia skórek:"; Flags: exclusive;
-Name: "skin1";                      Description: """Default MOD Optimized"" (¿ó³te elementy + okr¹g³a ¿ó³ta ikona odtwarzacza)";          GroupDescription: "Ustawienia skórek:"; Flags: exclusive unchecked;
-Name: "fixpot";                     Description: """Default MOD Optimized"" (niebieskie elementy + okr¹g³a niebieska ikona odtwarzacza)"; GroupDescription: "Ustawienia skórek:"; Flags: exclusive unchecked; 
-Name: "skin2";                      Description: """FMOD""";                                                               GroupDescription: "Ustawienia skórek:"; Flags: exclusive unchecked;
-Name: "skin3";                      Description: """PotMPC""";                                                             GroupDescription: "Ustawienia skórek:"; Flags: exclusive unchecked;
-Name: "skin4";                      Description: """PotXMP""";                                                             GroupDescription: "Ustawienia skórek:"; Flags: exclusive unchecked; 
-Name: "skinmenu";                   Description: "Systemowe ciemne menu kontekstowe odtwarzacza";                          GroupDescription: "Ustawienia skórek:";
-Name: "skinfix";                    Description: "U¿yj sta³ego rozmiaru skórki";                                           GroupDescription: "Ustawienia skórek:"; 
-Name: "skinfix\a";                  Description: "720x404";                                                                GroupDescription: "Ustawienia skórek:"; Flags: exclusive; 
-Name: "skinfix\b";                  Description: "800x450";                                                                GroupDescription: "Ustawienia skórek:"; Flags: exclusive unchecked; 
-Name: "skinfix\c";                  Description: "1280x720";                                                               GroupDescription: "Ustawienia skórek:"; Flags: exclusive unchecked;
-Name: "skinstart";                  Description: "Zawsze uruchamiaj ze skórk¹ w trybie ""Wideo""";                         GroupDescription: "Ustawienia skórek:";
-Name: "skinsize";                   Description: "Zachowaj rozmiar okna podczas prze³¹czania trybów skórki wideo/audio";   GroupDescription: "Ustawienia skórek:";
-Name: "autoresfullscr";             Description: "Automatycznie dostosuj rozmiar obszaru obrazu na pe³nym ekranie";        GroupDescription: "Ustawienia skórek:"; Flags: unchecked;
-Name: "startcenter";                Description: "Okno na œrodku ekranu podczas uruchamiania odtwarzacza";                 GroupDescription: "Ustawienia skórek:";
-Name: "savedocs";                   Description: "Zapisuj do folderu ""...\Dokumenty\PotPlayerMini64""";                   GroupDescription: "Listy, Audio, Wideo, Zak³adki..."; Flags: exclusive unchecked;
-Name: "savedef";                    Description: "Zapisuj w domyœlnych folderach";                                         GroupDescription: "Listy, Audio, Wideo, Zak³adki..."; Flags: exclusive;
-Name: "playlist";                   Description: "Dodaj samoaktualizuj¹ce siê listy odtwarzania (YT, Torrent IPTV)";       GroupDescription: "Listy, Audio, Wideo, Zak³adki...";
-Name: "bookmark";                   Description: "Przechowuj zak³adki w pliku .PBF w folderze z filmem";                   GroupDescription: "Listy, Audio, Wideo, Zak³adki..."; Flags: unchecked;
-Name: "savedesktop";                Description: "Zrzuty ekranu zapisuj na Pulpit w formacie...";                          GroupDescription: "Listy, Audio, Wideo, Zak³adki..."; Flags: unchecked;
-Name: "saveformat\bmp";             Description: ".BMP";                                                                   GroupDescription: "Listy, Audio, Wideo, Zak³adki..."; Flags: exclusive unchecked;
-Name: "saveformat\jpg";             Description: ".JPG";                                                                   GroupDescription: "Listy, Audio, Wideo, Zak³adki..."; Flags: exclusive unchecked;
-Name: "saveformat\png";             Description: ".PNG";                                                                   GroupDescription: "Listy, Audio, Wideo, Zak³adki..."; Flags: exclusive;
-Name: "savegalery";                 Description: "Zapisuj galeriê miniatur w folderze z odtwarzanym plikiem";              GroupDescription: "Listy, Audio, Wideo, Zak³adki...";
-Name: "loadurl";                    Description: "Automatycznie wklejaj adresy URL ze schowka";                            GroupDescription: "Listy, Audio, Wideo, Zak³adki...";
-Name: "dispasthumb";                Description: "Wyœwietlaj miniatury i szczegó³y w liœcie odtwarzania";                  GroupDescription: "Listy, Audio, Wideo, Zak³adki...";
-Name: "opendef";                    Description: "Domyœlne dzia³anie otwierania";                                              GroupDescription: "Odtwarzacz:";
-Name: "opendef\file";               Description: "Otwórz plik(i)";                                                             GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-Name: "opendef\url";                Description: "Otwórz adres URL";                                                           GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-Name: "opendef\folder";             Description: "Otwórz folder";                                                              GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-Name: "opendef\navig";              Description: "Otwórz ""Mened¿er plików"" - *zalecane do wyœwietlania na TV";               GroupDescription: "Odtwarzacz:"; Flags: exclusive;
-Name: "opendef\navig\a";            Description: "Wyœwietlaj elementy po prawej w dwóch liniach";                              GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-Name: "opendef\navig\b";            Description: "Wyœwietlaj elementy po prawej jako kafelki";                                 GroupDescription: "Odtwarzacz:"; Flags: exclusive;
-Name: "opendef\navig\disable_zoom"; Description: "Wy³¹cz powiêkszanie elementów po najechaniu myszk¹";                         GroupDescription: "Odtwarzacz:"; Flags: unchecked; 
-Name: "opendef\navig\large_frame";  Description: "Zwiêksz nieznacznie tytu³ okna, obramowanie";                                GroupDescription: "Odtwarzacz:";
-Name: "opendef\navig\no_close";     Description: "Nie zamykaj okna po wybraniu elementu";                                      GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "openwithsamename_a";         Description: "Dodawaj wszystkie pliki do g³ównej listy odtwarzania";                       GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-Name: "openwithsamename_a\1";       Description: "Nie czyœæ listy odtwarzania podczas dodawania nowych plików";                GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "openwithsamename";           Description: "Dodawaj do listy odtwarzania wszystkie podobne pliki";                       GroupDescription: "Odtwarzacz:"; Flags: exclusive;
-Name: "openwithsamename_b";         Description: "Dodawaj tylko wybrane pliki do g³ównej listy odtwarzania";                   GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-Name: "openwithsamename_b\savepl";  Description: "Wyczyœæ listê odtwarzania przy zamykaniu odtwarzacza";                       GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "openwithsamename_sf";        Description: "Dodawaj poprzedni/nastêpny plik z folderu klawiszami ""Pg Up/Dn""";          GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "playlistopenfullscreen";     Description: "Nie wyœwietlaj listy na pe³nym ekranie po przesuniêciu myszki w prawo";      GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "rememberlist";               Description: "Przechowuj i poka¿ ostatnio odtwarzane elementy w menu ""Albumy/Ulubione"""; GroupDescription: "Odtwarzacz:";
-Name: "remposvideo";                Description: "Wznawiaj odtwarzanie plików wideo od momentu zatrzymania";                   GroupDescription: "Odtwarzacz:";
-Name: "remposaudio";                Description: "Wznawiaj odtwarzanie plików audio od momentu zatrzymania";                   GroupDescription: "Odtwarzacz:";
-Name: "remposdvd";                  Description: "Wznawiaj odtwarzanie DVD od momentu zatrzymania";                            GroupDescription: "Odtwarzacz:";
-Name: "pauseonmin";                 Description: "Wstrzymaj odtwarzanie po minimalizacji";                                     GroupDescription: "Odtwarzacz:";
-Name: "pauseonmin\a";               Description: "Wstrzymaj odtwarzanie wideo/audio";                                          GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-Name: "pauseonmin\b";               Description: "Wstrzymaj odtwarzanie tylko wideo";                                          GroupDescription: "Odtwarzacz:"; Flags: exclusive; 
-Name: "failskip_a";                 Description: "Automatyczne odtwarzaj nastêpny plik po b³êdzie odtwarzania";                GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-Name: "failskip_b";                 Description: "Wyœwietlaj komunikat o b³êdzie po wyst¹pieniu b³êdu odtwarzania";            GroupDescription: "Odtwarzacz:"; Flags: exclusive;
-Name: "closecomplete";              Description: "Automatycznie zamknij ostatni plik po zakoñczeniu odtwarzania";              GroupDescription: "Odtwarzacz:";
-Name: "movecenter";                 Description: "Okno odtwarzacza na œrodku ekranu podczas odtwarzania";                      GroupDescription: "Odtwarzacz:";
-Name: "ontopmode";                  Description: "Okno odtwarzacza zawsze na wierzchu innych okien podczas odtwarzania";       GroupDescription: "Odtwarzacz:";
-Name: "sizebycenter";               Description: "Zmieniaj rozmiar okna w oparciu o œrodek";                                   GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "sizeonclose";                Description: "Domyœlny rozmiar okna po zamkniêciu pliku";                                  GroupDescription: "Odtwarzacz:";
-Name: "screenfitbysize";            Description: "Zachowaj wspó³czynnik proporcji obrazu przy zmianie rozmiaru okna";          GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "screenfitbysize\a";          Description: "Zachowaj wspó³czynnik proporcji w oparciu o rozmiar pionowy";                GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-Name: "screenfitbysize\b";          Description: "Zachowaj wspó³czynnik proporcji w oparciu o rozmiar poziomy";                GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-Name: "prevthumb";                  Description: "Wyœwietlaj miniatury po najechaniu myszk¹ na pasek nawigacyjny";             GroupDescription: "Odtwarzacz:";
-Name: "dispbookmark";               Description: "Poka¿ znaczniki rozdzia³ów/zak³adek na pasku nawigacyjnym";                  GroupDescription: "Odtwarzacz:";
-Name: "seektime";                   Description: "Poka¿ czas, gdy myszka znajdzie siê nad paskiem nawigacyjnym";               GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "mesplayinfo";                Description: "Wyœwietlaj informacje o czasie odtwarzania tylko na pe³nym ekranie";         GroupDescription: "Odtwarzacz:"; 
-Name: "mesplayinfo\a";              Description: "Wyœwietlaj informacje o znacznikach rozdzia³ów";                             GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "win7worktool";               Description: "Przyciski steruj¹ce w ikonie odtwarzacza na Pasku zadañ";                    GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "mouse_ps";                   Description: "Aktywuj przeci¹ganie myszk¹ dla PanScan, Zoom i rozci¹gania obrazu";         GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "powerststus";                Description: "Stan zasilania";                                                             GroupDescription: "Odtwarzacz:"; Flags: unchecked;
-Name: "powerststus\a";              Description: "Wyœwietlaj konfiguracjê zasilania i stan na³adowania baterii";               GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-Name: "powerststus\b";              Description: "Wyœwietlaj tylko stan na³adowania baterii";                                  GroupDescription: "Odtwarzacz:"; Flags: exclusive unchecked;
-
-Name: "sub";                        Description: "Poka¿ napisy";                                                               GroupDescription: "Ustawienia napisów:";
-Name: "subfilter";                  Description: "W³¹cz wyg³adzanie napisów";                                                  GroupDescription: "Ustawienia napisów:"; Flags: unchecked;
-Name: "force_sub";                  Description: "Wczytaj napisy z folderu";                                                   GroupDescription: "Ustawienia napisów:";
-Name: "force_sub\a";                Description: "Wczytaj dowolne napisy, jeœli ¿adne nie pasuj¹ (z dowoln¹ nazw¹)";           GroupDescription: "Ustawienia napisów:"; Flags: exclusive unchecked;
-Name: "force_sub\b";                Description: "Wczytaj napisy pasuj¹ce do tytu³u i sezonu/odcinka";                         GroupDescription: "Ustawienia napisów:"; Flags: exclusive;
-Name: "pos_sub";                    Description: "Aktywuj przesuwanie myszk¹ pozycji H/V napisów na ekranie";                  GroupDescription: "Ustawienia napisów:"; Flags: unchecked;
-Name: "pos_pgs";                    Description: "Zastosuj niestandardowe po³o¿enie napisów graficznych (PGS, VobSub)";        GroupDescription: "Ustawienia napisów:"; Flags: unchecked;
-Name: "downsub_first";              Description: "Gdy brak napisów, znajdŸ i wczytaj z Napisy24";                              GroupDescription: "Ustawienia napisów:";
-Name: "lektor";                     Description: "W³¹cz funkcjê Lektora (TTS)";                                                GroupDescription: "Ustawienia napisów:"; Flags: unchecked;
-Name: "interlinia";                 Description: "Zmniejsz odstêp miêdzy liniami napisów";                                     GroupDescription: "Ustawienia napisów:";
-Name: "maxtime";                    Description: "Maksymalny czas ukazywania siê napisów (7 sek.)";                            GroupDescription: "Ustawienia napisów:"; Flags: unchecked;
-Name: "subsecond";                  Description: "W³¹cz 2-gie napisy na wyjœciu, gdy dostêpne s¹ ró¿ne napisy";                GroupDescription: "Ustawienia napisów:"; Flags: unchecked;
-Name: "hidesub";                    Description: "Ukryj napisy, jeœli nie s¹ w preferowanym jêzyku";                           GroupDescription: "Ustawienia napisów:"; Flags: unchecked;
-
-Name: "extaudio";                   Description: "Automatycznie wczytuj zewnêtrzne pliki audio";                               GroupDescription: "Ustawienia audio:"; Flags: unchecked;
-Name: "gain";                       Description: "Aktywuj filtr normalizacji g³oœnoœci";                                       GroupDescription: "Ustawienia audio:";
-Name: "gain2";                      Description: "Aktywuj wzmocnienie g³oœnoœci AC3/DTS do 10dB";                              GroupDescription: "Ustawienia audio:"; Flags: unchecked;
-Name: "gain3";                      Description: "Ustaw poziom regulatora g³oœnoœci na 200%";                                  GroupDescription: "Ustawienia audio:"; Flags: unchecked;
-
-Name: "stereo";                     Description: "Stereo (2.0) *zalecane";                                                     GroupDescription: "Ustawienia audio - wyjœcie audio:"; Flags: exclusive;
-Name: "ch6";                        Description: "Wielokana³owe (5.1)";                                                        GroupDescription: "Ustawienia audio - wyjœcie audio:"; Flags: exclusive unchecked;
-Name: "asis";                       Description: "Takie same jak wejœcie (mikser karty dŸwiêkowej)";                           GroupDescription: "Ustawienia audio - wyjœcie audio:"; Flags: exclusive unchecked;
-Name: "virtual_dolby";              Description: "Wirtualny dekoder Dolby - *gdy u¿ywasz s³uchawek";                           GroupDescription: "Ustawienia audio - wyjœcie audio:"; Flags: exclusive unchecked;
-Name: "audio_start";                Description: "Podczas uruchamiania odtwarzacza zawsze ustawiaj g³oœnoœæ na 100%";          GroupDescription: "Ustawienia audio - wyjœcie audio:"; Flags: unchecked;
-
-Name: "rendef";                     Description: "Wybór automatyczny (zalecane)";                                              GroupDescription: "Ustawienia audio - renderer audio:"; Flags: exclusive;
-Name: "wasapi";                     Description: "W³¹cz wbudowany WASAPI Audio Renderer";                                      GroupDescription: "Ustawienia audio - renderer audio:"; Flags: exclusive unchecked;
-Name: "Crossfeed";                  Description: "W³¹cz Crossfeed - *gdy u¿ywasz s³uchawek";                                   GroupDescription: "Ustawienia audio - renderer audio:"; Flags: unchecked;
-Name: "sanear";                     Description: "Dodaj zewnêtrzny Sanear Audio Renderer (mo¿na u¿yæ zamiast WASAPI)";         GroupDescription: "Ustawienia audio - renderer audio:";
-
-Name: "bit_depth16";                Description: "16-bitów/próbkê *zalecane";                                                  GroupDescription: "Ustawienia audio - bit depth:"; Flags: exclusive unchecked;
-Name: "bit_depth24";                Description: "24-bity/próbkê";                                                             GroupDescription: "Ustawienia audio - bit depth:"; Flags: exclusive;
-Name: "bit_depth32";                Description: "32-bity/próbkê";                                                             GroupDescription: "Ustawienia audio - bit depth:"; Flags: exclusive unchecked;
-Name: "bit_depth32f";               Description: "32-bity (floating point)/próbkê";                                            GroupDescription: "Ustawienia audio - bit depth:"; Flags: exclusive unchecked;
-
-Name: "renderer";                   Description: "Renderer wideo";                                                             GroupDescription: "Ustawienia wideo:";
-Name: "renderer\auto";              Description: "Automatyczny wybór odtwarzacza";                                             GroupDescription: "Ustawienia wideo:"; Flags: exclusive;
-Name: "renderer\opengl";            Description: "W³¹cz wbudowany OpenGL Video Renderer";                                      GroupDescription: "Ustawienia wideo:"; Flags: exclusive unchecked;
-Name: "renderer\d3d11";             Description: "W³¹cz wbudowany Direct3D 11 Video Renderer";                                 GroupDescription: "Ustawienia wideo:"; Flags: exclusive unchecked;
-Name: "renderer\madvr";             Description: "W³¹cz zewnêtrzny madVR";                                                     GroupDescription: "Ustawienia wideo:"; Flags: exclusive unchecked; Components: madvr
-Name: "mpcvr";                      Description: "Dodaj zewnêtrzny MPC Video Renderer (D3D9/11)";                              GroupDescription: "Ustawienia wideo:";
-Name: "hw";                         Description: "Opcje dekodowania wideo";                                                    GroupDescription: "Ustawienia wideo:";
-Name: "hw\soft";                    Description: "SOFT *bez akceleracji (mo¿na u¿ywaæ madVR)";                                 GroupDescription: "Ustawienia wideo:"; Flags: exclusive;
-Name: "hw\dxva";                    Description: "DXVA Native (nie nale¿y u¿ywaæ madVR)";                                      GroupDescription: "Ustawienia wideo:"; Flags: exclusive unchecked;
-Name: "hw\dxva1";                   Description: "DXVA Native FullHD *warunkowe w³¹czenie DXVA przy FullHD/4K (nie nale¿y u¿ywaæ madVR)";   GroupDescription: "Ustawienia wideo:"; Flags: exclusive unchecked;
-Name: "hw\dxva2";                   Description: "DXVA2 COPY-BACK (mo¿na u¿ywaæ madVR)";                                                    GroupDescription: "Ustawienia wideo:"; Flags: exclusive unchecked;
-Name: "hw\cuda";                    Description: "CUDA (OpenCodec) *dla GPU nVidia (mo¿na u¿ywaæ madVR)";                                   GroupDescription: "Ustawienia wideo:"; Flags: exclusive unchecked;
-Name: "hw\qsyn";                    Description: "Quick Sync (OpenCodec) *dla GPU Intel HD Sandy/Ivy/Haswell (mo¿na u¿ywaæ madVR)";         GroupDescription: "Ustawienia wideo:"; Flags: exclusive unchecked;
-Name: "hw\avs";                     Description: "AviSynth+ && SVPflow - zwiêkszenie p³ynnoœci i dynamiki ruchu (nie nale¿y u¿ywaæ madVR)"; GroupDescription: "Ustawienia wideo:"; Flags: exclusive unchecked; Components: avs
-Name: "ffmpeg";                     Description: "W³¹cz FFmpeg.dll do odtwarzania H.265/HEVC";                                 GroupDescription: "Ustawienia wideo:";
-Name: "extsource";                  Description: "U¿yj zewnêtrznych splitterów (AVI/MKV/MP4)";                                 GroupDescription: "Ustawienia wideo:"; Flags: unchecked;
-Name: "hwfirst";                    Description: "U¿yj sprzêtowego zarz¹dzania kolorami";                                      GroupDescription: "Ustawienia wideo:";
-Name: "resizer";                    Description: "U¿yj resizera ""Shader (2PASS) Lanczos 3"" *zwiêkszenie ostroœci";           GroupDescription: "Ustawienia wideo:";
-Name: "sharpen";                    Description: "W³¹cz filtr ""Sharpen""";                                                    GroupDescription: "Ustawienia wideo:"; Flags: unchecked;
-Name: "deband";                     Description: "W³¹cz filtr ""Deband""";                                                     GroupDescription: "Ustawienia wideo:"; Flags: unchecked;
-Name: "levelfix";                   Description: "W³¹cz filtr ""Automatyczna korekta poziomów""";                              GroupDescription: "Ustawienia wideo:"; Flags: unchecked;
-Name: "HqRgbConv";                  Description: "Konwersja High Quality YUY2/RGB24/32";                                       GroupDescription: "Ustawienia wideo:"; Flags: unchecked;
-Name: "ThreadConv";                 Description: "Konwersja Multi-Threaded Color Space";                                       GroupDescription: "Ustawienia wideo:"; Flags: unchecked;
-Name: "playpriority";               Description: "Wysoki priorytet procesu *niezalecane (zaznacz, jeœli wiesz co robisz)";     GroupDescription: "Ustawienia wideo:"; Flags: unchecked;
-Name: "mvc3d";                      Description: "W³¹cz dekoder H.264 MVC (3D wideo)";                                         GroupDescription: "Ustawienia wideo:"; Flags: unchecked;
-
-[Types]
-Name: "tweak";        Description: "Instalacja optymalna"
-Name: "full";         Description: "Instalacja pe³na"
-Name: "compact";      Description: "Instalacja minimalna"
-Name: "custom";       Description: "Instalacja u¿ytkownika"; Flags: iscustom
-
-[Components]
-Name: "program";      Description: "Pliki programowe";                                                                       Types: full compact tweak custom;                           Flags: fixed
-Name: "avs";          Description: "AviSynth+ & SVPflow - ogl¹danie wideo z efektem p³ynnego ruchu";                         Types: tweak full custom;                                   Check: IsAVSInstalled;
-Name: "madvr";        Description: "madVR - wysokiej jakoœci renderer wideo";                                                Types: full custom;                                         Check: IsmadVRInstalled;
-Name: "icaros";       Description: "Icaros - wyœwietlanie miniatur plików multimedialnych w oknach Eksploratora Windows";    Types: tweak full custom; ExtraDiskSpaceRequired: 10428416; Check: IsIcarosInstalled;
-Name: "tor";          Description: "TorrServer MatriX.118 - strumieniowe przesy³anie treœci cyfrowych przez HTTP";           Types: tweak full;        ExtraDiskSpaceRequired: 28735659; Check: IsTORInstalled;
-Name: "ace";          Description: "Ace Stream Engine - ogl¹danie TV z trackerów sieci Torrent (acestream://)";              Types: full custom;       ExtraDiskSpaceRequired: 23356723; Check: IsAceInstalled;
-Name: "ext";          Description: "Dodatkowe rozszerzenia";                                                                 Types: full custom;
-Name: "ext/torrent";  Description: "Torrent - ogl¹danie wideo z trackerów sieci Torrent";                                    Types: tweak full custom;
-Name: "ext/ytdlp";    Description: "YouTube-DLP - odtwarzanie wideo z popularnych witryn hostingowych";                      Types: tweak full custom;
-Name: "ext/twich";    Description: "Twich - strumieniowanie gier komputerowych oraz rozgrywek sportu elektronicznego";       Types: full custom;
-Name: "minfo";        Description: "Dodaj MediaInfo do menu kontekstowego plików";                                           Types: full custom;                                          Check: IsMInfoInstalled; 
+Name: "{group}\FanPack w sieci";                      Filename: "{#URL}"                 
+Name: "{group}\{cm:UninstallProgram,{#brandname}}";   Filename: "{uninstallexe}";
 
 [InstallDelete]
-Type: filesandordirs; Name: "{commonpf32}\DAUM\PotPlayer\PxShader"; Components: program;
-Type: filesandordirs; Name: "{commonpf32}\DAUM\PotPlayer\AviSynth"; Components: avs;
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\PxShader"; Components: "program";
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\AviSynth"; Components: "SVP";
+Type: files; Name: "{commonpf}\DAUM\PotPlayer\FileList.txt";      Components: "program";
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\Html";     Components: "program";
+
+
+[Run]
+#if localize == "true"
+Filename: "{tmp}\madVR_v0.9.17.exe";                                                           WorkingDir: {tmp}; Description: "{cm:msg_install_madVR}";  StatusMsg: "{cm:msg_install_madVR}";  Components: "madVR";  Check: IsmadVRInstalled;
+Filename: "{tmp}\Icaros.exe";           Parameters: "/VERYSILENT";                             WorkingDir: {tmp}; Description: "{cm:msg_install_icaros}"; StatusMsg: "{cm:msg_install_icaros}"; Components: "icaros"; Check: IsIcarosInstalled; 
+Filename: "{tmp}\TS.MatriX.Setup.exe";  Parameters: "/VERYSILENT";                             WorkingDir: {tmp}; Description: "{cm:msg_install_tor}";    StatusMsg: "{cm:msg_install_tor}";    Components: "TOR";    Check: IsTORInstalled;
+Filename: "{tmp}\ace_engine_setup.exe"; Parameters: "/VERYSILENT";                             WorkingDir: {tmp}; Description: "{cm:msg_install_ace}";    StatusMsg: "{cm:msg_install_ace}";    Components: "ace";    Check: IsACEInstalled;
+Filename: "{win}\Regedit.exe";          Parameters: "/S ""{tmp}\Icaros_HKCU.reg /reg:64""";    WorkingDir: {tmp}; Description: "{cm:msg_conf_icaros}";    StatusMsg: "{cm:msg_conf_icaros}";    Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
+Filename: "{win}\Regedit.exe";          Parameters: "/S ""{tmp}\icaros_HKLM_64.reg /reg:64"""; WorkingDir: {tmp}; Description: "{cm:msg_conf_icaros}";    StatusMsg: "{cm:msg_conf_icaros}";    Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
+Filename: "{win}\Regedit.exe";          Parameters: "/S ""{tmp}\icaros_HKLM_32.reg /reg:32"""; WorkingDir: {tmp}; Description: "{cm:msg_conf_icaros}";    StatusMsg: "{cm:msg_conf_icaros}";    Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
+Filename: "{tmp}\7za.exe";              Parameters: "x ""{tmp}\yt-dlp-parser.7z"" -o""{commonpf}\DAUM\PotPlayer\"" * -r -aoa";                                                          Components: "ext/ytdlp"; Flags: runhidden runascurrentuser;
+Filename: "{tmp}\7za.exe";              Parameters: "x ""{tmp}\Module.7z"" -o""{commonpf}\DAUM\PotPlayer\Module"" * -r -aoa";                                                           Components: "program"; Flags: runhidden runascurrentuser;
+Filename: "{tmp}\7za.exe";              Parameters: "x ""{tmp}\PxShader.7z"" -o""{commonpf}\DAUM\PotPlayer\PxShader"" * -r -aoa";                                                       Components: "program"; Flags: runhidden runascurrentuser; 
+Filename: "{commonpf}\DAUM\PotPlayer\PotPlayerMini.exe";                                                          Description: "{cm:LaunchProgram}";                                                    Flags: postinstall skipifsilent nowait
+Filename: "https://addons.mozilla.org/pl/firefox/addon/potplayer-youtube-shortcut/";                              Description: "{cm:tsk_addon1}";                                           Tasks: addon\1; Flags: postinstall ShellExec
+Filename: "https://chrome.google.com/webstore/search/potplayer";                                                  Description: "{cm:tsk_addon2}";                                           Tasks: addon\2; Flags: postinstall ShellExec
+#endif
+
+#if localize == "true"
+[UninstallRun]
+Filename: "delete madVR.bat";                    WorkingDir: "{app}";                     StatusMsg: "{cm:msg_un_madVR}"; RunOnceId: "DelService"; Flags: shellexec runhidden 
+Filename: "unins000.exe"; Parameters: "/SILENT"; WorkingDir: "{userappdata}\TorrServer\"; StatusMsg: "{cm:msg_un_tor}";   RunOnceId: "Uninstall";  Flags: shellexec
+Filename: "unins000.exe"; Parameters: "/SILENT"; WorkingDir: "{userappdata}\ACEStream\";  StatusMsg: "{cm:msg_un_ace}";   RunOnceId: "DelAce";     Flags: shellexec
+#endif
+
+[Tasks]
+#if localize == "true"
+;<-- // Integracja // -->
+Name: "minfo1";                     Description: "{cm:tsk_minfo1}";                     GroupDescription: "{cm:tsk_group1}"; Flags: unchecked; Components: "minfo"
+Name: "addon";                      Description: "{cm:tsk_addon}";                      GroupDescription: "{cm:tsk_group1}"; Flags: unchecked;
+Name: "addon\1";                    Description: "{cm:tsk_addon1}";                     GroupDescription: "{cm:tsk_group1}"; Flags: exclusive unchecked;
+Name: "addon\2";                    Description: "{cm:tsk_addon2}";                     GroupDescription: "{cm:tsk_group1}"; Flags: exclusive unchecked;
+;<-- // Ustawienia skórek // -->
+Name: "skin0";                      Description: "{cm:tsk_skin0}";                      GroupDescription: "{cm:tsk_group2}"; Flags: exclusive;
+Name: "skin1";                      Description: "{cm:tsk_skin1}";                      GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
+Name: "fixpot";                     Description: "{cm:tsk_fixpot}";                     GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
+Name: "skin2";                      Description: """FMOD""";                        GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
+Name: "skin3";                      Description: """PotMPC""";                      GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
+Name: "skin4";                      Description: """PotXMP""";                      GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked; 
+Name: "skinmenu";                   Description: "{cm:tsk_skinmenu}";                   GroupDescription: "{cm:tsk_group2}";
+Name: "skinfix";                    Description: "{cm:tsk_skinfix}";                    GroupDescription: "{cm:tsk_group2}"; 
+Name: "skinfix\a";                  Description: "720x404";                         GroupDescription: "{cm:tsk_group2}"; Flags: exclusive; 
+Name: "skinfix\b";                  Description: "800x450";                         GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked; 
+Name: "skinfix\c";                  Description: "1280x720";                        GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
+Name: "skinsize";                   Description: "{cm:tsk_skinsize}";                   GroupDescription: "{cm:tsk_group2}";
+Name: "skinstart";                  Description: "{cm:tsk_skinstart}";                  GroupDescription: "{cm:tsk_group2}";
+;<-- // Listy odtwarzania, Obrazy, Audio, Wideo, Zak³adki // -->
+Name: "savedef";                    Description: "{cm:tsk_savedef}";                    GroupDescription: "{cm:tsk_group3}"; Flags: exclusive;
+Name: "savedocs";                   Description: "{cm:tsk_savedocs}";                   GroupDescription: "{cm:tsk_group3}"; Flags: exclusive unchecked;
+Name: "playlist";                   Description: "{cm:tsk_playlist}";                   GroupDescription: "{cm:tsk_group3}";
+Name: "bookmark";                   Description: "{cm:tsk_bookmark}";                   GroupDescription: "{cm:tsk_group3}"; Flags: unchecked;
+Name: "savedesktop";                Description: "{cm:tsk_savedesktop}";                GroupDescription: "{cm:tsk_group3}"; Flags: unchecked;
+Name: "saveformat\bmp";             Description: ".BMP";                            GroupDescription: "{cm:tsk_group3}"; Flags: exclusive unchecked;
+Name: "saveformat\jpg";             Description: ".JPG";                            GroupDescription: "{cm:tsk_group3}"; Flags: exclusive unchecked;
+Name: "saveformat\png";             Description: ".PNG";                            GroupDescription: "{cm:tsk_group3}"; Flags: exclusive;
+Name: "savegalery";                 Description: "{cm:tsk_savegalery}";                 GroupDescription: "{cm:tsk_group3}";
+Name: "loadurl";                    Description: "{cm:tsk_loadurl}";                    GroupDescription: "{cm:tsk_group3}";
+Name: "dispasthumb";                Description: "{cm:tsk_dispasthumb}";                GroupDescription: "{cm:tsk_group3}";
+;<-- // Odtwarzacz // -->
+Name: "opendef";                    Description: "{cm:tsk_opendef}";                    GroupDescription: "{cm:tsk_group4}";
+Name: "opendef\file";               Description: "{cm:tsk_opendef_file}";               GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "opendef\url";                Description: "{cm:tsk_opendef_url}";                GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "opendef\folder";             Description: "{cm:tsk_opendef_folder}";             GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "opendef\navig";              Description: "{cm:tsk_opendef_navig}";              GroupDescription: "{cm:tsk_group4}"; Flags: exclusive;
+Name: "opendef\navig\a";            Description: "{cm:tsk_opendef_navig_a}";            GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "opendef\navig\b";            Description: "{cm:tsk_opendef_navig_b}";            GroupDescription: "{cm:tsk_group4}"; Flags: exclusive;
+Name: "opendef\navig\disable_zoom"; Description: "{cm:tsk_opendef_navig_disable_zoom}"; GroupDescription: "{cm:tsk_group4}"; Flags: unchecked; 
+Name: "opendef\navig\large_frame";  Description: "{cm:tsk_opendef_navig_large_frame}";  GroupDescription: "{cm:tsk_group4}:";
+Name: "opendef\navig\no_close";     Description: "{cm:tsk_opendef_navig_no_close}";     GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "openwithsamename_a";         Description: "{cm:tsk_openwithsamename_a}";         GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "openwithsamename_a\1";       Description: "{cm:tsk_openwithsamename_a_1}";       GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "openwithsamename";           Description: "{cm:tsk_openwithsamename}";           GroupDescription: "{cm:tsk_group4}"; Flags: exclusive;
+Name: "openwithsamename_b";         Description: "{cm:tsk_openwithsamename_b}";         GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "openwithsamename_b\savepl";  Description: "{cm:tsk_openwithsamename_b_savepl}";  GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "openwithsamename_sf";        Description: "{cm:tsk_openwithsamename_sf}";        GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "playlistopenfullscreen";     Description: "{cm:tsk_playlistopenfullscreen}";     GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "autoresfullscr";             Description: "{cm:tsk_autoresfullscr}";             GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "startcenter";                Description: "{cm:tsk_startcenter}";                GroupDescription: "{cm:tsk_group4}";
+Name: "rememberlist";               Description: "{cm:tsk_rememberlist}";               GroupDescription: "{cm:tsk_group4}";
+Name: "remposvideo";                Description: "{cm:tsk_remposvideo}";                GroupDescription: "{cm:tsk_group4}";
+Name: "remposaudio";                Description: "{cm:tsk_remposaudio}";                GroupDescription: "{cm:tsk_group4}";
+Name: "pauseonmin";                 Description: "{cm:tsk_pauseonmin}";                 GroupDescription: "{cm:tsk_group4}";
+Name: "pauseonmin\a";               Description: "{cm:tsk_pauseonmin_a}";               GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "pauseonmin\b";               Description: "{cm:tsk_pauseonmin_b}";               GroupDescription: "{cm:tsk_group4}"; Flags: exclusive; 
+Name: "failskip_a";                 Description: "{cm:tsk_failskip_a}";                 GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "failskip_b";                 Description: "{cm:tsk_failskip_b}";                 GroupDescription: "{cm:tsk_group4}"; Flags: exclusive;
+Name: "closecomplete";              Description: "{cm:tsk_closecomplete}";              GroupDescription: "{cm:tsk_group4}";
+Name: "movecenter";                 Description: "{cm:tsk_movecenter}";                 GroupDescription: "{cm:tsk_group4}";
+Name: "ontopmode";                  Description: "{cm:tsk_ontopmode}";                  GroupDescription: "{cm:tsk_group4}";
+Name: "sizebycenter";               Description: "{cm:tsk_sizebycenter}";               GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "sizeonclose";                Description: "{cm:tsk_sizeonclose}";                GroupDescription: "{cm:tsk_group4}";
+Name: "screenfitbysize";            Description: "{cm:tsk_screenfitbysize}";            GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "screenfitbysize\a";          Description: "{cm:tsk_screenfitbysize_a}";          GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "screenfitbysize\b";          Description: "{cm:tsk_screenfitbysize_b}";          GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "prevthumb";                  Description: "{cm:tsk_prevthumb}";                  GroupDescription: "{cm:tsk_group4}";
+Name: "dispbookmark";               Description: "{cm:tsk_dispbookmark}";               GroupDescription: "{cm:tsk_group4}";
+Name: "seektime";                   Description: "{cm:tsk_seektime}";                   GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "mesplayinfo";                Description: "{cm:tsk_mesplayinfo}";                GroupDescription: "{cm:tsk_group4}"; 
+Name: "mesplayinfo\a";              Description: "{cm:tsk_mesplayinfo_a}";              GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "win7worktool";               Description: "{cm:tsk_win7worktool}";               GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "mouse_ps";                   Description: "{cm:tsk_mouse_ps}";                   GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "powerststus";                Description: "{cm:tsk_powerststus}";                GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "powerststus\a";              Description: "{cm:tsk_powerststus_a}";              GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "powerststus\b";              Description: "{cm:tsk_powerststus_b}";              GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+;<-- // Ustawienia wideo // -->
+Name: "dxva";                       Description: "{cm:tsk_dxva}";                       GroupDescription: "{cm:tsk_group5}";
+Name: "renderer";                   Description: "{cm:tsk_renderer}";                   GroupDescription: "{cm:tsk_group5}";
+Name: "renderer\auto";              Description: "{cm:tsk_renderer_auto}";              GroupDescription: "{cm:tsk_group5}"; Flags: exclusive;
+Name: "renderer\opengl";            Description: "{cm:tsk_renderer_opengl}";            GroupDescription: "{cm:tsk_group5}"; Flags: exclusive unchecked;
+Name: "renderer\d3d11";             Description: "{cm:tsk_renderer_d3d11}";             GroupDescription: "{cm:tsk_group5}"; Flags: exclusive unchecked;
+Name: "renderer\madVR";             Description: "{cm:tsk_renderer_m}";                 GroupDescription: "{cm:tsk_group5}"; Flags: exclusive unchecked; Components: "madVR"
+Name: "extmpcvr";                   Description: "{cm:tsk_extmpcvr}";                   GroupDescription: "{cm:tsk_group5}"; Flags: unchecked;
+Name: "hwcc";                       Description: "{cm:tsk_hwcc}";                       GroupDescription: "{cm:tsk_group5}";
+Name: "tsh";                        Description: "{cm:tsk_tsh}";                        GroupDescription: "{cm:tsk_group5}"; Flags: unchecked;
+Name: "ffmpeg";                     Description: "{cm:tsk_ffmpeg}";                     GroupDescription: "{cm:tsk_group5}";
+Name: "resizer";                    Description: "{cm:tsk_resizer}";                    GroupDescription: "{cm:tsk_group5}";
+Name: "sharpen";                    Description: "{cm:tsk_sharpen}";                    GroupDescription: "{cm:tsk_group5}"; Flags: unchecked;
+Name: "deband";                     Description: "{cm:tsk_deband}";                     GroupDescription: "{cm:tsk_group5}"; Flags: unchecked;
+Name: "levelfix";                   Description: "{cm:tsk_levelfix}";                   GroupDescription: "{cm:tsk_group5}"; Flags: unchecked;
+Name: "HqRgbConv";                  Description: "{cm:tsk_HqRgbConv}";                  GroupDescription: "{cm:tsk_group5}"; Flags: unchecked;
+Name: "ThreadConv";                 Description: "{cm:tsk_ThreadConv}";                 GroupDescription: "{cm:tsk_group5}"; Flags: unchecked;
+Name: "playpriority";               Description: "{cm:tsk_playpriority}";               GroupDescription: "{cm:tsk_group5}"; Flags: unchecked;
+Name: "mvc3d";                      Description: "{cm:tsk_mvc3d}";                      GroupDescription: "{cm:tsk_group5}"; Flags: unchecked;
+;<-- // Ustawienia napisów // -->
+Name: "sub";                        Description: "{cm:tsk_sub}";                        GroupDescription: "{cm:tsk_group6}";
+Name: "subfilter";                  Description: "{cm:tsk_subfilter}";                  GroupDescription: "{cm:tsk_group6}"; Flags: unchecked;
+Name: "interlinia";                 Description: "{cm:tsk_interlinia}";                 GroupDescription: "{cm:tsk_group6}";
+Name: "maxtime";                    Description: "{cm:tsk_maxtime}";                    GroupDescription: "{cm:tsk_group6}"; Flags: unchecked;
+Name: "subsecond";                  Description: "{cm:tsk_subsecond}";                  GroupDescription: "{cm:tsk_group6}"; Flags: unchecked;
+Name: "hidesub";                    Description: "{cm:tsk_hidesub}";                    GroupDescription: "{cm:tsk_group6}"; Flags: unchecked;
+Name: "force_sub";                  Description: "{cm:tsk_force_sub}";                  GroupDescription: "{cm:tsk_group6}";
+Name: "force_sub\a";                Description: "{cm:tsk_force_sub_a}";                GroupDescription: "{cm:tsk_group6}"; Flags: exclusive unchecked;
+Name: "force_sub\b";                Description: "{cm:tsk_force_sub_b}";                GroupDescription: "{cm:tsk_group6}"; Flags: exclusive;
+Name: "pos_sub";                    Description: "{cm:tsk_pos_sub}";                    GroupDescription: "{cm:tsk_group6}"; Flags: unchecked;
+Name: "pos_pgs";                    Description: "{cm:tsk_pos_pgs}";                    GroupDescription: "{cm:tsk_group6}"; Flags: unchecked;
+Name: "downsub_first";              Description: "{cm:tsk_downsub_first}";              GroupDescription: "{cm:tsk_group6}";
+Name: "lektor";                     Description: "{cm:tsk_lektor}";                     GroupDescription: "{cm:tsk_group6}"; Flags: unchecked;
+;
+Name: "subpol";                     Description: "POL";                             GroupDescription: "{cm:tsk_group7}"; Flags: exclusive;           Languages: "pl"; 
+Name: "subeng";                     Description: "ENG";                             GroupDescription: "{cm:tsk_group7}"; Flags: exclusive unchecked; Languages: "pl"
+Name: "subpol";                     Description: "POL";                             GroupDescription: "{cm:tsk_group7}"; Flags: exclusive unchecked; Languages: "en"; 
+Name: "subeng";                     Description: "ENG";                             GroupDescription: "{cm:tsk_group7}"; Flags: exclusive;           Languages: "en"; 
+;<-- // Ustawienia audio // -->
+Name: "stereo";                     Description: "{cm:tsk_stereo}";                     GroupDescription: "{cm:tsk_group8}"; Flags: exclusive;
+Name: "ch6";                        Description: "{cm:tsk_ch6}";                        GroupDescription: "{cm:tsk_group8}"; Flags: exclusive unchecked;
+Name: "asis";                       Description: "{cm:tsk_asis}";                       GroupDescription: "{cm:tsk_group8}"; Flags: exclusive unchecked;
+Name: "virtual_dolby";              Description: "{cm:tsk_virtual_dolby}";              GroupDescription: "{cm:tsk_group8}"; Flags: exclusive unchecked;
+Name: "audio_start";                Description: "{cm:tsk_audio_start}";                GroupDescription: "{cm:tsk_group8}"; Flags: unchecked;
+;
+Name: "gain";                       Description: "{cm:tsk_gain}";                       GroupDescription: "{cm:tsk_group8}";
+Name: "gain2";                      Description: "{cm:tsk_gain2}";                      GroupDescription: "{cm:tsk_group8}"; Flags: unchecked;
+Name: "gain3";                      Description: "{cm:tsk_gain3}";                      GroupDescription: "{cm:tsk_group8}"; Flags: unchecked;
+
+;
+Name: "bit_depth16";                Description: "{cm:tsk_bit_depth16}";                GroupDescription: "{cm:tsk_group8}"; Flags: exclusive unchecked;
+Name: "bit_depth24";                Description: "{cm:tsk_bit_depth24}";                GroupDescription: "{cm:tsk_group8}"; Flags: exclusive;
+Name: "bit_depth32";                Description: "{cm:tsk_bit_depth32}";                GroupDescription: "{cm:tsk_group8}"; Flags: exclusive unchecked;
+Name: "bit_depth32f";               Description: "{cm:tsk_bit_depth32f}";               GroupDescription: "{cm:tsk_group8}"; Flags: exclusive unchecked;
+;<-- // Renderer audio // -->
+Name: "rendef";                     Description: "{cm:tsk_rendef}";                     GroupDescription: "{cm:tsk_group9}"; Flags: exclusive;
+Name: "wasapi";                     Description: "{cm:tsk_wasapi}";                     GroupDescription: "{cm:tsk_group9}"; Flags: exclusive unchecked;
+Name: "crossfeed";                  Description: "{cm:tsk_crossfeed}";                  GroupDescription: "{cm:tsk_group9}"; Flags: unchecked;
+Name: "extsanear";                  Description: "{cm:tsk_extsanear}";                  GroupDescription: "{cm:tsk_group9}"; Flags: unchecked;
+;<-- // Preferowany jêzyk audio // -->
+Name: "audpol";                     Description: "POL";                             GroupDescription: "{cm:tsk_group10}"; Languages: "pl"; Flags: exclusive;
+Name: "audeng";                     Description: "ENG";                             GroupDescription: "{cm:tsk_group10}"; Languages: "pl"; Flags: exclusive unchecked; 
+Name: "audpol";                     Description: "POL";                             GroupDescription: "{cm:tsk_group10}"; Languages: "en"; Flags: exclusive unchecked; 
+Name: "audeng";                     Description: "ENG";                             GroupDescription: "{cm:tsk_group10}"; Languages: "en"; Flags: exclusive;
+Name: "extaudio";                   Description: "{cm:tsk_extaudio}";                   GroupDescription: "{cm:tsk_group10}"; Flags: unchecked; 
+#endif
+
+[Types]
+#if localize == "true"
+Name: "tweak";       Description: "{cm:comp_tweak}";
+Name: "full";        Description: "{cm:comp_full}"
+Name: "compact";     Description: "{cm:comp_compact}"
+Name: "custom";      Description: "{cm:comp_custom}"; Flags: iscustom
+#endif
+
+[Components]
+#if localize == "true"
+Name: "program";     Description: "{cm:comp_program}";     Types: tweak full compact custom; Flags: fixed                                 
+Name: "SVP";         Description: "{cm:comp_SVP}";         Types: tweak full custom;         Check: IsSVPInstalled;
+Name: "madVR";       Description: "{cm:comp_madVR}";       Types: custom;                    Check: IsmadVRInstalled;
+Name: "TOR";         Description: "{cm:comp_TOR}";         Types: tweak full custom;         Check: IsTORInstalled;    ExtraDiskSpaceRequired: 28735659;
+Name: "ACE";         Description: "{cm:comp_ACE}";         Types: tweak full custom;         Check: IsACEInstalled;    ExtraDiskSpaceRequired: 23356723;
+Name: "ext";         Description: "{cm:comp_ext}";         Types: custom;
+Name: "ext/torrent"; Description: "{cm:comp_ext_torrent}"; Types: tweak full custom;         Check: IsTorrentInstalled;
+Name: "ext/ytdlp";   Description: "{cm:comp_ext_ytdlp}";   Types: tweak full custom;         Check: IsDLPInstalled;    ExtraDiskSpaceRequired: 11970069;
+Name: "ext/twich";   Description: "{cm:comp_ext_twich}";   Types: custom;                    Check: IsTwichInstalled;
+Name: "icaros";      Description: "{cm:comp_icaros}";      Types: custom;                    Check: IsIcarosInstalled; ExtraDiskSpaceRequired: 10428416;
+Name: "minfo";       Description: "{cm:comp_minfo}";       Types: custom;                    Check: IsMInfoInstalled; 
+#endif
 
 [UninstallDelete]
 Type: files; Name: "{app}\FanPack.url"
 Type: files; Name: "{app}\Addons Mozilla PotPlayer YouTube.url"
 Type: files; Name: "{app}\Addons Chrome PotPlayer YouTube.url"
 Type: filesandordirs; Name: "{app}";
-Type: files; Name: "{localappdata}\madVR\settings.bin";                      Components: madvr; 
-Type: files; Name: "{localappdata}\madVR\settings.bak";                      Components: madvr; 
-Type: filesandordirs; Name: "{localappdata}\madVR";                          Components: madvr;
-Type: filesandordirs; Name: "{userdocs}\PotPlayer";
-Type: files; Name: "{userdocs}\PotPlayerMini\Playlist\IPTV.dpl";             Tasks: playlist and savedocs;
-Type: files; Name: "{userdocs}\PotPlayerMini\Playlist\IPTV2.dpl";            Tasks: playlist and savedocs;
-Type: files; Name: "{userdocs}\PotPlayerMini\Playlist\Ten komputer.dpl";     Tasks: playlist and savedocs;
-Type: files; Name: "{userdocs}\PotPlayerMini\Playlist\FilmPolski.dpl";       Tasks: playlist and savedocs;
-Type: files; Name: "{userdocs}\PotPlayerMini\Playlist\Torrent.dpl";          Tasks: playlist and savedocs; 
-Type: files; Name: "{userdocs}\PotPlayerMini\Playlist\YouTube.dpl";          Tasks: playlist and savedocs;  
-Type: files; Name: "{userdocs}\PotPlayerMini\Playlist\PotPlayerMini.dpl";    Tasks: savedocs; 
-Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\IPTV.dpl";          Tasks: playlist; 
-Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\IPTV2.dpl";         Tasks: playlist; 
-Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\Ten komputer.dpl";  Tasks: savedef; 
-Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\FilmPolski.dpl";    Tasks: playlist;
-Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\Torrent.dpl";       Components: ext/torrent; Tasks: playlist; 
-Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\YouTube.dpl";       Tasks: playlist; 
-Type: files; Name: "{userdocs}\PotPlayerMini\Temp\*";                        Tasks: savedocs; 
-Type: files; Name: "{commonpf32}\DAUM\PotPlayer\Module\MpcVideoRenderer.ax"; Tasks: mpcvr;
-Type: files; Name: "{commonpf32}\DAUM\PotPlayer\Module\sanear.ax";           Tasks: sanear;
-Type: files; Name: "{commonpf32}\DAUM\PotPlayer\Module\MediaInfo.exe";       Components: minfo;
+Type: files; Name: "{localappdata}\madVR\settings.bin"; 
+Type: files; Name: "{localappdata}\madVR\settings.bak"; 
+Type: filesandordirs; Name: "{localappdata}\madVR";
+Type: files; Name: "{commonpf}\DAUM\PotPlayer\Module\MI\MediaInfo.exe";
+Type: files; Name: "{commonpf}\DAUM\PotPlayer\Module\MI\MediaInfo.dll";
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\Module\MI";
+Type: files; Name: "{commonpf}\DAUM\PotPlayer\Module\MpcVideoRenderer.ax";
+Type: files; Name: "{commonpf}\DAUM\PotPlayer\Module\sanear.ax";
+Type: files; Name: "{commonpf}\DAUM\PotPlayer\Module\libmfxsw.dll";
+Type: files; Name: "{commonpf}\DAUM\PotPlayer\Module\OpenCodec\OpenCodecUnity.dll";
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\Module\OpenCodec";
+Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\AceTV.dpl"; 
+Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\Ten komputer.dpl"; 
+Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\FilmPolski.dpl"; 
+Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\Torrent.dpl"; 
+Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\YouTube.dpl"; 
+Type: files; Name: "{userappdata}\PotPlayerMini\Playlist\IPTV.dpl"; 
+Type: files; Name: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse\yt-dlp_x86-parser.exe";
+Type: files; Name: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse\yt-dlp_x86.exe";
+Type: files; Name: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse\MediaPlayParse - yt-dlp.ico";
+Type: files; Name: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse\MediaPlayParse - yt-dlp.as";
+
 
 [Code]
+function GetAppMajorVersion(param: String): String;
+	begin
+		Result:='{#vmajor}';
+	end;
+
+function GetAppMinorVersion(param: String): String;
+	begin
+		Result:='{#vminor}';
+	end;
+
+function GetAppCurrentVersion(param: String): String;
+	begin
+		Result:='{#vbuild}';
+	end;
+
+function GetAppID(param: String): String;
+	begin
+		Result := '{#appname}';
+	end;
+
+function GetPathInstalled(AppID: String): String;
+	var
+		PrevPath: String;
+	begin
+		PrevPath := '';
+		if not RegQueryStringValue(HKLM, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\'+AppID+'_is1', 'Inno Setup: App Path', PrevPath) then begin
+			RegQueryStringValue(HKCU, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\'+AppID+'_is1', 'Inno Setup: App Path', PrevPath);
+		end;
+		Result := PrevPath;
+	end;
+
+function GetInstalledVersion(): String;
+	var
+		InstalledVersion: String;
+	begin
+		InstalledVersion := '';
+		RegQueryStringValue(HKLM, 'Software\{#appname}', 'Version', InstalledVersion);
+		Result := InstalledVersion;
+	end;
+
+function GetInstalledCurrentVersion(): String;
+	var
+		InstalledCurrentVersion: String;
+	begin
+		InstalledCurrentVersion := '';
+		RegQueryStringValue(HKLM, 'Software\{#appname}', 'CurrentVersion', InstalledCurrentVersion);
+		Result := InstalledCurrentVersion;
+	end;
+
+function InitializeSetup(): Boolean;
+	var
+		Response: Integer;
+		PrevDir: String;
+		InstalledVersion: String;
+		InstalledCurrentVersion: String;
+		//VersionError: String;
+	begin
+		Result := true;
+
+		// read the installation folder
+		PrevDir := GetPathInstalled(getAppID(''));
+
+		if length(Prevdir) > 0 then begin
+			// I found the folder so it's an upgrade.
+			
+			// compare versions
+			InstalledCurrentVersion := GetInstalledCurrentVersion();
+			InstalledVersion := GetAppCurrentVersion('');
+			if (InstalledCurrentVersion < InstalledVersion) then begin
+				Result := True;
+			end else if (InstalledCurrentVersion = InstalledVersion) then begin
+				Response := MsgBox(
+					'Wygl¹da na to, ¿e istniej¹ca instalacja aplikacji {#appname} jest ju¿ aktualna.' + #13#13 +
+					'Czy chcesz kontynuowaæ instalacjê aktualizacji?', mbError, MB_YESNO
+				);
+				Result := (Response = IDYES);
+			end else begin
+				Response := MsgBox(
+					'Wygl¹da na to, ¿e istniej¹ca instalacja aplikacji {#appname} jest nowsza ni¿ ta aktualizacja.' + #13#13 +
+					'Istniej¹ca instalacja to v'+ GetAppMajorVersion('') + '.' + GetAppMinorVersion('')+'.'+InstalledCurrentVersion +'.  Ta aktualizacja zmieni instalacjê na v'+ GetAppMajorVersion('') + '.' + GetAppMinorVersion('')+'.'+ GetAppCurrentVersion('') + '.' + #13#13 +
+					'Czy chcesz kontynuowaæ instalacjê aktualizacji?', mbError, MB_YESNO
+				);
+				Result := (Response = IDYES);
+			end;
+		end else begin
+			// Didn't find the folder so its a fresh installation.
+			Result:=true;
+		end;
+    end;
+
+function ShouldSkipPage(PageID: Integer): Boolean;
+  var
+    PrevDir:String;
+	begin
+		PrevDir := GetPathInstalled(getAppID(''));
+		if length(Prevdir) > 0 then begin
+		  // skip selectdir if It's an upgrade
+		  if (PageID = wpSelectDir) then begin
+			 Result := true;
+		  end else if (PageID = wpSelectProgramGroup) then begin
+			 Result := true;
+  		end else if (PageID = wpSelectTasks) then begin
+	 		  Result := true;
+  		end else begin
+  			Result := false;
+  		end;
+		end;
+	end;
+
+
 function IsX86: boolean;
 begin
 	Result := (ProcessorArchitecture = paX86) or (ProcessorArchitecture = paUnknown);
@@ -866,9 +1089,34 @@ begin
     Result := not RegKeyExists(HKEY_CURRENT_USER, 'SOFTWARE\Icaros');
 end;
 
+function IsMInfoInstalled():Boolean;
+begin
+    Result := not RegKeyExists(HKEY_CURRENT_USER, 'SOFTWARE\MediaInfo'); 
+end;
+
 function IsTORInstalled():Boolean;
 begin
     Result := not FileExists(ExpandConstant('{userappdata}\TorrServer\tsl.exe'));
+end;
+
+function IsACEInstalled():Boolean;
+begin
+    Result := not FileExists(ExpandConstant('{userappdata}\ACEStream\engine\ace_engine.exe'));
+end;
+
+function IsSVPInstalled():Boolean;
+begin
+    Result := not FileExists(ExpandConstant('{commonpf}\DAUM\PotPlayer\AviSynth.dll'));
+end;
+
+function IsTwichInstalled():Boolean;
+begin
+    Result := not FileExists(ExpandConstant('{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse\MediaPlayParse - Twitch.as'));
+end;
+
+function IsTorrentInstalled():Boolean;
+begin
+    Result := not FileExists(ExpandConstant('{commonpf}\DAUM\PotPlayer\Extension\Lib\TorrentReader64.dll'));
 end;
 
 function IsmadVRInstalled():Boolean;
@@ -876,58 +1124,34 @@ begin
     Result := not FileExists(ExpandConstant('{localappdata}\madVR\madVR.ax'));
 end;
 
-function IsAVSInstalled():Boolean;
+function IsDLPInstalled():Boolean;
 begin
-    Result := not FileExists(ExpandConstant('{commonpf32}\DAUM\PotPlayer\AviSynth.dll'));
+    Result := not FileExists(ExpandConstant('{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse\yt-dlp_x86.exe'));
 end;
 
-function IsMInfoInstalled():Boolean;
-begin
-    Result := not RegKeyExists(HKEY_CURRENT_USER, 'SOFTWARE\MediaInfo'); 
-end;
 
-function IsAceInstalled():Boolean;
-begin
-    Result := not FileExists(ExpandConstant('{userappdata}\ACEStream\engine\ace_engine.exe'));
-end;
 
-var
-  DownloadPage: TDownloadWizardPage;
-
-function OnDownloadProgress(const Url, FileName: String; const Progress, ProgressMax: Int64): Boolean;
-begin
-  if Progress = ProgressMax then
-    Log(Format('Pomyœlnie pobrano plik do {tmp}: %s', [FileName]));
-  Result := True;
-end;
 
 procedure InitializeWizard;
 begin
-  DownloadPage := CreateDownloadPage(SetupMessage(msgWizardPreparing), SetupMessage(msgPreparingDesc), @OnDownloadProgress);
+    idpDownloadAfter(wpReady);
 end;
 
-function NextButtonClick(CurPageID: Integer): Boolean;
+procedure CurPageChanged(CurPageID: Integer);
 begin
-  if CurPageID = wpReady then begin
-    DownloadPage.Clear;
-    DownloadPage.Add('http://www.potplayerclub.pl/ccount/click.php?id=27', 'Icaros.exe', '');
-    DownloadPage.Add('http://www.potplayerclub.pl/ccount/click.php?id=33', 'TS.MatriX.Setup.exe', '');
-    DownloadPage.Add('http://www.potplayerclub.pl/ccount/click.php?id=28', 'ace_engine_setup.exe', '');
-    DownloadPage.Show;
-    try
-      try
-        DownloadPage.Download; // Spowoduje to pobranie plikÃ³w do {tmp}
-        Result := True;
-      except
-        if DownloadPage.AbortedByUser then
-          Log('Przerwane przez u¿ytkownika.')
-        else
-          SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
-        Result := False;
-      end;
-    finally
-      DownloadPage.Hide;
-    end;
-  end else
-    Result := True;
+    if CurPageID = wpReady then
+    begin
+        // User can navigate to 'Ready to install' page several times, so we 
+        // need to clear file list to ensure that only needed files are added.
+        idpClearFiles;
+
+        if WizardIsComponentSelected('icaros') then
+            idpAddFile('http://www.potplayerclub.pl/ccount/click.php?id=27', ExpandConstant('{tmp}\Icaros.exe'));
+        if WizardIsComponentSelected('TOR') then
+            idpAddFile('http://www.potplayerclub.pl/ccount/click.php?id=33', ExpandConstant('{tmp}\TS.MatriX.Setup.exe'));
+        if WizardIsComponentSelected('ACE') then
+            idpAddFile('http://www.potplayerclub.pl/ccount/click.php?id=28', ExpandConstant('{tmp}\ace_engine_setup.exe'));
+        if WizardIsComponentSelected('ext/ytdlp') then
+            idpAddFile('http://www.potplayerclub.pl/ccount/click.php?id=34', ExpandConstant('{tmp}\yt-dlp-parser.7z'));
+  end;
 end;
