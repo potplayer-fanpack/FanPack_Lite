@@ -2,6 +2,13 @@ FanPack-Lite
 ==============
 
 
+Wersja 1.0.XX - 09.01.2023
+=====================================
+* AKTUALIZACJA:
+  * Zaktualizowano MPC Video Renderer do wersji v0.6.4.1966
+  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.5.109
+
+
 Wersja 1.1.80 - 01.12.2022
 =====================================
 * DODANO:

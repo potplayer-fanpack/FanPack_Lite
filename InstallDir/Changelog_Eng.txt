@@ -2,6 +2,12 @@ FanPack-Lite
 ==============
 
 
+Version 1.0.XX - 09.01.2023
+=====================================
+* UPDATED:
+  * Updated MPC Video Renderer to v0.6.4.1966
+  * Updated external AVI, MKV, MP4/MOV splitters to v1.6.5.109
+
 Version 1.1.80 - 01.12.2022
 =====================================
 * ADD:
@@ -9,13 +15,12 @@ Version 1.1.80 - 01.12.2022
 * UPDATED:
   * New version of the installation script
 
-
 Wersja 1.0.77 - 12.11.2022
 =====================================
 * AKTUALIZACJA:
   * Zaktualizowano TorrServer MatriX do wersji v118
   * Zaktualizowano MPC Video Renderer do wersji v0.6.3.1956
-  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.5
+  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV do wersji v1.6.5
   * Zaktualizowano Icaros do wersji v3.3.0 RC1
   * Zaktualizowano yt-dlp do wersji 2022.11.11
 

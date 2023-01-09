@@ -886,7 +886,7 @@ Name: "TOR";         Description: "{cm:comp_TOR}";         Types: tweak full cus
 Name: "ACE";         Description: "{cm:comp_ACE}";         Types: tweak full custom;         Check: IsACEInstalled;    ExtraDiskSpaceRequired: 23356723;
 Name: "ext";         Description: "{cm:comp_ext}";         Types: custom;
 Name: "ext/torrent"; Description: "{cm:comp_ext_torrent}"; Types: tweak full custom;         Check: IsTorrentInstalled;
-Name: "ext/ytdlp";   Description: "{cm:comp_ext_ytdlp}";   Types: tweak full custom;         Check: IsDLPInstalled;    ExtraDiskSpaceRequired: 11970069;
+Name: "ext/ytdlp";   Description: "{cm:comp_ext_ytdlp}";   Types: tweak full custom;         Check: IsDLPInstalled;    ExtraDiskSpaceRequired: 11870208;
 Name: "ext/twich";   Description: "{cm:comp_ext_twich}";   Types: custom;                    Check: IsTwichInstalled;
 Name: "icaros";      Description: "{cm:comp_icaros}";      Types: custom;                    Check: IsIcarosInstalled; ExtraDiskSpaceRequired: 10428416;
 Name: "minfo";       Description: "{cm:comp_minfo}";       Types: custom;                    Check: IsMInfoInstalled; 
