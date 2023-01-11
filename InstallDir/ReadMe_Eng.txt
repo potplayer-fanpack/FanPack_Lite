@@ -98,4 +98,4 @@ Enjoy the movies!
 Adam Malich
 
 
-Copyright (c) 2014-2022 www.potplayerclub.pl
+Copyright (c) 2014-2023 www.potplayerclub.pl

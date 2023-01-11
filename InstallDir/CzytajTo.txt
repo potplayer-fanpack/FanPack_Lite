@@ -2,22 +2,22 @@ FanPack-Lite
 ==============
 
 
-OMÓWIENIE
+OMÃ“WIENIE
 =========
 FanPack-Lite, czyli autorski pakiet konfiguracyjny oparty na wbudowanych filtrach / dekoderach.  
-Wszystko jest ju¿ skonfigurowane, instalujesz pakiet, uruchamiasz odtwarzacz i zaczynasz ogl¹daæ filmy.
+Wszystko jest juÅ¼ skonfigurowane, instalujesz pakiet, uruchamiasz odtwarzacz i zaczynasz oglÄ…daÄ‡ filmy.
 
 3rd Party Tools:
 ================
-- Icaros (plik instalacyjny) z zgodnie z licencj¹ "Icaros License.txt"
+- Icaros (plik instalacyjny) z zgodnie z licencjÄ… "Icaros License.txt"
   Copyright (c) 2010-2022, Tabibito Technology
   http://shark007.net/tools.html
-- madVR (specjalnie przygotowany plik instalacyjny) zgodnie z licencj¹ "license.txt"
+- madVR (specjalnie przygotowany plik instalacyjny) zgodnie z licencjÄ… "license.txt"
   Copyright (c) 2009-2022 Mathias Rauen
   http://forum.doom9.org/showthread.php?t=146228
-- Biblioteki AviSynth64+ zgodnie z licencj¹ "GNU GPL"
+- Biblioteki AviSynth64+ zgodnie z licencjÄ… "GNU GPL"
   https://github.com/pinterf/AviSynthPlus/releases
-- Biblioteki SVPflow64 zgodnie z licencj¹ "GNU GPL"
+- Biblioteki SVPflow64 zgodnie z licencjÄ… "GNU GPL"
   Copyright (c) 2020 SVP-Team.com
   http://www.svp-team.com/wiki/Plugins:_SVPFlow
 - Skrypty do AviSynth64+ i SVPflow64
@@ -30,70 +30,70 @@ Wszystko jest ju¿ skonfigurowane, instalujesz pakiet, uruchamiasz odtwarzacz i z
 - Rozszerzenie do sieci Torrent
   Pobrane z czatu PotPlayer
   http://cafe.daum.net/pot-tool/N88T/137
-- MPC Video Renderer zgodnie z licencj¹ "GNU LGPL"
+- MPC Video Renderer zgodnie z licencjÄ… "GNU LGPL"
   Copyright (c) 2018-2020 Aleksoid1978
   https://github.com/Aleksoid1978/VideoRenderer
-- Sanear Audio Renderer zgodnie z licencj¹ "GNU LGPL"
+- Sanear Audio Renderer zgodnie z licencjÄ… "GNU LGPL"
   Copyright (c) 2015 Alex Marsev
   https://github.com/alexmarsev/sanear
-- Standalone Filters MPC-BE zgodnie z licencj¹ "GNU LGPL"
+- Standalone Filters MPC-BE zgodnie z licencjÄ… "GNU LGPL"
   Copyright (c) 2022 MPC-BE Coders
   http://sourceforge.net/projects/mpcbe/
-- TorrServer zgodnie z licencj¹
+- TorrServer zgodnie z licencjÄ…
   Copyright (c) 2022 YouROK
   https://github.com/YouROK/TorrServer
-- TorrServer launcher zgodnie z licencj¹
+- TorrServer launcher zgodnie z licencjÄ…
   Copyright (c) 2022 Noperkot
   https://github.com/Noperkot/TSL
 
-Wszystkie znaki towarowe i prawa autorskie s¹ w³asnoœci¹ ich odpowiednich w³aœcicieli.
+Wszystkie znaki towarowe i prawa autorskie sÄ… wÅ‚asnoÅ›ciÄ… ich odpowiednich wÅ‚aÅ›cicieli.
 
 
 WYMAGANIA SYSTEMOWE
 ===================
-· Windows 7 i wy¿szy
-· DirectX End-User Runtimes (June 2010)
+Â· Windows 7 i wyÅ¼szy
+Â· DirectX End-User Runtimes (June 2010)
   https://www.microsoft.com/en-us/download/confirmation.aspx?id=8109
-· Visual C++ Redistributable for Visual Studio 2015
+Â· Visual C++ Redistributable for Visual Studio 2015
   https://www.microsoft.com/pl-PL/download/details.aspx?id=48145
 
 PLIK PotPlayerMini[64].exe
 ========================
-Mo¿na wybraæ do instalacji specjaln¹ wersjê tego pliku ze zmienion¹ ikon¹: 
-- okr¹g³a, niebieska z bia³ym trójk¹tem w œrodku 
-- okr¹g³a, ¿ó³ta z bia³ym trójk¹tem w œrodku
+MoÅ¼na wybraÄ‡ do instalacji specjalnÄ… wersjÄ™ tego pliku ze zmienionÄ… ikonÄ…: 
+- okrÄ…gÅ‚a, niebieska z biaÅ‚ym trÃ³jkÄ…tem w Å›rodku 
+- okrÄ…gÅ‚a, Å¼Ã³Å‚ta z biaÅ‚ym trÃ³jkÄ…tem w Å›rodku
 
-Plik zosta³ przygotowany za pomoc¹ PotPlayer Icon Replacer
+Plik zostaÅ‚ przygotowany za pomocÄ… PotPlayer Icon Replacer
 Copyright (c) 2018-2019 V@no
 https://potplayer.daum.net/forum/viewtopic.php?f=11&t=3585#p6954 
 
 
 PYTANIA, PROPOZYCJE, PROBLEMY, BUGI
 ===================================
-W razie problemów proszê najpierw spróbowaæ znaleŸæ rozwi¹zanie samodzielnie:
-- przejrzeæ ustawienia PotPlayera,
-- zainstalowaæ najnowsz¹ wersjê beta odtwarzacza,
-- zaznajomiæ siê z odpowiedziami i poradnikami na stronie.
+W razie problemÃ³w proszÄ™ najpierw sprÃ³bowaÄ‡ znaleÅºÄ‡ rozwiÄ…zanie samodzielnie:
+- przejrzeÄ‡ ustawienia PotPlayera,
+- zainstalowaÄ‡ najnowszÄ… wersjÄ™ beta odtwarzacza,
+- zaznajomiÄ‡ siÄ™ z odpowiedziami i poradnikami na stronie.
 
-Zg³aszanie b³êdów i propozycji oraz pomocy
+ZgÅ‚aszanie bÅ‚Ä™dÃ³w i propozycji oraz pomocy
 
 http://www.potplayerclub.pl/kontakt.php
 
 
 AKTUALIZACJE
 =============
-Uaktualnienia mo¿na znaleŸæ pod adresem
+Uaktualnienia moÅ¼na znaleÅºÄ‡ pod adresem
 http://www.potplayerclub.pl
 
 
 UMOWA LICENCYJNA
 ================
 Warunkiem korzystania z FanPacka64 Lite jest zgoda na warunki umowy licencyjnej,
-która w tej wersji pakietu zawarta jest w pliku License.txt
+ktÃ³ra w tej wersji pakietu zawarta jest w pliku License.txt
 
 
 
-Przyjemnoœci z ogl¹dania filmów!
+PrzyjemnoÅ›ci z oglÄ…dania filmÃ³w!
 
 Adam Malich
 

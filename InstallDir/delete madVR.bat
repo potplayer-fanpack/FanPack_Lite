@@ -9,7 +9,7 @@ if not exist "%localappdata%\madVR" goto nie istnieje
 :sukces
 @echo.
 @echo.
-@echo    Deinstalacja zakonczy≥a sie pomyslnie.
+@echo    Deinstalacja zakonczy≈Ça sie pomyslnie.
 @echo.
 @goto usun folder
 

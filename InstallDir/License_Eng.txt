@@ -10,5 +10,5 @@ The installation files used in my installers are the property of their authors, 
 
 
 
-Copyright © 2014-2022 PotPlayer Club
+Copyright © 2014-2023 PotPlayer Club
 http://www.potplayerclub.pl/
