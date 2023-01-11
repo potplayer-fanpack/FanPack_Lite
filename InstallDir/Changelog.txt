@@ -2,11 +2,13 @@ FanPack-Lite
 ==============
 
 
-Wersja 1.0.XX - 09.01.2023
+Wersja 1.0.XX - 11.01.2023
 =====================================
 * AKTUALIZACJA:
-  * Zaktualizowano MPC Video Renderer do wersji v0.6.4.1966
-  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.5.109
+  * MPC Video Renderer v0.6.4.1966
+  * Zewnêtrzne splittery AVI, MKV, MP4/MOV v1.6.5.109
+  * yt-dlp 2023.01.06
+  * Icaros v3.3.0
 
 
 Wersja 1.1.80 - 01.12.2022
@@ -20,43 +22,43 @@ Wersja 1.1.80 - 01.12.2022
 Wersja 1.0.77 - 12.11.2022
 =====================================
 * AKTUALIZACJA:
-  * Zaktualizowano TorrServer MatriX do wersji v118
-  * Zaktualizowano MPC Video Renderer do wersji v0.6.3.1956
-  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.5
-  * Zaktualizowano Icaros do wersji v3.3.0 RC1
-  * Zaktualizowano yt-dlp do wersji 2022.11.11
+  * TorrServer MatriX v118
+  * MPC Video Renderer v0.6.3.1956
+  * Zewnêtrzne splittery AVI, MKV, MP4/MOV v1.6.5
+  * Icaros v3.3.0 RC1
+  * yt-dlp 2022.11.11
 
 Wersja 1.0.75 - 21.07.2022
 =====================================
 * DODANO:
-  * Dodano mo¿liwoœæ pobrania i instalacji Ace Stream Engine i listy odtwarzania z TTV
-  * Dodano mo¿liwoœæ instalacji YouTube-DLP Parser
+  * Mo¿liwoœæ pobrania i instalacji Ace Stream Engine i listy odtwarzania z TTV
+  * Mo¿liwoœæ instalacji YouTube-DLP Parser
 * AKTUALIZACJA:
-  * Zaktualizowano MPC Video Renderer do wersji v0.6.1.1931
-  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.3.91
-  * Zaktualizowano Icaros do wersji v3.3.0 b3
+  * MPC Video Renderer v0.6.1.1931
+  * Zewnêtrzne splittery AVI, MKV, MP4/MOV v1.6.3.91
+  * Icaros v3.3.0 b3
 
 Wersja 1.0.73 - 16.06.2022
 =====================================
 * AKTUALIZACJA: 
-  * Zaktualizowano MPC Video Renderer do wersji v0.6.0.1901
-  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.3.1
-  * Zaktualizowano TorrServer MatriX do wersji v117
-  * Zaktualizowano Icaros do wersji v3.3.0 b2
+  * MPC Video Renderer v0.6.0.1901
+  * Zewnêtrzne splittery AVI, MKV, MP4/MOV v1.6.3.1
+  * TorrServer MatriX v117
+  * Icaros v3.3.0 b2
 * ULEPSZONO: 
   * Zmieniono sposób instalacji TorrServer MatriX (kompaktowy instalator)
 
 Wersja 1.0.72 - 18.05.2022
 =====================================
 * AKTUALIZACJA: 
-  * Zaktualizowano MPC Video Renderer do wersji v0.5.8.1877
-  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.2.7075
+  * MPC Video Renderer v0.5.8.1877
+  * Zewnêtrzne splittery AVI, MKV, MP4/MOV v1.6.2.7075
 
 Wersja 1.0.71 - 01.05.2022
 =====================================
 * AKTUALIZACJA: 
-  * Zaktualizowano MPC Video Renderer do wersji v0.5.7.1872
-  * Zaktualizowano zewnêtrzne splittery AVI, MKV, MP4/MOV/dekoder wideo do wersji v1.6.2.7054
+  * MPC Video Renderer v0.5.7.1872
+  * Zewnêtrzne splittery AVI, MKV, MP4/MOV v1.6.2.7054
 
 Wersja 1.0.70 - 27.03.2022
 =====================================
@@ -67,7 +69,7 @@ Wersja 1.0.70 - 27.03.2022
   * AviSynth+ & SVPflow - naprawiono b³¹d powoduj¹cy zamykanie odtwarzacza podczas przeszukiwania
   * AviSynth+ & SVPflow - naprawiono b³¹d powoduj¹cy chwilowe zamra¿anie obrazu podczas przeszukiwania
 * USUNIÊTO: 
-  * Usuniêto ACE Stream Engine
+  * ACE Stream Engine
 
 Wersja 1.0.69 - 18.03.2022
 =====================================
