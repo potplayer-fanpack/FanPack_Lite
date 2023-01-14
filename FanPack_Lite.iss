@@ -8,7 +8,7 @@
 #define brandname "FanPack"
 #define vmajor 1
 #define vminor 1
-#define vbuild 80
+#define vbuild 85
 #define publisher "PotPlayer Club"
 #define URL "http://www.potplayerclub.pl"
 
@@ -34,7 +34,7 @@ AppSupportURL                      = {#URL}
 AppUpdatesURL                      = {#URL}
 DefaultDirName                     = {autopf}\{#appname}
 DefaultGroupName                   = {#appname}
-AppCopyright                       = Copyright © {#publisher} 2014-2022
+AppCopyright                       = Copyright © {#publisher} 2014-2023
 AllowNoIcons                       = yes
 OutputDir                          = bin
 SourceDir                          = .
@@ -70,7 +70,7 @@ Name: "en"; MessagesFile: "compiler:Default.isl";
 #include "custom_messages.iss"
 
 [Messages]
-BeveledLabel= 01.12.2022
+BeveledLabel= 14.01.2023
 
 #include <idp.iss>
 #include <idplang\Polish.iss>
@@ -882,7 +882,7 @@ Name: "custom";      Description: "{cm:comp_custom}"; Flags: iscustom
 Name: "program";     Description: "{cm:comp_program}";     Types: tweak full compact custom; Flags: fixed                                 
 Name: "SVP";         Description: "{cm:comp_SVP}";         Types: tweak full custom;         Check: IsSVPInstalled;
 Name: "madVR";       Description: "{cm:comp_madVR}";       Types: custom;                    Check: IsmadVRInstalled;
-Name: "TOR";         Description: "{cm:comp_TOR}";         Types: tweak full custom;         Check: IsTORInstalled;    ExtraDiskSpaceRequired: 28735659;
+Name: "TOR";         Description: "{cm:comp_TOR}";         Types: tweak full custom;         Check: IsTORInstalled;    ExtraDiskSpaceRequired: 29188096;
 Name: "ACE";         Description: "{cm:comp_ACE}";         Types: tweak full custom;         Check: IsACEInstalled;    ExtraDiskSpaceRequired: 23356723;
 Name: "ext";         Description: "{cm:comp_ext}";         Types: custom;
 Name: "ext/torrent"; Description: "{cm:comp_ext_torrent}"; Types: tweak full custom;         Check: IsTorrentInstalled;

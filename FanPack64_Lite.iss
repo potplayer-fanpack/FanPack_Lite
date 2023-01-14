@@ -8,7 +8,7 @@
 #define brandname "FanPack64"
 #define vmajor 1
 #define vminor 1
-#define vbuild 80
+#define vbuild 85
 #define publisher "PotPlayer Club"
 #define URL "http://www.potplayerclub.pl"
 
@@ -34,7 +34,7 @@ AppSupportURL                      = {#URL}
 AppUpdatesURL                      = {#URL}
 DefaultDirName                     = {autopf}\{#appname}
 DefaultGroupName                   = {#appname}
-AppCopyright                       = Copyright © {#publisher} 2014-2022
+AppCopyright                       = Copyright © {#publisher} 2014-2023
 AllowNoIcons                       = yes
 OutputDir                          = bin
 SourceDir                          = .
@@ -71,7 +71,7 @@ Name: "en"; MessagesFile: "compiler:Default.isl";
 #include "custom_messages.iss"
 
 [Messages]
-BeveledLabel= 01.12.2022
+BeveledLabel= 14.01.2023
 
 #include <idp.iss>
 #include <idplang\Polish.iss>
@@ -733,9 +733,9 @@ Name: "addon";                      Description: "{cm:tsk_addon}";              
 Name: "addon\1";                    Description: "{cm:tsk_addon1}";                     GroupDescription: "{cm:tsk_group1}"; Flags: exclusive unchecked;
 Name: "addon\2";                    Description: "{cm:tsk_addon2}";                     GroupDescription: "{cm:tsk_group1}"; Flags: exclusive unchecked;
 ;<-- // Ustawienia skórek // -->
-Name: "skin0";                      Description: "{cm:tsk_skin0}";                      GroupDescription: "{cm:tsk_group2}"; Flags: exclusive;
+Name: "skin0";                      Description: "{cm:tsk_skin0}";                      GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
 Name: "skin1";                      Description: "{cm:tsk_skin1}";                      GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
-Name: "fixpot";                     Description: "{cm:tsk_fixpot}";                     GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
+Name: "fixpot";                     Description: "{cm:tsk_fixpot}";                     GroupDescription: "{cm:tsk_group2}"; Flags: exclusive;
 Name: "skin2";                      Description: """FMOD""";                            GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
 Name: "skin3";                      Description: """PotMPC""";                          GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
 Name: "skin4";                      Description: """PotXMP""";                          GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked; 
@@ -760,20 +760,20 @@ Name: "loadurl";                    Description: "{cm:tsk_loadurl}";            
 Name: "dispasthumb";                Description: "{cm:tsk_dispasthumb}";                GroupDescription: "{cm:tsk_group3}";
 ;<-- // Odtwarzacz // -->
 Name: "opendef";                    Description: "{cm:tsk_opendef}";                    GroupDescription: "{cm:tsk_group4}";
-Name: "opendef\file";               Description: "{cm:tsk_opendef_file}";               GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "opendef\file";               Description: "{cm:tsk_opendef_file}";               GroupDescription: "{cm:tsk_group4}"; Flags: exclusive;
 Name: "opendef\url";                Description: "{cm:tsk_opendef_url}";                GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
 Name: "opendef\folder";             Description: "{cm:tsk_opendef_folder}";             GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
-Name: "opendef\navig";              Description: "{cm:tsk_opendef_navig}";              GroupDescription: "{cm:tsk_group4}"; Flags: exclusive;
+Name: "opendef\navig";              Description: "{cm:tsk_opendef_navig}";              GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
 Name: "opendef\navig\a";            Description: "{cm:tsk_opendef_navig_a}";            GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
-Name: "opendef\navig\b";            Description: "{cm:tsk_opendef_navig_b}";            GroupDescription: "{cm:tsk_group4}"; Flags: exclusive;
+Name: "opendef\navig\b";            Description: "{cm:tsk_opendef_navig_b}";            GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
 Name: "opendef\navig\disable_zoom"; Description: "{cm:tsk_opendef_navig_disable_zoom}"; GroupDescription: "{cm:tsk_group4}"; Flags: unchecked; 
-Name: "opendef\navig\large_frame";  Description: "{cm:tsk_opendef_navig_large_frame}";  GroupDescription: "{cm:tsk_group4}:";
+Name: "opendef\navig\large_frame";  Description: "{cm:tsk_opendef_navig_large_frame}";  GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
 Name: "opendef\navig\no_close";     Description: "{cm:tsk_opendef_navig_no_close}";     GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
 Name: "openwithsamename_a";         Description: "{cm:tsk_openwithsamename_a}";         GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
 Name: "openwithsamename_a\1";       Description: "{cm:tsk_openwithsamename_a_1}";       GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
-Name: "openwithsamename";           Description: "{cm:tsk_openwithsamename}";           GroupDescription: "{cm:tsk_group4}"; Flags: exclusive;
-Name: "openwithsamename_b";         Description: "{cm:tsk_openwithsamename_b}";         GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
-Name: "openwithsamename_b\savepl";  Description: "{cm:tsk_openwithsamename_b_savepl}";  GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
+Name: "openwithsamename";           Description: "{cm:tsk_openwithsamename}";           GroupDescription: "{cm:tsk_group4}"; Flags: exclusive unchecked;
+Name: "openwithsamename_b";         Description: "{cm:tsk_openwithsamename_b}";         GroupDescription: "{cm:tsk_group4}"; Flags: exclusive;
+Name: "openwithsamename_b\savepl";  Description: "{cm:tsk_openwithsamename_b_savepl}";  GroupDescription: "{cm:tsk_group4}";
 Name: "openwithsamename_sf";        Description: "{cm:tsk_openwithsamename_sf}";        GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
 Name: "playlistopenfullscreen";     Description: "{cm:tsk_playlistopenfullscreen}";     GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
 Name: "autoresfullscr";             Description: "{cm:tsk_autoresfullscr}";             GroupDescription: "{cm:tsk_group4}"; Flags: unchecked;
@@ -884,7 +884,7 @@ Name: "custom";      Description: "{cm:comp_custom}"; Flags: iscustom
 Name: "program";     Description: "{cm:comp_program}";     Types: tweak full compact custom; Flags: fixed                                 
 Name: "SVP";         Description: "{cm:comp_SVP}";         Types: tweak full custom;         Check: IsSVPInstalled;
 Name: "madVR";       Description: "{cm:comp_madVR}";       Types: custom;                    Check: IsmadVRInstalled;
-Name: "TOR";         Description: "{cm:comp_TOR}";         Types: tweak full custom;         Check: IsTORInstalled;    ExtraDiskSpaceRequired: 28735659;
+Name: "TOR";         Description: "{cm:comp_TOR}";         Types: tweak full custom;         Check: IsTORInstalled;    ExtraDiskSpaceRequired: 29188096;
 Name: "ACE";         Description: "{cm:comp_ACE}";         Types: tweak full custom;         Check: IsACEInstalled;    ExtraDiskSpaceRequired: 23356723;
 Name: "ext";         Description: "{cm:comp_ext}";         Types: custom;
 Name: "ext/torrent"; Description: "{cm:comp_ext_torrent}"; Types: tweak full custom;         Check: IsTorrentInstalled;
