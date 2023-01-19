@@ -2,6 +2,14 @@ FanPack-Lite
 ==============
 
 
+Wersja 1.0.97 beta - 19.01.2023
+=====================================
+* DODANO:
+  * AviSynth Filter v1.4.6
+* AKTUALIZACJA:
+  * AviSynth+ v3.7.2
+  * Zewnętrzne splittery AVI, MKV, MP4/MOV v1.6.5.129
+
 Wersja 1.0.85 - 14.01.2023
 =====================================
 * AKTUALIZACJA:
