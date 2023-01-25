@@ -10,13 +10,13 @@ Wszystko jest już skonfigurowane, instalujesz pakiet, uruchamiasz odtwarzacz i 
 3rd Party Tools:
 ================
 - Icaros (plik instalacyjny) z zgodnie z licencją "Icaros License.txt"
-  Copyright (c) 2010-2022, Tabibito Technology
+  Copyright (c) 2010-2023, Tabibito Technology
   http://shark007.net/tools.html
 - madVR (specjalnie przygotowany plik instalacyjny) zgodnie z licencją "license.txt"
-  Copyright (c) 2009-2022 Mathias Rauen
+  Copyright (c) 2009-2019, Mathias Rauen
   http://forum.doom9.org/showthread.php?t=146228
 - Biblioteki AviSynth[64+] zgodnie z licencją "GNU GPL"
-  https://github.com/pinterf/AviSynthPlus/releases
+  https://github.com/AviSynth/AviSynthPlus/releases
 - Biblioteki SVPflow[64] zgodnie z licencją "GNU GPL"
   Copyright (c) 2020 SVP-Team.com
   http://www.svp-team.com/wiki/Plugins:_SVPFlow

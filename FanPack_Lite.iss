@@ -433,6 +433,7 @@ Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "AvisynthScript"; ValueType: String;
 Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: UseSelfDxva; ValueData: $1;                                                                         Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
 Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: IntDXVAUseMode; ValueData: $1;                                                                      Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
 ; Filtr AVS
+Root: HKCU; SubKey: "Software\AviSynthFilter";                                                                                                                    Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
 Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: RemoteControl; ValueData: $00000001;                                  Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
 Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: string; ValueName: ScriptFile;                                                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
 Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: InputFormat_RGB24; ValueData: $00000000;                              Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
