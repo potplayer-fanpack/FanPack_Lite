@@ -2,7 +2,7 @@ FanPack-Lite
 ==============
 
 
-Version 1.0.98 - 23.04.2023
+Version 1.1.98 - 23.04.2023
 =====================================
 # ADDED:
   * AviSynth Filter v1.4.6
@@ -14,7 +14,7 @@ Version 1.0.98 - 23.04.2023
 # DELETED
   * External AVI, MKV, MP4/MOV splitters
 
-Version 1.0.85 - 14.01.2023
+Version 1.1.85 - 14.01.2023
 =====================================
 * UPDATED:
   * MPC Video Renderer v0.6.4.1966
