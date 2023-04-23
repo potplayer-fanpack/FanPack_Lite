@@ -8,13 +8,13 @@
 #define brandname "FanPack"
 #define vmajor 1
 #define vminor 1
-#define vbuild 97
+#define vbuild 98
 #define publisher "PotPlayer Club"
 #define URL "http://www.potplayerclub.pl"
 
 #define keyPM "Software\Daum\PotPlayerMini"
 #define keyPMS "Software\Daum\PotPlayerMini\Settings"
-#define keyPMOS "Software\Daum\PotPlayerMini\Override_Settings"
+; #define keyPMOS "Software\Daum\PotPlayerMini\Override_Settings"
 #define keyMVR "Software\MPC-BE Filters\MPC Video Renderer"
 #define keyPCF "Software\DAUM\PotPlayerMini\CaptionFolderList"
 #define keyPAF "Software\DAUM\PotPlayerMini\AudioFolderList"
@@ -70,7 +70,7 @@ Name: "en"; MessagesFile: "compiler:Default.isl";
 #include "custom_messages.iss"
 
 [Messages]
-BeveledLabel= 19.01.2023
+BeveledLabel= 23.04.2023
 
 #include <idp.iss>
 #include <idplang\Polish.iss>
@@ -103,11 +103,11 @@ Source: "src\Skins\FMOD.dsf";                                                   
 Source: "src\Skins\PotMPC v3.0.dsf";                                                      DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin3"; Flags: uninsrestartdelete ignoreversion
 Source: "src\Skins\PotXMP.dsf";                                                           DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin4"; Flags: uninsrestartdelete ignoreversion
 ; <-- // Splittery MPC-BE // -->
-Source: "src\x86\Module\AviSplitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
-Source: "src\x86\Module\MatroskaSplitter.ax";                                             DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
-Source: "src\x86\Module\MP4Splitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
+; Source: "src\x86\Module\AviSplitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
+; Source: "src\x86\Module\MatroskaSplitter.ax";                                             DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
+; Source: "src\x86\Module\MP4Splitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
 ; <-- // Operacje na plikach odtwarzacza // -->
-Source: "{commonpf}\DAUM\PotPlayer\ffcodec.dll"; DestName: "FFmpeg.dll";                  DestDir: "{commonpf}\DAUM\PotPlayer\Module\FFmpeg4";                                      Flags: external;
+Source: "{commonpf}\DAUM\PotPlayer\ffcodec.dll"; DestName: "FFmpeg.dll";                  DestDir: "{commonpf}\DAUM\PotPlayer\Module\FFmpeg60";                                     Flags: external;
 Source: "{tmp}\Module.7z";                                                                DestDir: "{tmp}";                                                  Components: "program"; Flags: deleteafterinstall
 Source: "{tmp}\PxShader.7z";                                                              DestDir: "{tmp}";                                                  Components: "program"; Flags: deleteafterinstall
 ; <-- // Samoaktualizuj¹ce listy odtwarzania // -->
@@ -693,35 +693,35 @@ Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedEn
 Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedCutoffFrequency"; ValueData: "$2bc";                                                Tasks: "extsanear"; Flags: uninsdeletekey;
 Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedLevel"; ValueData: "$3c";                                                           Tasks: "extsanear"; Flags: uninsdeletekey;
 ; ; Zewnêtrzne splittery MPC
-Root: HKCU; Subkey: "{#keyPMOS}";                                                                                                                                 Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\AviSplitter.ax";                        Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Name"; ValueData: "MPC AVI Source";                                                         Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "CLSID"; ValueData: "{{CEA8DEFF-0AF7-4DB9-9A38-FB3C3AEFC0DE}";                               Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Merit"; ValueData: "$600001";                                                                Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MatroskaSplitter.ax";                   Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Name"; ValueData: "MPC Matroska Source";                                                    Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "CLSID"; ValueData: "{{0A68C3B5-9164-4A54-AFAF-995B2FF0E0D4}";                               Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MP4Splitter.ax";                        Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Name"; ValueData: "MPC MP4/MOV Source";                                                     Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "CLSID"; ValueData: "{{3CCC052E-BDEE-408A-BEA7-90914EF2964B}";                               Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0003"; ValueType: dword; ValueName: "Type"; ValueData: "$FFFFFFFE";                                                               Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}";                                                                                                                                 Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\AviSplitter.ax";                        Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Name"; ValueData: "MPC AVI Source";                                                         Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "CLSID"; ValueData: "{{CEA8DEFF-0AF7-4DB9-9A38-FB3C3AEFC0DE}";                               Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Merit"; ValueData: "$600001";                                                                Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MatroskaSplitter.ax";                   Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Name"; ValueData: "MPC Matroska Source";                                                    Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "CLSID"; ValueData: "{{0A68C3B5-9164-4A54-AFAF-995B2FF0E0D4}";                               Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MP4Splitter.ax";                        Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Name"; ValueData: "MPC MP4/MOV Source";                                                     Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "CLSID"; ValueData: "{{3CCC052E-BDEE-408A-BEA7-90914EF2964B}";                               Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0003"; ValueType: dword; ValueName: "Type"; ValueData: "$FFFFFFFE";                                                               Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
 ;
 Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "PrefAudLang"; ValueData: "pol";                                                                   Tasks: "audpol"; Flags: uninsdeletekey; 
 Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "PrefAudLang"; ValueData: "eng";                                                                   Tasks: "audeng"; Flags: uninsdeletekey;
@@ -746,11 +746,11 @@ Name: "{group}\FanPack w sieci";                      Filename: "{#URL}"
 Name: "{group}\{cm:UninstallProgram,{#brandname}}";   Filename: "{uninstallexe}";
 
 [InstallDelete]
-Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\PxShader"; Components: "program";
-Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\AviSynth"; Components: "SVP";
-Type: files; Name: "{commonpf}\DAUM\PotPlayer\FileList.txt";      Components: "program";
-Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\Html";     Components: "program";
-
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\PxShader";       Components: "program";
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\AviSynth";       Components: "SVP";
+Type: files;          Name: "{commonpf}\DAUM\PotPlayer\FileList.txt";   Components: "program";
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\Html";           Components: "program";
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\Module\FFmpeg4"; Components: "program";
 
 [Run]
 #if localize == "true"
@@ -787,14 +787,14 @@ Name: "addon\2";                    Description: "{cm:tsk_addon2}";             
 Name: "skin0";                      Description: "{cm:tsk_skin0}";                      GroupDescription: "{cm:tsk_group2}"; Flags: exclusive;
 Name: "skin1";                      Description: "{cm:tsk_skin1}";                      GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
 Name: "fixpot";                     Description: "{cm:tsk_fixpot}";                     GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
-Name: "skin2";                      Description: """FMOD""";                        GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
-Name: "skin3";                      Description: """PotMPC""";                      GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
-Name: "skin4";                      Description: """PotXMP""";                      GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked; 
+Name: "skin2";                      Description: """FMOD""";                            GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
+Name: "skin3";                      Description: """PotMPC""";                          GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
+Name: "skin4";                      Description: """PotXMP""";                          GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked; 
 Name: "skinmenu";                   Description: "{cm:tsk_skinmenu}";                   GroupDescription: "{cm:tsk_group2}";
 Name: "skinfix";                    Description: "{cm:tsk_skinfix}";                    GroupDescription: "{cm:tsk_group2}"; 
-Name: "skinfix\a";                  Description: "720x404";                         GroupDescription: "{cm:tsk_group2}"; Flags: exclusive; 
-Name: "skinfix\b";                  Description: "800x450";                         GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked; 
-Name: "skinfix\c";                  Description: "1280x720";                        GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
+Name: "skinfix\a";                  Description: "720x404";                             GroupDescription: "{cm:tsk_group2}"; Flags: exclusive; 
+Name: "skinfix\b";                  Description: "800x450";                             GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked; 
+Name: "skinfix\c";                  Description: "1280x720";                            GroupDescription: "{cm:tsk_group2}"; Flags: exclusive unchecked;
 Name: "skinsize";                   Description: "{cm:tsk_skinsize}";                   GroupDescription: "{cm:tsk_group2}";
 Name: "skinstart";                  Description: "{cm:tsk_skinstart}";                  GroupDescription: "{cm:tsk_group2}";
 ;<-- // Listy odtwarzania, Obrazy, Audio, Wideo, Zak³adki // -->
@@ -803,9 +803,9 @@ Name: "savedocs";                   Description: "{cm:tsk_savedocs}";           
 Name: "playlist";                   Description: "{cm:tsk_playlist}";                   GroupDescription: "{cm:tsk_group3}";
 Name: "bookmark";                   Description: "{cm:tsk_bookmark}";                   GroupDescription: "{cm:tsk_group3}"; Flags: unchecked;
 Name: "savedesktop";                Description: "{cm:tsk_savedesktop}";                GroupDescription: "{cm:tsk_group3}"; Flags: unchecked;
-Name: "saveformat\bmp";             Description: ".BMP";                            GroupDescription: "{cm:tsk_group3}"; Flags: exclusive unchecked;
-Name: "saveformat\jpg";             Description: ".JPG";                            GroupDescription: "{cm:tsk_group3}"; Flags: exclusive unchecked;
-Name: "saveformat\png";             Description: ".PNG";                            GroupDescription: "{cm:tsk_group3}"; Flags: exclusive;
+Name: "saveformat\bmp";             Description: ".BMP";                                GroupDescription: "{cm:tsk_group3}"; Flags: exclusive unchecked;
+Name: "saveformat\jpg";             Description: ".JPG";                                GroupDescription: "{cm:tsk_group3}"; Flags: exclusive unchecked;
+Name: "saveformat\png";             Description: ".PNG";                                GroupDescription: "{cm:tsk_group3}"; Flags: exclusive;
 Name: "savegalery";                 Description: "{cm:tsk_savegalery}";                 GroupDescription: "{cm:tsk_group3}";
 Name: "loadurl";                    Description: "{cm:tsk_loadurl}";                    GroupDescription: "{cm:tsk_group3}";
 Name: "dispasthumb";                Description: "{cm:tsk_dispasthumb}";                GroupDescription: "{cm:tsk_group3}";
@@ -889,10 +889,10 @@ Name: "pos_pgs";                    Description: "{cm:tsk_pos_pgs}";            
 Name: "downsub_first";              Description: "{cm:tsk_downsub_first}";              GroupDescription: "{cm:tsk_group6}";
 Name: "lektor";                     Description: "{cm:tsk_lektor}";                     GroupDescription: "{cm:tsk_group6}"; Flags: unchecked;
 ;
-Name: "subpol";                     Description: "POL";                             GroupDescription: "{cm:tsk_group7}"; Flags: exclusive;           Languages: "pl"; 
-Name: "subeng";                     Description: "ENG";                             GroupDescription: "{cm:tsk_group7}"; Flags: exclusive unchecked; Languages: "pl"
-Name: "subpol";                     Description: "POL";                             GroupDescription: "{cm:tsk_group7}"; Flags: exclusive unchecked; Languages: "en"; 
-Name: "subeng";                     Description: "ENG";                             GroupDescription: "{cm:tsk_group7}"; Flags: exclusive;           Languages: "en"; 
+Name: "subpol";                     Description: "POL";                                 GroupDescription: "{cm:tsk_group7}"; Flags: exclusive;           Languages: "pl"; 
+Name: "subeng";                     Description: "ENG";                                 GroupDescription: "{cm:tsk_group7}"; Flags: exclusive unchecked; Languages: "pl"
+Name: "subpol";                     Description: "POL";                                 GroupDescription: "{cm:tsk_group7}"; Flags: exclusive unchecked; Languages: "en"; 
+Name: "subeng";                     Description: "ENG";                                 GroupDescription: "{cm:tsk_group7}"; Flags: exclusive;           Languages: "en"; 
 ;<-- // Ustawienia audio // -->
 Name: "stereo";                     Description: "{cm:tsk_stereo}";                     GroupDescription: "{cm:tsk_group8}"; Flags: exclusive;
 Name: "ch6";                        Description: "{cm:tsk_ch6}";                        GroupDescription: "{cm:tsk_group8}"; Flags: exclusive unchecked;
@@ -915,10 +915,10 @@ Name: "wasapi";                     Description: "{cm:tsk_wasapi}";             
 Name: "crossfeed";                  Description: "{cm:tsk_crossfeed}";                  GroupDescription: "{cm:tsk_group9}"; Flags: unchecked;
 Name: "extsanear";                  Description: "{cm:tsk_extsanear}";                  GroupDescription: "{cm:tsk_group9}"; Flags: unchecked;
 ;<-- // Preferowany jêzyk audio // -->
-Name: "audpol";                     Description: "POL";                             GroupDescription: "{cm:tsk_group10}"; Languages: "pl"; Flags: exclusive;
-Name: "audeng";                     Description: "ENG";                             GroupDescription: "{cm:tsk_group10}"; Languages: "pl"; Flags: exclusive unchecked; 
-Name: "audpol";                     Description: "POL";                             GroupDescription: "{cm:tsk_group10}"; Languages: "en"; Flags: exclusive unchecked; 
-Name: "audeng";                     Description: "ENG";                             GroupDescription: "{cm:tsk_group10}"; Languages: "en"; Flags: exclusive;
+Name: "audpol";                     Description: "POL";                                 GroupDescription: "{cm:tsk_group10}"; Languages: "pl"; Flags: exclusive;
+Name: "audeng";                     Description: "ENG";                                 GroupDescription: "{cm:tsk_group10}"; Languages: "pl"; Flags: exclusive unchecked; 
+Name: "audpol";                     Description: "POL";                                 GroupDescription: "{cm:tsk_group10}"; Languages: "en"; Flags: exclusive unchecked; 
+Name: "audeng";                     Description: "ENG";                                 GroupDescription: "{cm:tsk_group10}"; Languages: "en"; Flags: exclusive;
 Name: "extaudio";                   Description: "{cm:tsk_extaudio}";                   GroupDescription: "{cm:tsk_group10}"; Flags: unchecked; 
 #endif
 

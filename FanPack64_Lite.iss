@@ -8,13 +8,13 @@
 #define brandname "FanPack64"
 #define vmajor 1
 #define vminor 1
-#define vbuild 97
+#define vbuild 98
 #define publisher "PotPlayer Club"
 #define URL "http://www.potplayerclub.pl"
 
 #define keyPM "Software\Daum\PotPlayerMini64"
 #define keyPMS "Software\Daum\PotPlayerMini64\Settings"
-#define keyPMOS "Software\Daum\PotPlayerMini64\Override_Settings"
+; #define keyPMOS "Software\Daum\PotPlayerMini64\Override_Settings"
 #define keyMVR "Software\MPC-BE Filters\MPC Video Renderer"
 #define keyPCF "Software\DAUM\PotPlayerMini64\CaptionFolderList"
 #define keyPAF "Software\DAUM\PotPlayerMini64\AudioFolderList"
@@ -71,7 +71,7 @@ Name: "en"; MessagesFile: "compiler:Default.isl";
 #include "custom_messages.iss"
 
 [Messages]
-BeveledLabel= 19.01.2023
+BeveledLabel= 23.04.2023
 
 #include <idp.iss>
 #include <idplang\Polish.iss>
@@ -104,11 +104,11 @@ Source: "src\Skins\FMOD.dsf";                                                   
 Source: "src\Skins\PotMPC v3.0.dsf";                                                      DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin3"; Flags: uninsrestartdelete ignoreversion
 Source: "src\Skins\PotXMP.dsf";                                                           DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin4"; Flags: uninsrestartdelete ignoreversion
 ; <-- // Splittery MPC-BE // -->
-Source: "src\x64\Module\AviSplitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
-Source: "src\x64\Module\MatroskaSplitter.ax";                                             DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
-Source: "src\x64\Module\MP4Splitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
+; Source: "src\x64\Module\AviSplitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
+; Source: "src\x64\Module\MatroskaSplitter.ax";                                             DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
+; Source: "src\x64\Module\MP4Splitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
 ; <-- // Operacje na plikach odtwarzacza // -->
-Source: "{commonpf}\DAUM\PotPlayer\ffcodec64.dll"; DestName: "FFmpeg64.dll";              DestDir: "{commonpf}\DAUM\PotPlayer\Module\FFmpeg4";                                      Flags: external;
+Source: "{commonpf}\DAUM\PotPlayer\ffcodec64.dll"; DestName: "FFmpeg64.dll";              DestDir: "{commonpf}\DAUM\PotPlayer\Module\FFmpeg60";                                     Flags: external;
 Source: "{tmp}\Module64.7z";                                                              DestDir: "{tmp}";                                                  Components: "program"; Flags: deleteafterinstall
 Source: "{tmp}\PxShader.7z";                                                              DestDir: "{tmp}";                                                  Components: "program"; Flags: deleteafterinstall
 ; <-- // Samoaktualizuj¹ce listy odtwarzania // -->
@@ -695,34 +695,34 @@ Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedEn
 Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedCutoffFrequency"; ValueData: "$2bc";                                                Tasks: "extsanear"; Flags: uninsdeletekey;
 Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedLevel"; ValueData: "$3c";                                                           Tasks: "extsanear"; Flags: uninsdeletekey;
 ; ; Zewnêtrzne splittery MPC
-Root: HKCU; Subkey: "{#keyPMOS}";                                                                                                                                 Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\AviSplitter.ax";                        Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Name"; ValueData: "MPC AVI Source";                                                         Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "CLSID"; ValueData: "{{CEA8DEFF-0AF7-4DB9-9A38-FB3C3AEFC0DE}";                               Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Merit"; ValueData: "$600001";                                                                Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MatroskaSplitter.ax";                   Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Name"; ValueData: "MPC Matroska Source";                                                    Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "CLSID"; ValueData: "{{0A68C3B5-9164-4A54-AFAF-995B2FF0E0D4}";                               Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MP4Splitter.ax";                        Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Name"; ValueData: "MPC MP4/MOV Source";                                                     Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "CLSID"; ValueData: "{{3CCC052E-BDEE-408A-BEA7-90914EF2964B}";                               Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
-Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey; 
-Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}";                                                                                                                                 Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\AviSplitter.ax";                        Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Name"; ValueData: "MPC AVI Source";                                                         Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "CLSID"; ValueData: "{{CEA8DEFF-0AF7-4DB9-9A38-FB3C3AEFC0DE}";                               Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Merit"; ValueData: "$600001";                                                                Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MatroskaSplitter.ax";                   Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Name"; ValueData: "MPC Matroska Source";                                                    Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "CLSID"; ValueData: "{{0A68C3B5-9164-4A54-AFAF-995B2FF0E0D4}";                               Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MP4Splitter.ax";                        Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Name"; ValueData: "MPC MP4/MOV Source";                                                     Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "CLSID"; ValueData: "{{3CCC052E-BDEE-408A-BEA7-90914EF2964B}";                               Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
+; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey; 
+; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
 ;
 Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "PrefAudLang"; ValueData: "pol";                                                                   Tasks: "audpol"; Flags: uninsdeletekey; 
 Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "PrefAudLang"; ValueData: "eng";                                                                   Tasks: "audeng"; Flags: uninsdeletekey;
@@ -747,11 +747,11 @@ Name: "{group}\FanPack64 w sieci";                    Filename: "{#URL}"
 Name: "{group}\{cm:UninstallProgram,{#brandname}}";   Filename: "{uninstallexe}";
 
 [InstallDelete]
-Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\PxShader";     Components: "program";
-Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\AviSynth";     Components: "SVP";
-Type: files;          Name: "{commonpf}\DAUM\PotPlayer\FileList.txt"; Components: "program";
-Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\Html";         Components: "program";
-
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\PxShader";       Components: "program";
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\AviSynth";       Components: "SVP";
+Type: files;          Name: "{commonpf}\DAUM\PotPlayer\FileList.txt";   Components: "program";
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\Html";           Components: "program";
+Type: filesandordirs; Name: "{commonpf}\DAUM\PotPlayer\Module\FFmpeg4"; Components: "program";
 
 [Run]
 #if localize == "true"
@@ -762,12 +762,12 @@ Filename: "{tmp}\ace_engine_setup.exe"; Parameters: "/VERYSILENT";              
 Filename: "{win}\Regedit.exe";          Parameters: "/S ""{tmp}\Icaros_HKCU.reg /reg:64""";    WorkingDir: {tmp}; Description: "{cm:msg_conf_icaros}";    StatusMsg: "{cm:msg_conf_icaros}";    Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
 Filename: "{win}\Regedit.exe";          Parameters: "/S ""{tmp}\icaros_HKLM_64.reg /reg:64"""; WorkingDir: {tmp}; Description: "{cm:msg_conf_icaros}";    StatusMsg: "{cm:msg_conf_icaros}";    Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
 Filename: "{win}\Regedit.exe";          Parameters: "/S ""{tmp}\icaros_HKLM_32.reg /reg:32"""; WorkingDir: {tmp}; Description: "{cm:msg_conf_icaros}";    StatusMsg: "{cm:msg_conf_icaros}";    Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
-Filename: "{tmp}\7za.exe";              Parameters: "x ""{tmp}\yt-dlp-parser.7z"" -o""{commonpf}\DAUM\PotPlayer\"" * -r -aoa";                                                                  Components: "ext/ytdlp"; Flags: runhidden runascurrentuser;
-Filename: "{tmp}\7za.exe";              Parameters: "x ""{tmp}\Module64.7z"" -o""{commonpf}\DAUM\PotPlayer\Module"" * -r -aoa";                                                                 Components: "program"; Flags: runhidden runascurrentuser;
-Filename: "{tmp}\7za.exe";              Parameters: "x ""{tmp}\PxShader.7z"" -o""{commonpf}\DAUM\PotPlayer\PxShader"" * -r -aoa";                                                               Components: "program"; Flags: runhidden runascurrentuser; 
-Filename: "{commonpf}\DAUM\PotPlayer\PotPlayerMini64.exe";                                                        Description: "{cm:LaunchProgram}";                                                            Flags: postinstall skipifsilent nowait
-Filename: "https://addons.mozilla.org/pl/firefox/addon/potplayer-youtube-shortcut/";                              Description: "{cm:tsk_addon1}";                                               Tasks: addon\1; Flags: postinstall ShellExec
-Filename: "https://chrome.google.com/webstore/search/potplayer";                                                  Description: "{cm:tsk_addon2}";                                               Tasks: addon\2; Flags: postinstall ShellExec
+Filename: "{tmp}\7za.exe";              Parameters: "x ""{tmp}\yt-dlp-parser.7z"" -o""{commonpf}\DAUM\PotPlayer\"" * -r -aoa";                                                                  Components: "ext/ytdlp";                        Flags: runhidden runascurrentuser;
+Filename: "{tmp}\7za.exe";              Parameters: "x ""{tmp}\Module64.7z"" -o""{commonpf}\DAUM\PotPlayer\Module"" * -r -aoa";                                                                 Components: "program";                          Flags: runhidden runascurrentuser;
+Filename: "{tmp}\7za.exe";              Parameters: "x ""{tmp}\PxShader.7z"" -o""{commonpf}\DAUM\PotPlayer\PxShader"" * -r -aoa";                                                               Components: "program";                          Flags: runhidden runascurrentuser; 
+Filename: "{commonpf}\DAUM\PotPlayer\PotPlayerMini64.exe";                                                        Description: "{cm:LaunchProgram}";                                                                                            Flags: postinstall skipifsilent nowait
+Filename: "https://addons.mozilla.org/pl/firefox/addon/potplayer-youtube-shortcut/";                              Description: "{cm:tsk_addon1}";                                               Tasks: addon\1;                                 Flags: postinstall ShellExec
+Filename: "https://chrome.google.com/webstore/search/potplayer";                                                  Description: "{cm:tsk_addon2}";                                               Tasks: addon\2;                                 Flags: postinstall ShellExec
 #endif
 
 #if localize == "true"
@@ -904,7 +904,6 @@ Name: "audio_start";                Description: "{cm:tsk_audio_start}";        
 Name: "gain";                       Description: "{cm:tsk_gain}";                       GroupDescription: "{cm:tsk_group8}";
 Name: "gain2";                      Description: "{cm:tsk_gain2}";                      GroupDescription: "{cm:tsk_group8}"; Flags: unchecked;
 Name: "gain3";                      Description: "{cm:tsk_gain3}";                      GroupDescription: "{cm:tsk_group8}"; Flags: unchecked;
-
 ;
 Name: "bit_depth16";                Description: "{cm:tsk_bit_depth16}";                GroupDescription: "{cm:tsk_group8}"; Flags: exclusive unchecked;
 Name: "bit_depth24";                Description: "{cm:tsk_bit_depth24}";                GroupDescription: "{cm:tsk_group8}"; Flags: exclusive;
