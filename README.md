@@ -25,7 +25,6 @@ Wszystko jest już skonfigurowane, instalujesz pakiet, uruchamiasz odtwarzacz i 
 - [_Rozszerzenie do sieci Torrent_](http://cafe.daum.net/pot-tool/N88T/137) - Pobrane z czatu PotPlayer
 - [_MPC Video Renderer_](https://github.com/Aleksoid1978/VideoRenderer) zgodnie z licencją "GNU LGPL" - Copyright (c) 2018-2023 Aleksoid1978
 - [_Sanear Audio Renderer_](https://github.com/alexmarsev/sanear) zgodnie z licencją "GNU LGPL" - Copyright (c) 2015 Alex Marsev
-- [_Standalone Filters MPC-BE_](http://sourceforge.net/projects/mpcbe/) zgodnie z licencją "GNU LGPL" - Copyright (c) 2023 MPC-BE Coders
 - [_TorrServer_](https://github.com/YouROK/TorrServer) zgodnie z licencją - Copyright (c) 2023 YouROK
 - [_TorrServer launcher_](https://github.com/Noperkot/TSL) zgodnie z licencją, Copyright (c) 2023 Noperkot
 
@@ -97,7 +96,6 @@ Everything is set up, you install the package, launch the player and start watch
 - [_Extension to the network Torrent_](http://cafe.daum.net/pot-tool/N88T/137) - downloaded from the PotPlayer chat room
 - [_MPC Video Renderer_](https://github.com/Aleksoid1978/VideoRenderer) according to the "GNU LGPL" license - Copyright (c) 2018-2023 Aleksoid1978
 - [_Sanear Audio Renderer_](https://github.com/alexmarsev/sanear) according to the "GNU LGPL" license - Copyright (c) 2015 Alex Marsev
-- [_Standalone Filters MPC-BE_](http://sourceforge.net/projects/mpcbe/) according to the "GNU LGPL" license - Copyright (c) 2023 MPC-BE Coders
 - [_TorrServer_](https://github.com/YouROK/TorrServer) according to the license - Copyright (c) 2023 YouROK
 - [_TorrServer launcher_](https://github.com/Noperkot/TSL) according to the license - Copyright (c) 2023 Noperkot
 
