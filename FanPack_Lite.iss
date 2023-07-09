@@ -7,8 +7,8 @@
 #define appname "FanPack"
 #define brandname "FanPack"
 #define vmajor 1
-#define vminor 1
-#define vbuild 98
+#define vminor 2
+#define vbuild 1
 #define publisher "PotPlayer Club"
 #define URL "http://www.potplayerclub.pl"
 
@@ -70,7 +70,7 @@ Name: "en"; MessagesFile: "compiler:Default.isl";
 #include "custom_messages.iss"
 
 [Messages]
-BeveledLabel= 23.04.2023
+BeveledLabel= 09.07.2023
 
 #include <idp.iss>
 #include <idplang\Polish.iss>
@@ -939,7 +939,7 @@ Name: "TOR";         Description: "{cm:comp_TOR}";         Types: tweak full cus
 Name: "ACE";         Description: "{cm:comp_ACE}";         Types: tweak full custom;         Check: IsACEInstalled;    ExtraDiskSpaceRequired: 23356723;
 Name: "ext";         Description: "{cm:comp_ext}";         Types: custom;
 Name: "ext/torrent"; Description: "{cm:comp_ext_torrent}"; Types: tweak full custom;         Check: IsTorrentInstalled;
-Name: "ext/ytdlp";   Description: "{cm:comp_ext_ytdlp}";   Types: tweak full custom;         Check: IsDLPInstalled;    ExtraDiskSpaceRequired: 11870208;
+Name: "ext/ytdlp";   Description: "{cm:comp_ext_ytdlp}";   Types: tweak full custom;         Check: IsDLPInstalled;    ExtraDiskSpaceRequired: 24922118;
 Name: "ext/twich";   Description: "{cm:comp_ext_twich}";   Types: custom;                    Check: IsTwichInstalled;
 Name: "icaros";      Description: "{cm:comp_icaros}";      Types: custom;                    Check: IsIcarosInstalled; ExtraDiskSpaceRequired: 10428416;
 Name: "minfo";       Description: "{cm:comp_minfo}";       Types: custom;                    Check: IsMInfoInstalled; 
