@@ -8,7 +8,7 @@
 #define brandname "FanPack"
 #define vmajor 1
 #define vminor 2
-#define vbuild 1
+#define vbuild 5
 #define publisher "PotPlayer Club"
 #define URL "http://www.potplayerclub.pl"
 
@@ -70,7 +70,7 @@ Name: "en"; MessagesFile: "compiler:Default.isl";
 #include "custom_messages.iss"
 
 [Messages]
-BeveledLabel= 09.07.2023
+BeveledLabel= 07.09.2023
 
 #include <idp.iss>
 #include <idplang\Polish.iss>
