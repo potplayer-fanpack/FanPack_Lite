@@ -1,6 +1,14 @@
 FanPack-Lite
 ==============
 
+
+Wersja 1.2.8 - 04.11.2023
+=====================================
+# AKTUALIZACJA:
+  * TorrServer.MatriX v127
+  * MPC Video Renderer v0.7.0.2151
+  * yt-dlp 2023.10.13
+
 Wersja 1.2.5 - 07.09.2023
 =====================================
 # AKTUALIZACJA:

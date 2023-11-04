@@ -8,7 +8,7 @@
 #define brandname "FanPack64"
 #define vmajor 1
 #define vminor 2
-#define vbuild 5
+#define vbuild 8
 #define publisher "PotPlayer Club"
 #define URL "http://www.potplayerclub.pl"
 
@@ -71,7 +71,7 @@ Name: "en"; MessagesFile: "compiler:Default.isl";
 #include "custom_messages.iss"
 
 [Messages]
-BeveledLabel= 07.09.2023
+BeveledLabel= 04.11.2023
 
 #include <idp.iss>
 #include <idplang\Polish.iss>
@@ -116,6 +116,7 @@ Source: "src\Playlist\IPTV.dpl";                                                
 Source: "src\Playlist\Ten komputer.dpl";                                                  DestDir: "{userappdata}\PotPlayerMini64\Playlist";                 Tasks: "playlist"; Flags: uninsrestartdelete ignoreversion 
 Source: "src\Playlist\FilmPolski.dpl";                                                    DestDir: "{userappdata}\PotPlayerMini64\Playlist";                 Tasks: "playlist"; Flags: uninsrestartdelete ignoreversion 
 Source: "src\Playlist\YouTube.dpl";                                                       DestDir: "{userappdata}\PotPlayerMini64\Playlist";                 Tasks: "playlist"; Flags: uninsrestartdelete ignoreversion
+Source: "src\Playlist\CzarnoBia³e.dpl";                                                   DestDir: "{userappdata}\PotPlayerMini64\Playlist";                 Tasks: "playlist"; Flags: uninsrestartdelete ignoreversion
 ; <-- // AviSynth and SVPflow // -->
 Source: "src\AviSynth\CPU-1-Low.avs";                                                     DestDir: "{commonpf}\DAUM\PotPlayer\AviSynth";                     Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
 Source: "src\AviSynth\CPU-2-Medium.avs";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\AviSynth";                     Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
@@ -935,7 +936,7 @@ Name: "custom";      Description: "{cm:comp_custom}"; Flags: iscustom
 Name: "program";     Description: "{cm:comp_program}";     Types: tweak full compact custom; Flags: fixed                                 
 Name: "SVP";         Description: "{cm:comp_SVP}";         Types: tweak full custom;         Check: IsSVPInstalled;
 Name: "madVR";       Description: "{cm:comp_madVR}";       Types: custom;                    Check: IsmadVRInstalled;
-Name: "TOR";         Description: "{cm:comp_TOR}";         Types: tweak full custom;         Check: IsTORInstalled;    ExtraDiskSpaceRequired: 29188096;
+Name: "TOR";         Description: "{cm:comp_TOR}";         Types: tweak full custom;         Check: IsTORInstalled;    ExtraDiskSpaceRequired: 26906624;
 Name: "ACE";         Description: "{cm:comp_ACE}";         Types: tweak full custom;         Check: IsACEInstalled;    ExtraDiskSpaceRequired: 23356723;
 Name: "ext";         Description: "{cm:comp_ext}";         Types: custom;
 Name: "ext/torrent"; Description: "{cm:comp_ext_torrent}"; Types: tweak full custom;         Check: IsTorrentInstalled;
