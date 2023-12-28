@@ -19,6 +19,11 @@ string GetDesc()
 	return "https://github.com/yt-dlp/yt-dlp/releases";
 }
 
+string GetStatus()
+{
+	return GetTitle();
+}
+
 void DebugPrint(string text)
 {
 	if (useDebugPrint) HostOpenConsole();
@@ -42,19 +47,19 @@ bool FileExist(string path)
 
 string GetFilePath()
 {
-	string path = "Extension\\Media\\PlayParse\\yt-dlp_x86.exe";
+	string path = "Extension\\yt-dlp.exe";
 
 	if (!FileExist(path))
 	{
-		path = "Extension\\Media\\PlayParse\\yt-dlp.exe";
+		path = "Extension\\yt-dlp_min.exe";
 
 		if (!FileExist(path))
 		{
-			path = "Extension\\Media\\PlayParse\\yt-dlp_min.exe";
+			path = "Extension\\yt-dlp_x86.exe";
 
 			if (!FileExist(path))
 			{
-				path = "Extention\\Media\\PlayParse\\yt-dlp_x86.exe"; // for some older versions...
+				path = "Extention\\yt-dlp_x86.exe"; // for some older versions...
 
 				if (!FileExist(path))
 				{
@@ -68,33 +73,37 @@ string GetFilePath()
 
 bool PlayitemCheck(const string &in path)
 {
-	if (path.size() < 100 && path.find("://www.youtube.com/") >= 0) return true;
-	else if (path.find("://youtu.be/") >= 0) return true;
-	else if (path.find("://yewtu.be/") >= 0) return true;
-	else if (path.find("://www.twitch.tv/") >= 0) return true;
-	else if (path.find("://wasd.tv/") >= 0) return true;
-	else if (path.find("://rumble.com/") >= 0) return true;
-	else if (path.find("://vimeo.com/") >= 0) return true;
-	else if (path.find("://www.imdb.com/") >= 0) return true;
-	else if (path.find("://www.filmweb.pl/") >= 0) return true;
-	else if (path.find("://www.dailymotion.com/") >= 0) return true;
-	else if (path.find("://vimeo.com/") >= 0) return true;	
-	else if (path.find("://www.tiktok.com/") >= 0) return true;
-	else if (path.find("://twitter.com/") >= 0) return true;
-	else if (path.find("://www.facebook.com/") >= 0) return true;
-	else if (path.find("://drive.google.com/") >= 0) return true;
-	else if (path.find("://www.xnxx.com/") >= 0) return true;
-	else if (path.find("://www.xvideos.com/") >= 0) return true;
-	else if (path.find("://rt.pornhub.com/") >= 0) return true;
-	else if (path.find("://www.pornhub.com/") >= 0) return true;
+	path.MakeLower();
+	if (path.find("://www.youtube.com/") >= 0) return true;
+	if (path.find("://youtu.be/") >= 0) return true;
+	if (path.find("://yewtu.be/") >= 0) return true;
+	if (path.find("://www.imdb.com/") >= 0) return true;
+	if (path.find("://www.filmweb.pl/") >= 0) return true;
+	if (path.find("://www.dailymotion.com/") >= 0) return true;
+	if (path.find("://twitter.com/") >= 0) return true;
+	if (path.find("://www.facebook.com/") >= 0) return true;
+	if (path.find("://drive.google.com/") >= 0) return true;
+	if (path.find("://www.twitch.tv/") >= 0) return true;
+	if (path.find("://clips.twitch.tv/") >= 0) return true;
+	if (path.find("://trovo.live/") >= 0) return true;
+	if (path.find("://wasd.tv/") >= 0) return true;
+	if (path.find("://rumble.com/") >= 0) return true;
+	if (path.find("://vimeo.com/") >= 0) return true;
+	if (path.find("://www.tiktok.com/") >= 0) return true;
+	if (path.find("://www.xnxx.com/") >= 0) return true;
+	if (path.find("://www.xvideos.com/") >= 0) return true;
+	if (path.find("://rt.pornhub.com/") >= 0) return true;
+	if (path.find("://www.pornhub.com/") >= 0) return true;
 	return false;
+
 }
 
 string PlayitemParse(const string &in path, dictionary &MetaData, array<dictionary> &QualityList)
 {
 	string ytdlp = GetFilePath();
+	string useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
 
-	string json = HostExecuteProgram(ytdlp, " --no-check-certificates --no-playlist --all-subs -J -- \"" + path + "\"");
+	string json = HostExecuteProgram(ytdlp, " --user-agent \"" + useragent + "\" --no-check-certificates --no-playlist --all-subs -J -- \"" + path + "\"");
 	string ret;
 
 	DebugPrint("HostFileOpen: " + ytdlp);
