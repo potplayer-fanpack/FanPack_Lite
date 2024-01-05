@@ -2,6 +2,14 @@ FanPack-Lite
 ==============
 
 
+Wersja 1.2.15 - 05.01.2024
+=====================================
+# AKTUALIZACJA:
+  * yt-dlp 2023.12.30
+  * Przywrócono AviSynth+ v3.5.1
+# Usunięto:
+  * AviSynth Filter
+
 Wersja 1.2.12 - 28.12.2023
 =====================================
 # AKTUALIZACJA:

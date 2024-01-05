@@ -8,7 +8,7 @@
 #define brandname "FanPack"
 #define vmajor 1
 #define vminor 2
-#define vbuild 12
+#define vbuild 15
 #define publisher "PotPlayer Club"
 #define URL "http://www.potplayerclub.pl"
 
@@ -34,7 +34,7 @@ AppSupportURL                      = {#URL}
 AppUpdatesURL                      = {#URL}
 DefaultDirName                     = {autopf}\{#appname}
 DefaultGroupName                   = {#appname}
-AppCopyright                       = Copyright © {#publisher} 2014-2023
+AppCopyright                       = Copyright © {#publisher} 2014-2024
 AllowNoIcons                       = yes
 OutputDir                          = bin
 SourceDir                          = .
@@ -70,7 +70,7 @@ Name: "en"; MessagesFile: "compiler:Default.isl";
 #include "custom_messages.iss"
 
 [Messages]
-BeveledLabel= 28.12.2023
+BeveledLabel= 05.01.2024
 
 #include <idp.iss>
 #include <idplang\Polish.iss>
@@ -102,10 +102,6 @@ Source: "src\x86\PotPlayerMini,2.exe";           DestName: "PotPlayerMini.exe"; 
 Source: "src\Skins\FMOD.dsf";                                                             DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin2"; Flags: uninsrestartdelete ignoreversion
 Source: "src\Skins\PotMPC v3.0.dsf";                                                      DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin3"; Flags: uninsrestartdelete ignoreversion
 Source: "src\Skins\PotXMP.dsf";                                                           DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin4"; Flags: uninsrestartdelete ignoreversion
-; <-- // Splittery MPC-BE // -->
-; Source: "src\x86\Module\AviSplitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
-; Source: "src\x86\Module\MatroskaSplitter.ax";                                             DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
-; Source: "src\x86\Module\MP4Splitter.ax";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "program"; Flags: uninsrestartdelete ignoreversion
 ; <-- // Operacje na plikach odtwarzacza // -->
 Source: "{commonpf}\DAUM\PotPlayer\ffcodec.dll"; DestName: "FFmpeg.dll";                  DestDir: "{commonpf}\DAUM\PotPlayer\Module\FFmpeg60";                                     Flags: external;
 Source: "{tmp}\Module.7z";                                                                DestDir: "{tmp}";                                                  Components: "program"; Flags: deleteafterinstall
@@ -129,7 +125,6 @@ Source: "src\x86\msvcp140.dll";                                                 
 Source: "src\x86\svpflow1.dll";                                                           DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP"; Flags: uninsrestartdelete ignoreversion 
 Source: "src\x86\svpflow2.dll";                                                           DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP"; Flags: uninsrestartdelete ignoreversion
 Source: "src\x86\vcruntime140.dll";                                                       DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP"; Flags: uninsrestartdelete ignoreversion
-Source: "src\x86\Module\avsf\avisynth_filter_32.ax";                                      DestDir: "{commonpf}\DAUM\PotPlayer\Module\avsf";                  Components: "SVP"; Flags: regserver ignoreversion
 ; ;<-- // madVR // -->
 Source: "{tmp}\madVR_v0.9.17.exe";                                                        DestDir: "{tmp}";                                                  Components: "madVR"; Flags: deleteafterinstall
 Source: "InstallDir\delete madVR.bat";                                                    DestDir: "{app}";                                                  Components: "madVR"; Flags: uninsrestartdelete ignoreversion
@@ -433,58 +428,6 @@ Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "AvisynthBufferBack"; ValueType: Dwo
 Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "AvisynthScript"; ValueType: String; ValueData: "svp=1 alg=1 fim=1 bf=0 sh=0 uhd=0 gpu=0 fps=60 import(""svp.avs"")"; Components: "SVP"; Flags: uninsdeletekey;
 Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: UseSelfDxva; ValueData: $1;                                                                         Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
 Root: HKCU; SubKey: "{#keyPMS}"; ValueType: dword; ValueName: IntDXVAUseMode; ValueData: $1;                                                                      Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-; Filtr AVS
-Root: HKCU; SubKey: "Software\AviSynthFilter";                                                                                                                    Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: RemoteControl; ValueData: $00000001;                                  Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: string; ValueName: ScriptFile;                                                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: InputFormat_RGB24; ValueData: $00000000;                              Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: InputFormat_RGB32; ValueData: $00000000;                              Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: InputFormat_YV24; ValueData: $00000000;                               Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: InputFormat_P010; ValueData: $00000001;                               Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: InputFormat_P016; ValueData: $00000001;                               Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: InputFormat_P210; ValueData: $00000001;                               Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: InputFormat_P216; ValueData: $00000001;                               Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: InputFormat_Y410; ValueData: $00000000;                               Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "Software\AviSynthFilter\AviSynth Filter"; ValueType: dword; ValueName: InputFormat_Y416; ValueData: $00000000;                               Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-; Dodanie Filtra AVS do priorytetów odtwarzacza
-Root: HKCU; SubKey: "{#keyPM}\Override"; Flags: uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: dword; ValueName: Type; ValueData: $00000000;                                                            Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: dword; ValueName: Disabled; ValueData: $00000000;                                                        Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: DisplayName; ValueData: @device:sw:{{083863F1-70DE-11D0-BD40-00A0C911CE86}\{{E5E2C1A6-C90F-4247-8BF5-604FB180A932}; Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: Name; ValueData: AviSynth Filter;                                                     Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: CLSID; ValueData: {{E5E2C1A6-C90F-4247-8BF5-604FB180A932};                            Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0000; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0001; ValueData: {{3231564E-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0002; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0003; ValueData: {{32315659-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0004; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0005; ValueData: {{30323449-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0006; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0007; ValueData: {{56555949-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0008; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0009; ValueData: {{30313050-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0010; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0011; ValueData: {{36313050-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0012; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0013; ValueData: {{32595559-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0014; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0015; ValueData: {{30313250-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0016; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0017; ValueData: {{36313250-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0018; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0019; ValueData: {{34325659-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0020; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0021; ValueData: {{30313459-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0022; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0023; ValueData: {{36313459-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0024; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0025; ValueData: {{E436EB7D-524F-11CE-9F53-0020AF0BA770};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0026; ValueData: {{73646976-0000-0010-8000-00AA00389B71};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: string; ValueName: mod0027; ValueData: {{E436EB7E-524F-11CE-9F53-0020AF0BA770};                          Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: dword; ValueName: FilterType; ValueData: $00000000;                                                      Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: dword; ValueName: Merit; ValueData: $00200001;                                                           Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0000"; ValueType: dword; ValueName: MeritHi; ValueData: $00000000;                                                         Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
-Root: HKCU; SubKey: "{#keyPM}\Override\0001"; ValueType: dword; ValueName: Type; ValueData: $fffffffe;                                                            Components: "SVP"; Flags: uninsdeletevalue uninsdeletekeyifempty
 ; Filtry
 Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "VideoPropertyHwFirst"; ValueData: "$1";                                                            Tasks: "hwcc"; Flags: uninsdeletekey;
 Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "DX9ResizeMode_0"; ValueData: "$13";                                                                Tasks: "resizer"; Flags: uninsdeletekey;
@@ -503,7 +446,7 @@ Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "SupportH264MVC"; 
 Root: HKCU; Subkey: "{#keyPMS}"; ValueName: "UseStreamTimeShift";                                                                                                 Tasks: "tsh"; Flags: deletevalue
 ;
 ; W³¹czenie FFmpeg dla H265
-Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntH265_0"; ValueData: "$2";                                                                       Tasks: "ffmpeg"; Flags: uninsdeletekey;
+Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "IntH265_0"; ValueData: "$4";                                                                       Tasks: "ffmpeg"; Flags: uninsdeletekey;
 ; ; Renderer madVR
 Root: HKCU; Subkey: "{#keyPMS}"; ValueType: dword; ValueName: "VideoRen2"; ValueData: "$a";                                                                       Tasks: "renderer\madVR"; Flags: uninsdeletekey;
 ; ; Renderer Open GL
@@ -693,36 +636,6 @@ Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "AllowBitstr
 Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedEnabled"; ValueData: "$0";                                                          Tasks: "extsanear"; Flags: uninsdeletekey;
 Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedCutoffFrequency"; ValueData: "$2bc";                                                Tasks: "extsanear"; Flags: uninsdeletekey;
 Root: HKCU; Subkey: "Software\sanear"; ValueType: dword; ValueName: "CrossfeedLevel"; ValueData: "$3c";                                                           Tasks: "extsanear"; Flags: uninsdeletekey;
-; ; Zewnêtrzne splittery MPC
-; Root: HKCU; Subkey: "{#keyPMOS}";                                                                                                                                 Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
-; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\AviSplitter.ax";                        Flags: uninsdeletekey; 
-; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "Name"; ValueData: "MPC AVI Source";                                                         Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: string; ValueName: "CLSID"; ValueData: "{{CEA8DEFF-0AF7-4DB9-9A38-FB3C3AEFC0DE}";                               Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
-; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Merit"; ValueData: "$600001";                                                                Flags: uninsdeletekey; 
-; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MatroskaSplitter.ax";                   Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "Name"; ValueData: "MPC Matroska Source";                                                    Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: string; ValueName: "CLSID"; ValueData: "{{0A68C3B5-9164-4A54-AFAF-995B2FF0E0D4}";                               Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey; 
-; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Type"; ValueData: "$1";                                                                      Flags: uninsdeletekey; 
-; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$1";                                                                  Flags: uninsdeletekey; 
-; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Path"; ValueData: "{commonpf}\DAUM\PotPlayer\Module\MP4Splitter.ax";                        Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "Name"; ValueData: "MPC MP4/MOV Source";                                                     Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: string; ValueName: "CLSID"; ValueData: "{{3CCC052E-BDEE-408A-BEA7-90914EF2964B}";                               Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "FilterType"; ValueData: "$0";                                                                Flags: uninsdeletekey; 
-; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Merit"; ValueData: "$600000";                                                                Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "MeritHi"; ValueData: "$0";                                                                   Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0003"; ValueType: dword; ValueName: "Type"; ValueData: "$FFFFFFFE";                                                               Flags: uninsdeletekey; 
-; Root: HKCU; Subkey: "{#keyPMOS}\0000"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
-; Root: HKCU; Subkey: "{#keyPMOS}\0001"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey; 
-; Root: HKCU; Subkey: "{#keyPMOS}\0002"; ValueType: dword; ValueName: "Disabled"; ValueData: "$0";                                                                  Flags: uninsdeletekey;
 ;
 Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "PrefAudLang"; ValueData: "pol";                                                                   Tasks: "audpol"; Flags: uninsdeletekey; 
 Root: HKCU; Subkey: "{#keyPMS}"; ValueType: string; ValueName: "PrefAudLang"; ValueData: "eng";                                                                   Tasks: "audeng"; Flags: uninsdeletekey;
@@ -904,7 +817,6 @@ Name: "audio_start";                Description: "{cm:tsk_audio_start}";        
 Name: "gain";                       Description: "{cm:tsk_gain}";                       GroupDescription: "{cm:tsk_group8}";
 Name: "gain2";                      Description: "{cm:tsk_gain2}";                      GroupDescription: "{cm:tsk_group8}"; Flags: unchecked;
 Name: "gain3";                      Description: "{cm:tsk_gain3}";                      GroupDescription: "{cm:tsk_group8}"; Flags: unchecked;
-
 ;
 Name: "bit_depth16";                Description: "{cm:tsk_bit_depth16}";                GroupDescription: "{cm:tsk_group8}"; Flags: exclusive unchecked;
 Name: "bit_depth24";                Description: "{cm:tsk_bit_depth24}";                GroupDescription: "{cm:tsk_group8}"; Flags: exclusive;
@@ -940,7 +852,7 @@ Name: "TOR";         Description: "{cm:comp_TOR}";         Types: tweak full cus
 Name: "ACE";         Description: "{cm:comp_ACE}";         Types: tweak full custom;         Check: IsACEInstalled;    ExtraDiskSpaceRequired: 23356723;
 Name: "ext";         Description: "{cm:comp_ext}";         Types: custom;
 Name: "ext/torrent"; Description: "{cm:comp_ext_torrent}"; Types: tweak full custom;         Check: IsTorrentInstalled;
-Name: "ext/ytdlp";   Description: "{cm:comp_ext_ytdlp}";   Types: tweak full custom;         Check: IsDLPInstalled;    ExtraDiskSpaceRequired: 24922118;
+Name: "ext/ytdlp";   Description: "{cm:comp_ext_ytdlp}";   Types: tweak full custom;         Check: IsDLPInstalled;    ExtraDiskSpaceRequired: 19853312;
 Name: "ext/twich";   Description: "{cm:comp_ext_twich}";   Types: custom;                    Check: IsTwichInstalled;
 Name: "icaros";      Description: "{cm:comp_icaros}";      Types: custom;                    Check: IsIcarosInstalled; ExtraDiskSpaceRequired: 12550144;
 Name: "minfo";       Description: "{cm:comp_minfo}";       Types: custom;                    Check: IsMInfoInstalled; 
@@ -1180,7 +1092,7 @@ end;
 
 function IsDLPInstalled():Boolean;
 begin
-    Result := not FileExists(ExpandConstant('{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse\yt-dlp_x86.exe'));
+    Result := not FileExists(ExpandConstant('{commonpf}\DAUM\PotPlayer\Extension\yt-dlp_x86.exe'));
 end;
 
 
