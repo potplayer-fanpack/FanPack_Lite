@@ -17,7 +17,6 @@ Wszystko jest już skonfigurowane, instalujesz pakiet, uruchamiasz odtwarzacz i 
 - [_Icaros_](http://shark007.net/tools.html) z zgodnie z licencją "Icaros License.txt" - Copyright (c) 2010-2023, Tabibito Technology
 - [_madVR_](http://forum.doom9.org/showthread.php?t=146228) [specjalnie przygotowany plik instalacyjny] zgodnie z licencją "license.txt" - Copyright (c) 2009-2023 Mathias Rauen
 - Biblioteki [_AviSynth[64]+_](https://github.com/pinterf/AviSynthPlus/releases) zgodnie z licencją "GNU GPL"
-- [_AviSynth Filter_](https://github.com/CrendKing/avisynth_filter) zgodnie z licencją MIT
 - Biblioteki [_SVPflow[64]_](http://www.svp-team.com/wiki/Plugins:_SVPFlow) zgodnie z licencją "GNU GPL" - Copyright (c) 2023 SVP-Team.com
 - Skrypty do AviSynth64+ i SVPflow64 - Copyright (c) 2018-2022 zub35 i 7sh3
 - [_Rozszerzenie do Twich.tv_](https://github.com/23rd/PotPlayerExtentions) - Copyright (c) 2018-2022 23rd
@@ -88,7 +87,6 @@ Everything is set up, you install the package, launch the player and start watch
 - [_Icaros_](http://shark007.net/tools.html) according to the "Icaros License.txt" license - Copyright (c) 2010-2023, Tabibito Technology
 - [_madVR_](http://forum.doom9.org/showthread.php?t=146228) [the specially prepared installation file] according to the "license.txt" license - Copyright (c) 2009-2023 Mathias Rauen
 - Libraries [_AviSynth[64]+_](https://github.com/pinterf/AviSynthPlus/releases) according to the "GNU GPL" license
-- [_AviSynth Filter_](https://github.com/CrendKing/avisynth_filter) according to the MIT License
 - Libraries [_SVPflow[64]_](http://www.svp-team.com/wiki/Plugins:_SVPFlow) according to the "GNU GPL" license - Copyright (c) 2023 SVP-Team.com
 - Scripts for AviSynth64+ i SVPflow64 - Copyright (c) 2018-2022 zub35 and 7sh3
 - [_Extension to Twich.tv_](https://github.com/23rd/PotPlayerExtentions) - Copyright (c) 2018-2022 23rd
