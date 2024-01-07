@@ -91,7 +91,7 @@ en.tsk_powerststus_a=Display power configuration and battery charge status
 en.tsk_powerststus_b=Only display battery status
 ;
 en.tsk_group5=Video settings:
-en.tsk_dxva=Use hardware decoders (DXVA Native)
+en.tsk_dxva=Use hardware decoders DXVA2 (Copy-Back)
 en.tsk_renderer=Video renderer
 en.tsk_renderer_auto=Automatic selection
 en.tsk_renderer_opengl=Enable the built-in OpenGL Video Renderer

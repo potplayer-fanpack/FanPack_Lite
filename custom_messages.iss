@@ -90,7 +90,7 @@ pl.tsk_screenfitbysize_a=Zachowaj wspó³czynnik proporcji w oparciu o rozmiar pio
 pl.tsk_screenfitbysize_b=Zachowaj wspó³czynnik proporcji w oparciu o rozmiar poziomy
 ;
 pl.tsk_group5=Ustawienia wideo:
-pl.tsk_dxva=W³¹cz dekodery sprzêtowe (DXVA Native)
+pl.tsk_dxva=W³¹cz dekodery sprzêtowe DXVA2 (Copy-Back)
 pl.tsk_renderer=Renderer wideo 
 pl.tsk_renderer_auto=Wybór automatyczny
 pl.tsk_renderer_opengl=W³¹cz wbudowany OpenGL Video Renderer
