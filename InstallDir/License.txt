@@ -9,5 +9,5 @@ W żadnym przypadku autor nie ponosi odpowiedzialności za jakiekolwiek szkody w
 Pliki instalacyjne stosowane w moich instalatorach są własnością ich autorów, a nazwy i zarejestrowane znaki towarowe należą do nich.
 
 
-Copyright © 2014-2023 PotPlayer Club
+Copyright © 2014-2024 PotPlayer Club
 http://www.potplayerclub.pl/

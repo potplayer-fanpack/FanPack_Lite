@@ -36,9 +36,6 @@ Everything is set up, you install the package, launch the player and start watch
 - Sanear Audio Renderer under the "GNU LGPL" licence
   Copyright (c) 2015 Alex Marsev
   https://github.com/alexmarsev/sanear
-- MPC-BE Standalone Filters under the "GNU LGPL" licence
-  Copyright (c) 2022 MPC-BE Coders
-  http://sourceforge.net/projects/mpcbe/
 - TorrServer in accordance with the licence
   Copyright (c) 2022 YouROK
   https://github.com/YouROK/TorrServer
@@ -98,4 +95,4 @@ Enjoy the movies!
 Adam Malich
 
 
-Copyright (c) 2014-2023 www.potplayerclub.pl
+Copyright (c) 2014-2024 potplayerclub.pl
