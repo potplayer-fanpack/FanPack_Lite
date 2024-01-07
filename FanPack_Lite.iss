@@ -14,7 +14,6 @@
 
 #define keyPM "Software\Daum\PotPlayerMini"
 #define keyPMS "Software\Daum\PotPlayerMini\Settings"
-; #define keyPMOS "Software\Daum\PotPlayerMini\Override_Settings"
 #define keyMVR "Software\MPC-BE Filters\MPC Video Renderer"
 #define keyPCF "Software\DAUM\PotPlayerMini\CaptionFolderList"
 #define keyPAF "Software\DAUM\PotPlayerMini\AudioFolderList"
@@ -85,25 +84,31 @@ Source: "InstallDir\ReadMe.txt";                    DestName: "CzytajTo.txt";   
 Source: "InstallDir\ReadMe_Eng.txt";                DestName: "ReadMe.txt";               DestDir: "{app}";                                                  Components: "program"; Languages: "en";    Flags: isreadme;
 Source: "InstallDir\LGPL.TXT";                                                            DestDir: "{app}";                                                  Components: "program";                     Flags: ignoreversion
 Source: "InstallDir\MyProg.exe";                                                          DestDir: "{app}";                                                  Components: "program";                     Flags: ignoreversion
+
 ; <-- // Listy // -->
 Source: "src\UrlList\Radio.asx";                                                          DestDir: "{commonpf}\DAUM\PotPlayer\UrlList";                      Components: "program";                     Flags: ignoreversion uninsneveruninstall
 Source: "src\UrlList\TV.asx";                                                             DestDir: "{commonpf}\DAUM\PotPlayer\UrlList";                      Components: "program";                     Flags: ignoreversion uninsneveruninstall
+
 ; <-- // Skins // -->
 Source: "src\Skins\FMOD.Gilly.dsf";                                                       DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program";                     Flags: uninsrestartdelete ignoreversion
 Source: "src\Skins\FMOD.Light.dsf";                                                       DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program";                     Flags: uninsrestartdelete ignoreversion
 Source: "src\Skins\PotMPC v1.0.dsf";                                                      DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program";                     Flags: uninsrestartdelete ignoreversion
 Source: "src\Skins\PotMPC v2.0.dsf";                                                      DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program";                     Flags: uninsrestartdelete ignoreversion
 Source: "src\Skins\Default.MOD.dsf";                                                      DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program";                     Flags: uninsrestartdelete ignoreversion
+
 ; <-- // MPC Video Renderer // -->
 Source: "src\x86\Module\MpcVideoRenderer.ax";                                             DestDir: "{commonpf}\DAUM\PotPlayer\Module";                                              Tasks: "extmpcvr";  Flags: regserver ignoreversion
+
 ; <-- // Sanear Audio Renderer // -->
 Source: "src\x86\Module\sanear.ax";                                                       DestDir: "{commonpf}\DAUM\PotPlayer\Module";                                              Tasks: "extsanear"; Flags: regserver ignoreversion
+
 ; <-- // Dodatkowe listy odtwarzania // -->
 Source: "src\Playlist\IPTV.dpl";                                                          DestDir: "{userappdata}\PotPlayerMini\Playlist";                                          Tasks: "playlist";  Flags: uninsrestartdelete ignoreversion   
 Source: "src\Playlist\Ten komputer.dpl";                                                  DestDir: "{userappdata}\PotPlayerMini\Playlist";                                          Tasks: "playlist";  Flags: uninsrestartdelete ignoreversion 
 Source: "src\Playlist\FilmPolski.dpl";                                                    DestDir: "{userappdata}\PotPlayerMini\Playlist";                                          Tasks: "playlist";  Flags: uninsrestartdelete ignoreversion 
 Source: "src\Playlist\YouTube.dpl";                                                       DestDir: "{userappdata}\PotPlayerMini\Playlist";                                          Tasks: "playlist";  Flags: uninsrestartdelete ignoreversion
 Source: "src\Playlist\CzarnoBia³e.dpl";                                                   DestDir: "{userappdata}\PotPlayerMini\Playlist";                                          Tasks: "playlist";  Flags: uninsrestartdelete ignoreversion
+
 ; <-- // Skórki i ikony odtwarzacza // -->
 Source: "src\Skins\Default.MOD.Optimized,1.dsf"; DestName: "Default.MOD.Optimized.DSF";   DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                                               Tasks: "skin1";     Flags: uninsrestartdelete ignoreversion
 Source: "src\x86\PotPlayerMini,1.exe";           DestName: "PotPlayerMini.exe";           DestDir: "{commonpf}\DAUM\PotPlayer";                                                     Tasks: "skin1";     Flags: ignoreversion uninsneveruninstall
@@ -112,10 +117,12 @@ Source: "src\x86\PotPlayerMini,2.exe";           DestName: "PotPlayerMini.exe"; 
 Source: "src\Skins\FMOD.dsf";                                                             DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin2";     Flags: uninsrestartdelete ignoreversion
 Source: "src\Skins\PotMPC v3.0.dsf";                                                      DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin3";     Flags: uninsrestartdelete ignoreversion
 Source: "src\Skins\PotXMP.dsf";                                                           DestDir: "{commonpf}\DAUM\PotPlayer\Skins";                        Components: "program"; Tasks: "skin4";     Flags: uninsrestartdelete ignoreversion
+
 ; <-- // Operacje na plikach odtwarzacza // -->
 Source: "{commonpf}\DAUM\PotPlayer\ffcodec.dll"; DestName: "FFmpeg.dll";                  DestDir: "{commonpf}\DAUM\PotPlayer\Module\FFmpeg60";                                                         Flags: external;
 Source: "{tmp}\Module.7z";                                                                DestDir: "{tmp}";                                                  Components: "program";                     Flags: deleteafterinstall
 Source: "{tmp}\PxShader.7z";                                                              DestDir: "{tmp}";                                                  Components: "program";                     Flags: deleteafterinstall
+
 ; <-- // AviSynth and SVPflow // -->
 Source: "src\AviSynth\CPU-1-Low.avs";                                                     DestDir: "{commonpf}\DAUM\PotPlayer\AviSynth";                     Components: "SVP";                         Flags: ignoreversion 
 Source: "src\AviSynth\CPU-2-Medium.avs";                                                  DestDir: "{commonpf}\DAUM\PotPlayer\AviSynth";                     Components: "SVP";                         Flags: ignoreversion 
@@ -129,22 +136,27 @@ Source: "src\x86\msvcp140.dll";                                                 
 Source: "src\x86\svpflow1.dll";                                                           DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP";                         Flags: uninsrestartdelete ignoreversion 
 Source: "src\x86\svpflow2.dll";                                                           DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP";                         Flags: uninsrestartdelete ignoreversion
 Source: "src\x86\vcruntime140.dll";                                                       DestDir: "{commonpf}\DAUM\PotPlayer";                              Components: "SVP";                         Flags: uninsrestartdelete ignoreversion
+
 ; ;<-- // madVR // -->
 Source: "{tmp}\madVR_v0.9.17.exe";                                                        DestDir: "{tmp}";                                                  Components: "madVR";                       Flags: deleteafterinstall
 Source: "InstallDir\delete madVR.bat";                                                    DestDir: "{app}";                                                  Components: "madVR";                       Flags: uninsrestartdelete ignoreversion
+
 ; ;<-- // Icaros // -->
 Source: "{tmp}\Icaros.exe";                                                               DestDir: "{tmp}";                                                  Components: "icaros";                      Flags: external deleteafterinstall;
 Source: "{tmp}\Icaros_HKCU.reg";                                                          DestDir: "{tmp}";                                                  Components: "icaros";                      Flags: deleteafterinstall
 Source: "{tmp}\icaros_HKLM_64.reg";                                                       DestDir: "{tmp}";                                                  Components: "icaros";                      Flags: deleteafterinstall
 Source: "{tmp}\icaros_HKLM_32.reg";                                                       DestDir: "{tmp}";                                                  Components: "icaros";                      Flags: deleteafterinstall
 Source: "src\Icaros\Resources\Localize\Config.pl.po";                                                                                                        Components: "icaros";                      Flags: dontcopy
+
 ; <-- // TorrServer // -->
 Source: "{tmp}\TS.MatriX.Setup.exe";                                                      DestDir: "{tmp}";                                                  Components: "TOR";                         Flags: external deleteafterinstall;
 Source: "src\Extension\Media\PlayParse\MediaPlayParse - TorrServer.as";                   DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: "TOR";                         Flags: uninsrestartdelete ignoreversion
 Source: "src\Extension\Media\PlayParse\MediaPlayParse - TorrServer.ico";                  DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: "TOR";                         Flags: uninsrestartdelete ignoreversion
+
 ; <-- // Ace Stream Engine // -->
-Source: "{tmp}\ace_engine_setup.exe";                                                     DestDir: "{tmp}";                                                  Components: "ACE";                         Flags: external deleteafterinstall;
+Source: "{tmp}\AceEngine.exe";                                                            DestDir: "{tmp}";                                                  Components: "ACE";                         Flags: external deleteafterinstall;
 Source: "src\Playlist\AceTV.dpl";                                                         DestDir: "{userappdata}\PotPlayerMini\Playlist";                   Components: "ACE";                         Flags: uninsrestartdelete ignoreversion
+
 ; <-- // Rozszerzenia // -->
 Source: "src\x86\Extension\Lib\TorrentReader.dll";                                        DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Lib";                Components: "ext/torrent";                 Flags: uninsrestartdelete ignoreversion
 Source: "src\Extension\Media\PlayParse\MediaPlayParse - LibTorrent.as";                   DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\PlayParse";    Components: "ext/torrent";                 Flags: uninsrestartdelete ignoreversion
@@ -159,8 +171,10 @@ Source: "src\Extension\Media\UrlList\MediaUrlList - Twitch.as";                 
 Source: "src\Extension\Media\UrlList\MediaUrlList - Twitch.ico";                          DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\UrlList";      Components: "ext/twich";                   Flags: uninsrestartdelete ignoreversion
 Source: "src\Extension\Media\UrlList\config.ini";                                         DestDir: "{commonpf}\DAUM\PotPlayer\Extension\Media\UrlList";      Components: "ext/twich";                   Flags: uninsrestartdelete ignoreversion
 Source: "{tmp}\yt-dlp-parser.7z";                                                         DestDir: "{tmp}";                                                  Components: "ext/ytdlp";                   Flags: external deleteafterinstall;
-; ;<-- // MediaInfo // --> 
+
+; <-- // MediaInfo // --> 
 Source: "src\x86\Module\MediaInfo.exe";                                                   DestDir: "{commonpf}\DAUM\PotPlayer\Module";                       Components: "minfo";                       Flags: uninsrestartdelete ignoreversion  
+
 ; ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 Source: "7za.exe";                                                                        DestDir: "{tmp}";                                                                                             Flags: deleteafterinstall;
 
@@ -172,6 +186,7 @@ Name: {userappdata}\madVR; Permissions: everyone-full; Flags: UninsAlwaysUninsta
 ; ---start autoupdate code; see http://www.microchipc.com/innosetup/innosetup_auto_versioning_upgrade.php--
 Root: HKLM; Subkey: "Software\{#appname}"; ValueType: string; ValueName: CurrentVersion; ValueData: {code:GetAppCurrentVersion|''}; Flags: uninsdeletekey
 ; ---end autoupdate code---
+
 Root: HKCU; Subkey: "Software\madshi";                                                                                                                              Components: "madVR"; Flags: uninsdeletekey dontcreatekey;
 Root: HKCU; Subkey: "Software\madshi\madHcCtrl"; ValueType: dword; ValueName: "ShowTrayIcon"; ValueData: "$1";                                                      Components: "madVR"; Flags: uninsdeletekey;
 Root: HKCU; Subkey: "Software\madshi\madVR"; ValueType: string; ValueName: "LastSettingsKey"; ValueData: "devices";                                                 Components: "madVR"; Flags: uninsdeletekey;
@@ -680,7 +695,7 @@ Type: files;          Name: "{commonpf}\DAUM\PotPlayer\AviSynth\TrueMotionNoGPU.
 Filename: "{tmp}\madVR_v0.9.17.exe";                                                           WorkingDir: {tmp}; Description: "{cm:msg_install_madVR}";  StatusMsg: "{cm:msg_install_madVR}";  Components: "madVR";  Check: IsmadVRInstalled;
 Filename: "{tmp}\Icaros.exe";           Parameters: "/VERYSILENT";                             WorkingDir: {tmp}; Description: "{cm:msg_install_icaros}"; StatusMsg: "{cm:msg_install_icaros}"; Components: "icaros"; Check: IsIcarosInstalled; 
 Filename: "{tmp}\TS.MatriX.Setup.exe";  Parameters: "/VERYSILENT";                             WorkingDir: {tmp}; Description: "{cm:msg_install_tor}";    StatusMsg: "{cm:msg_install_tor}";    Components: "TOR";    Check: IsTORInstalled;
-Filename: "{tmp}\ace_engine_setup.exe"; Parameters: "/VERYSILENT";                             WorkingDir: {tmp}; Description: "{cm:msg_install_ace}";    StatusMsg: "{cm:msg_install_ace}";    Components: "ace";    Check: IsACEInstalled;
+Filename: "{tmp}\AceEngine.exe";        Parameters: "/VERYSILENT";                             WorkingDir: {tmp}; Description: "{cm:msg_install_ace}";    StatusMsg: "{cm:msg_install_ace}";    Components: "ace";    Check: IsACEInstalled;
 Filename: "{win}\Regedit.exe";          Parameters: "/S ""{tmp}\Icaros_HKCU.reg /reg:64""";    WorkingDir: {tmp}; Description: "{cm:msg_conf_icaros}";    StatusMsg: "{cm:msg_conf_icaros}";    Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
 Filename: "{win}\Regedit.exe";          Parameters: "/S ""{tmp}\icaros_HKLM_64.reg /reg:64"""; WorkingDir: {tmp}; Description: "{cm:msg_conf_icaros}";    StatusMsg: "{cm:msg_conf_icaros}";    Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
 Filename: "{win}\Regedit.exe";          Parameters: "/S ""{tmp}\icaros_HKLM_32.reg /reg:32"""; WorkingDir: {tmp}; Description: "{cm:msg_conf_icaros}";    StatusMsg: "{cm:msg_conf_icaros}";    Components: "icaros"; Check: IsIcarosInstalled; Flags: shellexec runhidden
@@ -858,7 +873,7 @@ Name: "program";     Description: "{cm:comp_program}";     Types: tweak full com
 Name: "SVP";         Description: "{cm:comp_SVP}";         Types: tweak full custom;         Check: IsSVPInstalled;
 Name: "madVR";       Description: "{cm:comp_madVR}";       Types: custom;                    Check: IsmadVRInstalled;
 Name: "TOR";         Description: "{cm:comp_TOR}";         Types: tweak full custom;         Check: IsTORInstalled;    ExtraDiskSpaceRequired: 30371840;
-Name: "ACE";         Description: "{cm:comp_ACE}";         Types: tweak full custom;         Check: IsACEInstalled;    ExtraDiskSpaceRequired: 23356723;
+Name: "ACE";         Description: "{cm:comp_ACE}";         Types: tweak full custom;         Check: IsACEInstalled;    ExtraDiskSpaceRequired: 20426752;
 Name: "ext";         Description: "{cm:comp_ext}";         Types: custom;
 Name: "ext/torrent"; Description: "{cm:comp_ext_torrent}"; Types: tweak full custom;         Check: IsTorrentInstalled;
 Name: "ext/ytdlp";   Description: "{cm:comp_ext_ytdlp}";   Types: tweak full custom;         Check: IsDLPInstalled;    ExtraDiskSpaceRequired: 19853312;
@@ -1125,7 +1140,7 @@ begin
         if WizardIsComponentSelected('TOR') then
             idpAddFile('http://www.potplayerclub.pl/ccount/click.php?id=33', ExpandConstant('{tmp}\TS.MatriX.Setup.exe'));
         if WizardIsComponentSelected('ACE') then
-            idpAddFile('http://www.potplayerclub.pl/ccount/click.php?id=28', ExpandConstant('{tmp}\ace_engine_setup.exe'));
+            idpAddFile('http://www.potplayerclub.pl/ccount/click.php?id=28', ExpandConstant('{tmp}\AceEngine.exe'));
         if WizardIsComponentSelected('ext/ytdlp') then
             idpAddFile('http://www.potplayerclub.pl/ccount/click.php?id=34', ExpandConstant('{tmp}\yt-dlp-parser.7z'));
   end;
